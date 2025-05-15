@@ -13,7 +13,7 @@ public class CrearCuentaViewModel : BaseViewModel
         {
             if(_nombreUsuario != value)
             {
-                _nombreUsuario = value;
+                _nombreUsuario = value?.Trim();
                 OnPropertyChanged();
 
             }
@@ -28,7 +28,7 @@ public class CrearCuentaViewModel : BaseViewModel
         {
             if  (_correoElectronico != value)
             {
-                _correoElectronico = value;
+                _correoElectronico = value?.Trim();
                 OnPropertyChanged();
             }
         }
@@ -42,7 +42,7 @@ public class CrearCuentaViewModel : BaseViewModel
         {
             if (_contrasena != value )
             {
-                _contrasena = value;
+                _contrasena = value?.Trim();
                 OnPropertyChanged();
             }
         }
@@ -57,7 +57,7 @@ public class CrearCuentaViewModel : BaseViewModel
         {
             if (_confirmarContrasena != value)
             {
-                _confirmarContrasena = value;
+                _confirmarContrasena = value?.Trim();
                 OnPropertyChanged();
             }
         }

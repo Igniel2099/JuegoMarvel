@@ -11,58 +11,10 @@ using System.Text;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 
-public class ComandoConfirmarCrearCuenta : BaseCommand
+public class ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewModel crearCuentaViewModel) : BaseCommand
 {
-    private readonly Dictionary<string, string> _propiedadesCrearCuenta;
-    private readonly AppSettings _settings;
-    private readonly CrearCuentaViewModel _crearCuentaViewModel;
-
-    public ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewModel crearCuentaViewModel )
-    {
-        _settings = settings;
-
-        _propiedadesCrearCuenta = new()
-        {
-            { nameof(crearCuentaViewModel.NombreUsuario), crearCuentaViewModel.NombreUsuario! },
-            { nameof(crearCuentaViewModel.CorreoElectronico), crearCuentaViewModel.CorreoElectronico! },
-            { nameof(crearCuentaViewModel.Contrasena), crearCuentaViewModel.Contrasena! },
-            { nameof(crearCuentaViewModel.ConfirmarContrasena), crearCuentaViewModel.ConfirmarContrasena! }
-        };
-
-        crearCuentaViewModel.PropertyChanged += OnVmPropertyChanged;
-        _crearCuentaViewModel = crearCuentaViewModel;
-    }
-
-    private void OnVmPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (sender is not CrearCuentaViewModel vm) return;
-
-        // e.PropertyName te dice qué propiedad cambió:
-        switch (e.PropertyName)
-        {
-            case nameof(vm.NombreUsuario):
-                HandleCambio("NombreUsuario", vm.NombreUsuario);
-                break;
-
-            case nameof(vm.CorreoElectronico):
-                HandleCambio("CorreoElectronico", vm.CorreoElectronico);
-                break;
-
-            case nameof(vm.Contrasena):
-                HandleCambio("Contrasena", vm.Contrasena);
-                break;
-
-            case nameof(vm.ConfirmarContrasena):
-                HandleCambio("ConfirmarContrasena", vm.ConfirmarContrasena);
-                break;
-        }
-    }
-
-    private void HandleCambio(string propiedad, string? valor)
-    {
-        if (valor is null) return;
-        _propiedadesCrearCuenta[propiedad] = valor;
-    }
+    private readonly AppSettings _settings = settings;
+    private readonly CrearCuentaViewModel _crearCuentaViewModel = crearCuentaViewModel;
 
     public override async void Execute(object? parameter)
     {
@@ -71,34 +23,22 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         _crearCuentaViewModel.EstadoImgContrasena = null;
         _crearCuentaViewModel.EstadoImgConfirmarContrasena = null;
 
-        string? txtErrorNomUs = null;
-        string? txtErrorCorreoElec = null;
-        string? txtErrorContrasena = null;
-
-        bool existeUsuario = await ComprobarNombreUsuario(_crearCuentaViewModel.NombreUsuario!);
-        _crearCuentaViewModel.EstadoImgNombreUsuario = existeUsuario;
-
-        bool correoValidoFormato = _crearCuentaViewModel.CorreoElectronico!.Contains('@');
-        bool existeCorreo = await ComprobarCorreoElectronico(_crearCuentaViewModel.CorreoElectronico);
-        _crearCuentaViewModel.EstadoImgCorreoElectronico = correoValidoFormato && !existeCorreo;
-
-        bool contrasenaValida = ComprobarContrasena(_crearCuentaViewModel.Contrasena!);
-        _crearCuentaViewModel.EstadoImgContrasena = contrasenaValida;
-
-        bool coincide = _crearCuentaViewModel.Contrasena == _crearCuentaViewModel.ConfirmarContrasena;
-        _crearCuentaViewModel.EstadoImgConfirmarContrasena = coincide;
-
         if (parameter is CrearCuenta crearCuenta)
         {
-            if (_crearCuentaViewModel.EstadoImgNombreUsuario == false)
-                txtErrorNomUs = "El nombre de usuario ya existe.\n";
-            if (_crearCuentaViewModel.EstadoImgCorreoElectronico == false)
-                txtErrorCorreoElec = "El correo no es válido o ya existe.\n";
-            if (_crearCuentaViewModel.EstadoImgContrasena == false)
-                txtErrorContrasena = "La contraseña no cumple los requisitos.\n";
-            if (_crearCuentaViewModel.EstadoImgConfirmarContrasena == false)
-                txtErrorContrasena = "Las contraseñas no coinciden.\n";
 
+            var (existeNu, mensajeNu) = await ComprobarNombreUsuario(_crearCuentaViewModel.NombreUsuario!);
+
+            _crearCuentaViewModel.EstadoImgNombreUsuario = existeNu;
+            string? txtErrorNomUs = mensajeNu;
+
+            var (existeCe, mensajeCe) = await ComprobarCorreoElectronico(_crearCuentaViewModel.CorreoElectronico!);
+            _crearCuentaViewModel.EstadoImgCorreoElectronico = existeCe;
+            string? txtErrorCorreoElec = mensajeCe;
+
+            var (comprobacionContrasena, mensajeContrasena) = ComprobarContrasena(_crearCuentaViewModel.Contrasena, _crearCuentaViewModel.ConfirmarContrasena);
+            _crearCuentaViewModel.EstadoImgContrasena = comprobacionContrasena;
+            _crearCuentaViewModel.EstadoImgConfirmarContrasena = comprobacionContrasena;
+            string? txtErrorContrasena = mensajeContrasena;
 
             var popupECC = new PopupErroresCrearCuenta
             {
@@ -111,7 +51,16 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
 
     }
 
-    public async Task<bool> ComprobarNombreUsuario(string nombreUsuario)
+    public async Task<(bool comprobacion, string? mensaje)> ComprobarNombreUsuario(string nombreUsuario)
+    {
+        // Comprobar el formato del nombre de usuario
+        if (string.IsNullOrWhiteSpace(nombreUsuario))
+            return (false, "No puedes dejar vacio el Campo de Nombre Usuario. ");
+       return await ExistenciaNombreUsuario(nombreUsuario);
+    }
+
+
+    public async Task<(bool existe, string? mensaje)> ExistenciaNombreUsuario(string nombreUsuario)
     {
         try
         {
@@ -150,17 +99,29 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
                 if (mensajeServidor.Respuesta == null)
                     throw new Exception("Error con el json Recibido algo paso en el proceso");
 
-                return mensajeServidor.Respuesta == EnumRespuesta.NoExistente;
+                bool existe = mensajeServidor.Respuesta == EnumRespuesta.Existente;
+                return (!existe, existe ? "El nombre de usuario ya existe." : null );
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine("==================================" + $"Error: {ex.Message}" + "==================================");
         }
-        return false;
+        return (false, "Error con el Campo de Nombre Usuario.");
     }
 
-    public async Task<bool> ComprobarCorreoElectronico(string correoElectronico)
+    public async Task<(bool existe, string? mensaje)> ComprobarCorreoElectronico(string correoElectronico)
+    {
+        // Comprobar el formato del correo electrónico
+        if (string.IsNullOrWhiteSpace(correoElectronico))
+            return (false, "No puedes dejar vacio el Campo de Correo Electronico. ");
+        else if (!correoElectronico.Contains('@') || !correoElectronico.Contains('.')) // Hacer una comprobacion mas fuerte de la validacion del correo Electronico 
+            return (false, "El correo no es válido. ");
+
+        return await ExisteCorreoElectronico(correoElectronico);
+    }
+
+    public async Task<(bool existe, string? mensaje)> ExisteCorreoElectronico(string correoElectronico)
     {
         try
         {
@@ -198,22 +159,53 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
                 if (mensajeServidor.Respuesta == null)
                     throw new Exception("Error con el json Recibido algo paso en el proceso");
 
-                return mensaje.Respuesta == EnumRespuesta.Existente;
+                bool existe = mensajeServidor.Respuesta == EnumRespuesta.Existente;
+                return (!existe, existe ? "El correo electronico ya existe." : null);
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine("==================================" + $"Error: {ex.Message}" + "==================================");
         }
-        return false;
+        return (false, "Error con el Campo de Correo Electronico.");
     }
 
-    public bool ComprobarContrasena(string contraseña)
+
+    public (bool valida, string? error) ComprobarContrasena(string? contra, string? confirma)
+    {
+        var (nulosOk, errorNulos) = ComprobarNulosContrasenas(contra, confirma);
+        if (!nulosOk)
+            return (false, errorNulos);
+
+        var (formatoOk, errorForm) = ComprobarFormatoContrasena(contra!);
+        if (!formatoOk)
+            return (false, errorForm);
+
+        return contra == confirma
+            ? (true, null) 
+            : (false, "Las contraseñas no coinciden.");
+    }
+
+    public (bool esValido, string? error) ComprobarNulosContrasenas(string? contrasena, string? confirmarContrasena)
+    {
+        if (string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena))
+            return (false, "Las contraseñas no pueden tener campos vacíos.");
+        return (true, null);
+    }
+
+
+    public (bool comprobacion, string? mensaje) ComprobarIgualdadContrasenas(string? contrasena, string? confirmarContrasena)
+    {
+        if (contrasena == confirmarContrasena)
+            return (true, null);
+        return (false, "Las contraseñas no coinciden.");
+    }
+
+    public (bool comprobacion, string? mensaje) ComprobarFormatoContrasena(string contraseña)
     {
         if (contraseña.Length > 12) // Tambien si es alfanumerico, si contiene un caracter especial
-            return true;
-        return false;
-
+            return (true, null);
+        return (false, "La contraseña no Tiene un Formato Valido.");
     }
 
 

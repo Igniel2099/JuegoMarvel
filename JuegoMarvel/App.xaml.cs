@@ -1,4 +1,8 @@
-﻿namespace JuegoMarvel
+﻿using JuegoMarvel.ModuloLogin.View;
+using JuegoMarvel.Views;
+using Microsoft.Maui.Controls;
+
+namespace JuegoMarvel
 {
     public partial class App : Application
     {
@@ -9,7 +13,7 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new Window(new Login());
         }
     }
 }

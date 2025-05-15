@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="JuegoMarvel.Views.InformacionPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+
+    <Grid HeightRequest="330" WidthRequest="752">
+
+        <AbsoluteLayout>
+            <!--  Imagen de fondo  -->
+            <Image Source="fondo_informacion.png" />
+
+            <!--  Boton cerrar  -->
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="1,0,40,40"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Clicked="ClickedBotonCerrar"
+                Source="boton_cerrar.png" />
+
+
+        </AbsoluteLayout>
+
+        <Grid ColumnDefinitions="*,auto">
+            <Grid
+                Grid.Column="0"
+                Margin="30,20"
+                RowDefinitions="auto,auto,auto,*">
+                <!--  Nombre  -->
+                <Label
+                    Grid.Row="0"
+                    FontFamily="LuckiestGuy"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="ELEKTRA NATCHIOS"
+                    TextColor="White" />
+                <!--  habilidades con la linea  -->
+                <VerticalStackLayout Grid.Row="1">
+                    <!--  Habilidad  -->
+                    <Label
+                        FontFamily="LuckiestGuy"
+                        FontSize="16"
+                        Text="HABILIDADES"
+                        TextColor="White" />
+                    <!--  Linea de la habilidad  -->
+                    <Line
+                        Stroke="White"
+                        StrokeThickness="2"
+                        X2="420"
+                        Y1="0"
+                        Y2="0" />
+
+                </VerticalStackLayout>
+                <!--  columnas de las habilidades con sus fotos  -->
+                <Grid
+                    Grid.Row="2"
+                    Margin="0,10"
+                    ColumnDefinitions="auto,auto,auto"
+                    ColumnSpacing="10">
+                    <VerticalStackLayout Grid.Column="0">
+                        <!--  1º Imagen seleccionado y nombre habilidad  -->
+                        <Grid x:Name="GridPrimeraHabilidad">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TappedGridHabilidad" />
+                            </Grid.GestureRecognizers>
+
+                            <Image
+                                HeightRequest="20"
+                                Source="boton_seleccionado_habilidad.png"
+                                WidthRequest="132" />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="NOMBRE DE HABILIDAD1"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <!--  1º Imagen Habilidad y imagen tipo  -->
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Image
+                                HeightRequest="40"
+                                Source="img_habilidad.png"
+                                WidthRequest="40" />
+                            <Image
+                                HeightRequest="35"
+                                Source="tipo_habilidad_ejemplo.png"
+                                WidthRequest="35" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <!--  2º Imagen seleccionado y nombre habilidad  -->
+                        <Grid x:Name="GridSegundaHabilidad">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TappedGridHabilidad" />
+                            </Grid.GestureRecognizers>
+                            <Image HeightRequest="20" WidthRequest="132" />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="NOMBRE DE HABILIDAD2"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <!--  2º Imagen Habilidad y imagen tipo  -->
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Image
+                                HeightRequest="40"
+                                Source="img_habilidad2.png"
+                                WidthRequest="40" />
+                            <Image
+                                HeightRequest="35"
+                                Source="tipo_habilidad_ejemplo.png"
+                                WidthRequest="35" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2">
+                        <!--  3º Imagen seleccionado y nombre habilidad  -->
+                        <Grid x:Name="GridTerceraHabilidad">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TappedGridHabilidad" />
+                            </Grid.GestureRecognizers>
+                            <Image HeightRequest="20" WidthRequest="132" />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="NOMBRE DE HABILIDAD3"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <!--  3º Imagen Habilidad y imagen tipo  -->
+                        <HorizontalStackLayout>
+                            <Image
+                                HeightRequest="40"
+                                Source="img_habilidad3.png"
+                                WidthRequest="40" />
+                            <Image
+                                HeightRequest="35"
+                                Source="tipo_habilidad_ejemplo.png"
+                                WidthRequest="35" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+                <!--  cuadro de animación  -->
+                <Grid
+                    Grid.Row="3"
+                    Margin="20,0"
+                    HorizontalOptions="Start">
+                    <!--  fondo de la animacion  -->
+                    <Image
+                        HeightRequest="150"
+                        Source="fondo_animacion.png"
+                        WidthRequest="375" />
+
+                    <AbsoluteLayout>
+                        <!--  Imagen personaje  -->
+                        <Image
+                            AbsoluteLayout.LayoutBounds="0.12,0.5,40,40"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HeightRequest="200"
+                            Source="personaje_ejemplo_elektra.png"
+                            WidthRequest="100" />
+
+                        <!--  imagen play  -->
+                        <Image
+                            AbsoluteLayout.LayoutBounds="0.97,0.15,40,40"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HeightRequest="40"
+                            Source="icono_play.png"
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TappedPlayOrPause" />
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                    </AbsoluteLayout>
+
+                </Grid>
+            </Grid>
+            <!--  Imagen del personaje  -->
+            <Image
+                Grid.Column="1"
+                HeightRequest="250"
+                Source="personaje_ejemplo_elektra.png"
+                WidthRequest="220" />
+        </Grid>
+    </Grid>
+</toolkit:Popup>

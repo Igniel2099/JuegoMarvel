@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-windows10.0.19041.0</TargetFrameworks>
+
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
 
@@ -33,12 +33,9 @@
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -60,8 +57,173 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+	  <None Remove="Resources\Images\IconosComunes\icono_exp.png" />
+	  <None Remove="Resources\Images\IconosComunes\icono_moneda.png" />
+	  <None Remove="Resources\Images\IconosComunes\personaje_ejemplo.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_1.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_2.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_3.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Daredevil\dar_img_prin.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_1.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_2.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_3.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Deadpool\dep_img_prin.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_1.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_2.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_3.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Elektra\elk_img_prin.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_1.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_2.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_3.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\IronFist\irf_img_prin.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Venom\ven_hb_1.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Venom\ven_hb_2.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Venom\ven_hb_3.png" />
+	  <None Remove="Resources\Images\ImagenesPersonajes\Venom\ven_img_prin.png" />
+	  <None Remove="Resources\Images\Inicio\BarMenuInicio\bar_menu.png" />
+	  <None Remove="Resources\Images\Inicio\BarMenuInicio\boton_empezar.png" />
+	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_equipo.png" />
+	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_home.png" />
+	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_tienda.png" />
+	  <None Remove="Resources\Images\Inicio\MenuLateralInicio\caja_nivel.png" />
+	  <None Remove="Resources\Images\Inicio\MenuLateralInicio\icono_usuario.png" />
+	  <None Remove="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
+	  <None Remove="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\icono_estado.png" />
+	  <None Remove="Resources\Images\Login\icono_crear_cuenta.png" />
+	  <None Remove="Resources\Images\Login\OlvidarInformacion\contenedor_cod.png" />
+	  <None Remove="Resources\Images\Login\OlvidarInformacion\contenedor_correo.png" />
+	  <None Remove="Resources\Images\Login\OlvidarInformacion\fondo_titulo.png" />
+	  <None Remove="Resources\Images\PopupInfo\boton_cerrar.png" />
+	  <None Remove="Resources\Images\PopupInfo\boton_seleccionado_habilidad.png" />
+	  <None Remove="Resources\Images\PopupInfo\fondo_animacion.png" />
+	  <None Remove="Resources\Images\PopupInfo\fondo_informacion.png" />
+	  <None Remove="Resources\Images\PopupInfo\icono_pausa.png" />
+	  <None Remove="Resources\Images\PopupInfo\icono_play.png" />
+	  <None Remove="Resources\Images\PopupInfo\personaje_ejemplo_elektra.png" />
+	  <None Remove="Resources\Images\PopupInfo\tipo_habilidad_ejemplo.png" />
+	  <None Remove="Resources\Images\Tienda\bar_menu_fondo.png" />
+	  <None Remove="Resources\Images\Tienda\bar_seleccion.png" />
+	  <None Remove="Resources\Images\Tienda\CartaContenido\carta_contenido.png" />
+	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_boton.png" />
+	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
+	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
+	  <None Remove="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\IconosComunes\icono_exp.png" />
+	  <MauiImage Include="Resources\Images\IconosComunes\icono_moneda.png" />
+	  <MauiImage Include="Resources\Images\IconosComunes\personaje_ejemplo.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\CapitanAmerica\cap_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\CapitanAmerica\cap_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\CapitanAmerica\cap_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\CapitanAmerica\cap_img_prin.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Daredevil\dar_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Daredevil\dar_img_prin.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Deadpool\dep_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Deadpool\dep_img_prin.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Elektra\elk_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Elektra\elk_img_prin.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\IronFist\irf_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\IronFist\irf_img_prin.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Venom\ven_hb_1.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Venom\ven_hb_2.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Venom\ven_hb_3.png" />
+	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Venom\ven_img_prin.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\bar_menu.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\boton_empezar.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_equipo.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_home.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_tienda.png" />
+	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\caja_nivel.png" />
+	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\icono_usuario.png" />
+	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
+	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_estado.png" />
+	  <MauiImage Include="Resources\Images\Login\icono_crear_cuenta.png" />
+	  <MauiImage Include="Resources\Images\Login\OlvidarInformacion\contenedor_cod.png" />
+	  <MauiImage Include="Resources\Images\Login\OlvidarInformacion\contenedor_correo.png" />
+	  <MauiImage Include="Resources\Images\Login\OlvidarInformacion\fondo_titulo.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\boton_cerrar.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\boton_seleccionado_habilidad.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\fondo_animacion.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\fondo_informacion.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\icono_pausa.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\icono_play.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\img_habilidad.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\img_habilidad3.png" />
+	  <MauiImage Include="Resources\Images\PopupInfo\tipo_habilidad_ejemplo.png" />
+	  <MauiImage Include="Resources\Images\Tienda\bar_menu_fondo.png" />
+	  <MauiImage Include="Resources\Images\Tienda\bar_seleccion.png" />
+	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\carta_contenido.png" />
+	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\contenedor_boton.png" />
+	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
+	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
+	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\PopupInfo\personaje_ejemplo_elektra.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\PopupInfo\img_habilidad2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="MensajesServidor">
+	    <HintPath>..\..\MensajesServidor\MensajesServidor\bin\Debug\net9.0\MensajesServidor.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\InformacionPopup.xaml.cs">
+	    <DependentUpon>InformacionPopup.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="ModuloLogin\View\CrearCuenta.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloLogin\View\OlvidarInformacion.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloLogin\View\PopupErroresCrearCuenta.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\InformacionPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Inicio.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloLogin\View\Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tienda.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

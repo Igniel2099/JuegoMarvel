@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
+
+public class ComandoEnviar : BaseCommand
+{
+    public override void Execute(object? parameter)
+    {
+        throw new NotImplementedException();
+    }
+}

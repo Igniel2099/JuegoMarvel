@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.Views.Tienda"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Tienda">
+
+    <Grid>
+        <!--  Fondo  -->
+        <Image Aspect="Fill" Source="fondo_pantalla_completa.png" />
+
+        <Grid RowDefinitions="auto,*">
+
+            <!--#region Region Top-->
+            <Grid>
+                <!--#region BotonAtras-->
+
+                <Button
+                    Padding="15,0"
+                    BackgroundColor="Black"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    Clicked="Button_Clicked"
+                    CornerRadius="15"
+                    FontFamily="LuckiestGuy"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    MaximumHeightRequest="35"
+                    Text="&lt;ATRAS"
+                    TextColor="White" />
+
+                <!--#endregion-->
+
+                <!--#region BarMenuTop-->
+                <Grid HorizontalOptions="Center">
+                    <Image Source="bar_menu_fondo.png" WidthRequest="296" />
+
+                    <Grid
+                        Margin="40,10"
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="10">
+                        <Grid x:Name="GridAll" Grid.Column="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGridTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image Source="bar_seleccion.png" />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="ALL"
+                                TextColor="White" />
+                        </Grid>
+
+                        <Grid x:Name="GridTipo" Grid.Column="1">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGridTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="TIPO"
+                                TextColor="White" />
+                        </Grid>
+
+                        <Grid x:Name="GridGrupo" Grid.Column="2">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGridTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image />
+                            <Label
+                                FontFamily="LuckiestGuy"
+                                FontSize="15"
+                                HorizontalTextAlignment="Center"
+                                Text="GRUPO"
+                                TextColor="White" />
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+                <!--#endregion-->
+
+            </Grid>
+            <!--#endregion-->
+
+
+
+            <!--#region Contenido-->
+            <ScrollView Grid.Row="1">
+                <!--  contenedor dinamico de los personajes  -->
+                <VerticalStackLayout x:Name="miVStack" Spacing="5" />
+
+            </ScrollView>
+            <!--#endregion-->
+
+
+        </Grid>
+    </Grid>
+
+</ContentPage>

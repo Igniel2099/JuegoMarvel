@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.Views.Inicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Inicio">
+
+    <Grid ColumnDefinitions="*,auto">
+
+        <Image
+            Grid.Column="0"
+            Aspect="AspectFill"
+            Source="fondo_inicio.png" />
+
+        <Grid Grid.Column="0" RowDefinitions="*,auto">
+
+            <!--#region ContenidoPrincipal-->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="auto,*,auto"
+                ColumnSpacing="10">
+
+                <Image
+                    Grid.Column="0"
+                    Margin="10,0,0,0"
+                    HeightRequest="274"
+                    Source="img_lateral.png"
+                    WidthRequest="121" />
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    HeightRequest="274"
+                    Spacing="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <Border
+                            Background="Gray"
+                            HeightRequest="133"
+                            Stroke="White"
+                            StrokeThickness="5"
+                            WidthRequest="120" />
+                        <Border
+                            Background="DarkGray"
+                            HeightRequest="133"
+                            Stroke="White"
+                            StrokeThickness="5"
+                            WidthRequest="215" />
+
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Border
+                            Background="Gray"
+                            HeightRequest="133"
+                            Stroke="White"
+                            StrokeThickness="5"
+                            WidthRequest="215" />
+                        <Border
+                            Background="DarkGray"
+                            HeightRequest="133"
+                            Stroke="White"
+                            StrokeThickness="5"
+                            WidthRequest="120" />
+
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <Image
+                    Grid.Column="2"
+                    Margin="0,0,10,0"
+                    HeightRequest="274"
+                    Source="img_lateral.png"
+                    WidthRequest="121" />
+
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region BarMenuBotton-->
+            <Grid Grid.Row="1">
+                <Grid ColumnDefinitions="auto,auto,*">
+                    <BoxView
+                        Grid.Column="0"
+                        BackgroundColor="#181818"
+                        HeightRequest="50"
+                        Opacity="0.95"
+                        VerticalOptions="End"
+                        WidthRequest="12">
+                        <BoxView.Shadow>
+                            <Shadow
+                                Brush="White"
+                                Opacity="0.5"
+                                Radius="20"
+                                Offset="10,-10" />
+                        </BoxView.Shadow>
+                    </BoxView>
+
+
+                    <Grid Grid.Column="1" RowDefinitions="*,auto">
+
+
+
+                        <BoxView
+                            Grid.Row="0"
+                            BackgroundColor="Transparent"
+                            HeightRequest="35" />
+
+                        <BoxView
+                            Grid.Row="1"
+                            BackgroundColor="#181818"
+                            HeightRequest="15"
+                            Opacity="0.95"
+                            WidthRequest="160" />
+                    </Grid>
+
+                    <Grid Grid.Column="2" VerticalOptions="End">
+
+                        <BoxView
+                            BackgroundColor="#181818"
+                            HeightRequest="50"
+                            Opacity="0.95">
+                            <BoxView.Shadow>
+                                <Shadow
+                                    Brush="White"
+                                    Opacity="0.3"
+                                    Radius="10"
+                                    Offset="5,-10" />
+
+                            </BoxView.Shadow>
+                        </BoxView>
+
+                        <Grid ColumnDefinitions="*,auto">
+                            <!--#region Botones navegación-->
+                            <Grid
+                                Grid.Column="1"
+                                Margin="0,0,15,0"
+                                ColumnDefinitions="*,*,*"
+                                ColumnSpacing="10">
+                                <!--  HOME  -->
+                                <Button
+                                    Grid.Column="0"
+                                    Padding="0,2,0,0"
+                                    BackgroundColor="Black"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    ContentLayout="Top,-5"
+                                    CornerRadius="0"
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    ImageSource="icono_home.png"
+                                    MaximumHeightRequest="40"
+                                    Text="HOME"
+                                    TextColor="White"
+                                    WidthRequest="62" />
+
+                                <!--  TIENDA  -->
+                                <Button
+                                    Grid.Column="1"
+                                    Padding="0,2,0,0"
+                                    BackgroundColor="Black"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    ContentLayout="Top,-5"
+                                    CornerRadius="0"
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    ImageSource="icono_tienda.png"
+                                    MaximumHeightRequest="40"
+                                    Text="TIENDA"
+                                    TextColor="White"
+                                    WidthRequest="62" 
+                                    Clicked="Button_Clicked"/>
+                                <!--  EQUIPO  -->
+                                <Button
+                                    Grid.Column="2"
+                                    Padding="0,2,0,0"
+                                    BackgroundColor="Black"
+                                    BorderColor="White"
+                                    BorderWidth="2"
+                                    ContentLayout="Top,-5"
+                                    CornerRadius="0"
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="13"
+                                    HorizontalOptions="Center"
+                                    ImageSource="icono_equipo.png"
+                                    MaximumHeightRequest="40"
+                                    Text="EQUIPO"
+                                    TextColor="White"
+                                    WidthRequest="62" />
+                            </Grid>
+                            <!--#endregion-->
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+
+
+
+
+            </Grid>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#region Boton Encima de todo-->
+        <AbsoluteLayout Grid.Column="0">
+            <Grid
+                Margin="0,0,0,5"
+                AbsoluteLayout.LayoutBounds="0.03,0.95"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                <Image Grid.Column="0" Source="boton_empezar.png" />
+
+
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    FontFamily="LuckiestGuy"
+                    FontSize="25"
+                    Text="EMPEZAR"
+                    TextColor="White" />
+
+            </Grid>
+        </AbsoluteLayout>
+        <!--#endregion-->
+
+        <!--#region Menu Lateral-->
+        <Grid
+            Grid.Column="1"
+            BackgroundColor="Black"
+            RowDefinitions="auto,auto,auto">
+
+            <!--#region Información Usuario-->
+            <VerticalStackLayout Grid.Row="0" Margin="5">
+                <!--  Nombre usuario  -->
+                <Label
+                    FontFamily="LuckiestGuy"
+                    HorizontalOptions="Center"
+                    Text="NOMBRE USUARIO"
+                    TextColor="White" />
+
+                <!--#region Avatar y nivel-->
+                <Grid>
+                    <!--  Imagen del círculo (avatar)  -->
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="81"
+                        HorizontalOptions="Center"
+                        Source="icono_usuario.png"
+                        VerticalOptions="Center"
+                        WidthRequest="81" />
+
+                    <!--  Imagen del polígono (número 12)  -->
+                    <Grid HorizontalOptions="Center" VerticalOptions="End">
+                        <Image
+                            Margin="0,0,0,5"
+                            Aspect="AspectFit"
+                            HeightRequest="15"
+                            Source="caja_nivel.png"
+                            WidthRequest="30" />
+                        <Label
+                            Margin="0,1,0,0"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            Text="12"
+                            TextColor="White" />
+
+                    </Grid>
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Monedas/exp-->
+                <Grid ColumnDefinitions="*,*">
+                    <!--  Moneda  -->
+                    <HorizontalStackLayout Grid.Column="0" Spacing="5">
+                        <Image
+                            HeightRequest="30"
+                            Source="icono_moneda.png"
+                            WidthRequest="30" />
+                        <Label
+                            FontSize="15"
+                            Text="1000"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <!--  experiencia  -->
+                    <HorizontalStackLayout Grid.Column="1" Spacing="5">
+                        <Image
+                            HeightRequest="30"
+                            Source="icono_exp.png"
+                            WidthRequest="30" />
+                        <Label
+                            FontSize="15"
+                            Text="1000"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                </Grid>
+                <!--#endregion-->
+
+            </VerticalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Cajas Equipo-->
+            <VerticalStackLayout
+                Grid.Row="1"
+                Margin="5"
+                Spacing="5">
+                <Grid RowDefinitions="*,*,*" RowSpacing="5">
+                    <Border
+                        Grid.Row="0"
+                        Background="DarkRed"
+                        HeightRequest="50"
+                        Stroke="White"
+                        StrokeThickness="5"
+                        WidthRequest="146">
+
+                        <Grid ColumnDefinitions="auto,*">
+                            <AbsoluteLayout Grid.Column="0">
+                                <Ellipse
+                                    Fill="Gray"
+                                    HeightRequest="39"
+                                    StrokeThickness="2"
+                                    WidthRequest="39" />
+                                <Border
+                                    Background="red"
+                                    HeightRequest="10"
+                                    Stroke="White"
+                                    StrokeThickness="2"
+                                    VerticalOptions="End"
+                                    WidthRequest="10" />
+                            </AbsoluteLayout>
+
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                Text="NOMBRE DEL PERSONAJE"
+                                TextColor="White" />
+
+
+                        </Grid>
+
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Background="DarkRed"
+                        HeightRequest="50"
+                        Stroke="White"
+                        StrokeThickness="5"
+                        WidthRequest="146">
+
+                        <Grid ColumnDefinitions="auto,*">
+                            <AbsoluteLayout Grid.Column="0">
+                                <Ellipse
+                                    Fill="Gray"
+                                    HeightRequest="39"
+                                    StrokeThickness="2"
+                                    WidthRequest="39" />
+                                <Border
+                                    Background="red"
+                                    HeightRequest="10"
+                                    Stroke="White"
+                                    StrokeThickness="2"
+                                    VerticalOptions="End"
+                                    WidthRequest="10" />
+                            </AbsoluteLayout>
+
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                Text="NOMBRE DEL PERSONAJE"
+                                TextColor="White" />
+
+
+                        </Grid>
+
+                    </Border>
+
+                    <Border
+                        Grid.Row="2"
+                        Background="DarkRed"
+                        HeightRequest="50"
+                        Stroke="White"
+                        StrokeThickness="5"
+                        WidthRequest="146">
+
+                        <Grid ColumnDefinitions="auto,*">
+                            <AbsoluteLayout Grid.Column="0">
+                                <Ellipse
+                                    Fill="Gray"
+                                    HeightRequest="39"
+                                    StrokeThickness="2"
+                                    WidthRequest="39" />
+                                <Border
+                                    Background="red"
+                                    HeightRequest="10"
+                                    Stroke="White"
+                                    StrokeThickness="2"
+                                    VerticalOptions="End"
+                                    WidthRequest="10" />
+                            </AbsoluteLayout>
+
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="LuckiestGuy"
+                                FontSize="12"
+                                Text="NOMBRE DEL PERSONAJE"
+                                TextColor="White" />
+
+                        </Grid>
+
+                    </Border>
+
+
+                </Grid>
+
+            </VerticalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Iconos Finales-->
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Margin="0,10,0,0"
+                Spacing="100">
+                <ImageButton
+                    HeightRequest="30"
+                    MaximumHeightRequest="30"
+                    MaximumWidthRequest="30"
+                    Source="icono_pregunta.png"
+                    WidthRequest="30" />
+
+                <ImageButton
+                    HeightRequest="35"
+                    MaximumHeightRequest="30"
+                    MaximumWidthRequest="35"
+                    Source="icono_config.png"
+                    WidthRequest="30" />
+
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+
+    </Grid>
+
+</ContentPage>

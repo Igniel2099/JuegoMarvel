@@ -5,10 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloLogin.ViewModel"
     x:Name="ViewCrearCuenta"
-    Title="CrearCuenta">
-    <ContentPage.BindingContext>
-        <viewModels:CrearCuentaViewModel />
-    </ContentPage.BindingContext>
+    Title="CrearCuenta"
+    x:DataType="viewModels:CrearCuentaViewModel">
+
     <Grid>
         <!--  Imagen de fondo  -->
         <Image Source="fondo_pantalla_completa.png" />
@@ -86,7 +85,7 @@
                         <Image
                             Margin="7,0,0,0"
                             HeightRequest="20"
-                            Source="icono_estado.png"
+                            Source="{Binding ImgEstadoNombreUsuario}"
                             WidthRequest="20" />
 
                     </HorizontalStackLayout>
@@ -112,7 +111,7 @@
                         <Image
                             Margin="7,0,0,0"
                             HeightRequest="20"
-                            Source="icono_estado.png"
+                            Source="{Binding ImgEstadoCorreoElectronico}"
                             WidthRequest="20" />
                     </HorizontalStackLayout>
 
@@ -136,7 +135,7 @@
                         <Image
                             Margin="7,0,0,0"
                             HeightRequest="20"
-                            Source="icono_estado.png"
+                            Source="{Binding ImgEstadoContrasena}"
                             WidthRequest="20" />
                     </HorizontalStackLayout>
 
@@ -145,7 +144,7 @@
                             FontAttributes="Bold"
                             FontSize="16"
                             HorizontalTextAlignment="Center"
-                            Text="Correo Electronico"
+                            Text="Confirmar Contraseña"
                             TextColor="White"
                             VerticalOptions="Center"
                             WidthRequest="111" />
@@ -160,7 +159,7 @@
                         <Image
                             Margin="7,0,0,0"
                             HeightRequest="20"
-                            Source="icono_estado.png"
+                            Source="{Binding ImgEstadoConfirmarContrasena}"
                             WidthRequest="20" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>

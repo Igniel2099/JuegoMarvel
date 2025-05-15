@@ -3,6 +3,7 @@
     x:Class="JuegoMarvel.ModuloLogin.View.PopupErroresCrearCuenta"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:JuegoMarvel.ModuloLogin.Model"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloLogin.ViewModel"
     Color="Transparent">
@@ -10,8 +11,94 @@
         <viewModels:PopupErroresCrearCuentaViewModel />
     </toolkit:Popup.BindingContext>
 
-    <VerticalStackLayout>
-        <Label Text="{Binding ContenidoTexto}" />
-        <Button Clicked="ButtonOk_Clicked" Text="Ok" />
-    </VerticalStackLayout>
+    <Grid HeightRequest="330" WidthRequest="760">
+
+        <AbsoluteLayout>
+            <!--  Imagen de fondo  -->
+            <Image Source="ventana_popup.svg" />
+
+            <!--  Boton cerrar  -->
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="1,0,40,40"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Clicked="ClickedBotonCerrar"
+                Source="boton_cerrar.png" />
+
+        </AbsoluteLayout>
+
+        <Grid
+            Margin="25"
+            RowDefinitions="auto,auto"
+            RowSpacing="10">
+
+            <Grid
+                x:Name="MiGrid"
+                Grid.Row="1"
+                IsVisible="{Binding ContendorTextosVisible}">
+                <Image Source="contener_texto_crearcuenta.svg" />
+                <VerticalStackLayout
+                    xmlns:bindable="http://schemas.microsoft.com/xaml/behaviors"
+                    BindableLayout.ItemsSource="{Binding MensajesError}"
+                    HorizontalOptions="Center"
+                    Spacing="-5"
+                    VerticalOptions="Center">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="model:ErrorItem">
+                            <HorizontalStackLayout Spacing="10">
+                                <Border
+                                    BackgroundColor="White"
+                                    HeightRequest="25"
+                                    StrokeShape="RoundRectangle 30"
+                                    VerticalOptions="Start"
+                                    WidthRequest="25" />
+                                <Label
+                                    FontSize="20"
+                                    Text="{Binding Texto}"
+                                    TextColor="White" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+            </Grid>
+
+
+            <HorizontalStackLayout
+                Grid.Row="0"
+                Margin="0"
+                HorizontalOptions="Center">
+                <HorizontalStackLayout.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference MiGrid}, Path=IsVisible}"
+                        TargetType="HorizontalStackLayout"
+                        Value="False">
+                        <Setter Property="Margin" Value="0,80,0,0" />
+                    </DataTrigger>
+
+                    <!--  Cuando MiGrid.IsVisible == True  -->
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference MiGrid}, Path=IsVisible}"
+                        TargetType="HorizontalStackLayout"
+                        Value="True">
+                        <Setter Property="Margin" Value="0" />
+                    </DataTrigger>
+                </HorizontalStackLayout.Triggers>
+
+                <Image
+                    HeightRequest="60"
+                    Source="icono_error.svg"
+                    WidthRequest="60" />
+                <Label
+                    FontFamily="LuckiestGuy"
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding TituloPantalla}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+            </HorizontalStackLayout>
+
+        </Grid>
+    </Grid>
 </toolkit:Popup>

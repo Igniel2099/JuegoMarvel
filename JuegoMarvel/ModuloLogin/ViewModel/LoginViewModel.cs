@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
+﻿using JuegoMarvel.ModuloLogin.Model;
+using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
@@ -42,10 +43,10 @@ public class LoginViewModel : BaseViewModel
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
     
 
-    public LoginViewModel()
+    public LoginViewModel(AppSettings settings)
     {
         comandoLogearse = new ComandoLogearse();
-        ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta();
+        ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta(settings);
         ComandoNavOlvidarInformacion = new ComandoNavegarOlvidarInformacion();
     }
 }

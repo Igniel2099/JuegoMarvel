@@ -1,4 +1,5 @@
 ﻿using JuegoMarvel.ModuloLogin.View;
+using JuegoMarvel.ModuloLogin.ViewModel;
 using JuegoMarvel.Views;
 using Microsoft.Maui.Controls;
 
@@ -6,14 +7,13 @@ namespace JuegoMarvel
 {
     public partial class App : Application
     {
-        public App()
+        public App(Login loginPage)
         {
             InitializeComponent();
+
+            MainPage = loginPage;
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new Login());
-        }
+        
     }
 }

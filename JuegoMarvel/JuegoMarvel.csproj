@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Properties\appsettings.json" />
 	  <None Remove="Resources\Images\IconosComunes\icono_exp.png" />
 	  <None Remove="Resources\Images\IconosComunes\icono_moneda.png" />
 	  <None Remove="Resources\Images\IconosComunes\personaje_ejemplo.png" />
@@ -91,7 +92,11 @@
 	  <None Remove="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\icono_correcto.svg" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\icono_error.svg" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\icono_estado.png" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\ventana_popup.svg" />
 	  <None Remove="Resources\Images\Login\icono_crear_cuenta.png" />
 	  <None Remove="Resources\Images\Login\OlvidarInformacion\contenedor_cod.png" />
 	  <None Remove="Resources\Images\Login\OlvidarInformacion\contenedor_correo.png" />
@@ -111,6 +116,10 @@
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiAsset Include="appsettings.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -152,7 +161,11 @@
 	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_correcto.svg" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_error.svg" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_estado.png" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\ventana_popup.svg" />
 	  <MauiImage Include="Resources\Images\Login\icono_crear_cuenta.png" />
 	  <MauiImage Include="Resources\Images\Login\OlvidarInformacion\contenedor_cod.png" />
 	  <MauiImage Include="Resources\Images\Login\OlvidarInformacion\contenedor_correo.png" />
@@ -177,8 +190,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.70" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 

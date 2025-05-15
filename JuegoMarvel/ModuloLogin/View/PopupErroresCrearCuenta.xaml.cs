@@ -9,7 +9,7 @@ public partial class PopupErroresCrearCuenta : Popup
 		InitializeComponent();
 	}
 
-    private void ButtonOk_Clicked(object sender, EventArgs e)
+    private void ClickedBotonCerrar(object sender, EventArgs e)
     {
 		Close();
     }

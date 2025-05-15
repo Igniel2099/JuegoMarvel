@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using MensajesServidor;
 using Newtonsoft.Json;
@@ -13,9 +14,13 @@ namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 public class ComandoConfirmarCrearCuenta : BaseCommand
 {
     private readonly Dictionary<string, string> _propiedadesCrearCuenta;
+    private readonly AppSettings _settings;
+    private readonly CrearCuentaViewModel _crearCuentaViewModel;
 
-    public ComandoConfirmarCrearCuenta(CrearCuentaViewModel crearCuentaViewModel)
+    public ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewModel crearCuentaViewModel )
     {
+        _settings = settings;
+
         _propiedadesCrearCuenta = new()
         {
             { nameof(crearCuentaViewModel.NombreUsuario), crearCuentaViewModel.NombreUsuario! },
@@ -25,6 +30,7 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         };
 
         crearCuentaViewModel.PropertyChanged += OnVmPropertyChanged;
+        _crearCuentaViewModel = crearCuentaViewModel;
     }
 
     private void OnVmPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -60,47 +66,45 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
 
     public override async void Execute(object? parameter)
     {
+        _crearCuentaViewModel.EstadoImgNombreUsuario = null;
+        _crearCuentaViewModel.EstadoImgCorreoElectronico = null;
+        _crearCuentaViewModel.EstadoImgContrasena = null;
+        _crearCuentaViewModel.EstadoImgConfirmarContrasena = null;
 
-        StringBuilder textoFinal = new();
+        string? txtErrorNomUs = null;
+        string? txtErrorCorreoElec = null;
+        string? txtErrorContrasena = null;
 
+        bool existeUsuario = await ComprobarNombreUsuario(_crearCuentaViewModel.NombreUsuario!);
+        _crearCuentaViewModel.EstadoImgNombreUsuario = existeUsuario;
 
-        if ( await ComprobarNombreUsuario(_propiedadesCrearCuenta["NombreUsuario"]))
-        {
-            textoFinal.AppendLine("El Nombre de Usuario ya existe");
-        }
+        bool correoValidoFormato = _crearCuentaViewModel.CorreoElectronico!.Contains('@');
+        bool existeCorreo = await ComprobarCorreoElectronico(_crearCuentaViewModel.CorreoElectronico);
+        _crearCuentaViewModel.EstadoImgCorreoElectronico = correoValidoFormato && !existeCorreo;
 
-        if ( await ComprobarCorreoElectronico(_propiedadesCrearCuenta["CorreoElectronico"]))
-        {
-            textoFinal.AppendLine("\n El Correo Electronico ya existe");
-        }
+        bool contrasenaValida = ComprobarContrasena(_crearCuentaViewModel.Contrasena!);
+        _crearCuentaViewModel.EstadoImgContrasena = contrasenaValida;
 
-        if (!_propiedadesCrearCuenta["CorreoElectronico"].Contains('@'))
-        {
-            textoFinal.AppendLine("\n El correo no es Valido");
-        }
-        
-        if (!ComprobarContrasena(_propiedadesCrearCuenta["Contrasena"]))
-        {
-            textoFinal.AppendLine("\n La contraseña no es Valida, tiene menos de 12 caracteres");
-        }
-
-        if (_propiedadesCrearCuenta["Contrasena"] != _propiedadesCrearCuenta["ConfirmarContrasena"])
-        {
-            textoFinal.AppendLine("\n Las contraseñas no coinciden.");
-        }
-
-        if (textoFinal.Length == 0 )
-            textoFinal.AppendLine("Todo correcto se ha creado la cuenta.");
-
+        bool coincide = _crearCuentaViewModel.Contrasena == _crearCuentaViewModel.ConfirmarContrasena;
+        _crearCuentaViewModel.EstadoImgConfirmarContrasena = coincide;
 
         if (parameter is CrearCuenta crearCuenta)
         {
+            if (_crearCuentaViewModel.EstadoImgNombreUsuario == false)
+                txtErrorNomUs = "El nombre de usuario ya existe.\n";
+            if (_crearCuentaViewModel.EstadoImgCorreoElectronico == false)
+                txtErrorCorreoElec = "El correo no es válido o ya existe.\n";
+            if (_crearCuentaViewModel.EstadoImgContrasena == false)
+                txtErrorContrasena = "La contraseña no cumple los requisitos.\n";
+            if (_crearCuentaViewModel.EstadoImgConfirmarContrasena == false)
+                txtErrorContrasena = "Las contraseñas no coinciden.\n";
+
+
             var popupECC = new PopupErroresCrearCuenta
             {
-                BindingContext = new PopupErroresCrearCuentaViewModel(textoFinal.ToString())
+                BindingContext = new PopupErroresCrearCuentaViewModel(txtErrorNomUs,txtErrorCorreoElec,txtErrorContrasena)
             };
             await crearCuenta.ShowPopupAsync(popupECC);
-            popupECC.BindingContext = this;
         }
         else
             throw new Exception("El parametro de confirmar de Crear Cuenta no es el que se esperaba");
@@ -112,7 +116,11 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         try
         {
             using TcpClient cliente = new();
-            await cliente.ConnectAsync("192.168.19.150", 5000); // IP y puerto del servidor
+
+            await cliente.ConnectAsync(
+                _settings.IpServidor,
+                _settings.PuertoServidor
+            ); // IP y puerto del servidor
 
             using NetworkStream stream = cliente.GetStream();
 
@@ -142,7 +150,7 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
                 if (mensajeServidor.Respuesta == null)
                     throw new Exception("Error con el json Recibido algo paso en el proceso");
 
-                return mensaje.Respuesta == EnumRespuesta.Existente;
+                return mensajeServidor.Respuesta == EnumRespuesta.NoExistente;
             }
         }
         catch (Exception ex)
@@ -157,7 +165,10 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         try
         {
             using TcpClient cliente = new();
-            await cliente.ConnectAsync("192.168.19.150", 5000); // IP y puerto del servidor
+            await cliente.ConnectAsync(
+                _settings.IpServidor,
+                _settings.PuertoServidor
+            ); // IP y puerto del servidor // IP y puerto del servidor
 
             using NetworkStream stream = cliente.GetStream();
 
@@ -178,7 +189,7 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
 
             // Leer respuesta
             byte[] buffer = new byte[1024];
-            int bytesLeidos = await stream.ReadAsync(buffer, 0, buffer.Length);
+            int bytesLeidos = await stream.ReadAsync(buffer);
             string respuesta = Encoding.UTF8.GetString(buffer, 0, bytesLeidos);
 
             MensajesModuloLogin? mensajeServidor = JsonConvert.DeserializeObject<MensajesModuloLogin?>(respuesta);

@@ -40,7 +40,7 @@
                     xmlns:bindable="http://schemas.microsoft.com/xaml/behaviors"
                     BindableLayout.ItemsSource="{Binding MensajesError}"
                     HorizontalOptions="Center"
-                    Spacing="-5"
+                    Spacing="5"
                     VerticalOptions="Center">
 
                     <BindableLayout.ItemTemplate>
@@ -55,14 +55,14 @@
                                 <Label
                                     FontSize="20"
                                     Text="{Binding Texto}"
-                                    TextColor="White" />
+                                    TextColor="White"
+                                    WidthRequest="450" />
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
 
             </Grid>
-
 
             <HorizontalStackLayout
                 Grid.Row="0"
@@ -87,8 +87,9 @@
 
                 <Image
                     HeightRequest="60"
-                    Source="icono_error.svg"
+                    Source="{Binding ImgTitulo}"
                     WidthRequest="60" />
+
                 <Label
                     FontFamily="LuckiestGuy"
                     FontSize="36"

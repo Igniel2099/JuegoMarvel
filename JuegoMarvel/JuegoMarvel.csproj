@@ -40,10 +40,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\app_icono.png" Color="#000000" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash_juego.svg" Color="#000000" BaseSize="290,180" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -58,6 +58,8 @@
 
 	<ItemGroup>
 	  <None Remove="Properties\appsettings.json" />
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\AppIcon\app_icono.png" />
 	  <None Remove="Resources\Images\IconosComunes\icono_exp.png" />
 	  <None Remove="Resources\Images\IconosComunes\icono_moneda.png" />
 	  <None Remove="Resources\Images\IconosComunes\personaje_ejemplo.png" />
@@ -94,7 +96,9 @@
 	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\icono_correcto.svg" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\icono_correcto_blanco.svg" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\icono_error.svg" />
+	  <None Remove="Resources\Images\Login\CrearCuenta\icono_error_blanco.svg" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\icono_estado.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\ventana_popup.svg" />
 	  <None Remove="Resources\Images\Login\icono_crear_cuenta.png" />
@@ -116,6 +120,7 @@
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	  <None Remove="Resources\Splash\splash_juego.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -163,7 +168,9 @@
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_correcto.svg" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_correcto_blanco.svg" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_error.svg" />
+	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_error_blanco.svg" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\icono_estado.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\ventana_popup.svg" />
 	  <MauiImage Include="Resources\Images\Login\icono_crear_cuenta.png" />
@@ -190,6 +197,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+		<PackageReference Include="DnsClient" Version="1.8.0" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
@@ -197,6 +206,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.70" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
 	</ItemGroup>
 
 	<ItemGroup>
@@ -205,6 +215,10 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Images\PopupInfo\img_habilidad2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\splash_juego.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -241,6 +255,10 @@
 	  <MauiXaml Update="Views\Tienda.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 	</ItemGroup>
 
 </Project>

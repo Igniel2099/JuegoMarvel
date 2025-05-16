@@ -43,10 +43,10 @@ public class LoginViewModel : BaseViewModel
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
     
 
-    public LoginViewModel(AppSettings settings)
+    public LoginViewModel(AppSettings settings, ComprobadorDominio comprobador)
     {
         comandoLogearse = new ComandoLogearse();
-        ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta(settings);
+        ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta(settings, comprobador);
         ComandoNavOlvidarInformacion = new ComandoNavegarOlvidarInformacion();
     }
 }

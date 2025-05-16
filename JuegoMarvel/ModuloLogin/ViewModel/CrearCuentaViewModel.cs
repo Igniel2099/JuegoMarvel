@@ -67,8 +67,8 @@ public class CrearCuentaViewModel : BaseViewModel
     EstadoImgNombreUsuario == null
         ? "icono_estado.png"
         : EstadoImgNombreUsuario == true
-            ? "icono_correcto.svg"
-            : "icono_error.svg";
+            ? "icono_correcto_blanco.svg"
+            : "icono_error_blanco.svg";
 
     private bool? _estadoImgNombreUsuario;
     public bool? EstadoImgNombreUsuario
@@ -86,8 +86,8 @@ public class CrearCuentaViewModel : BaseViewModel
     EstadoImgCorreoElectronico == null
         ? "icono_estado.png"
         : EstadoImgCorreoElectronico == true
-            ? "icono_correcto.svg"
-            : "icono_error.svg";
+            ? "icono_correcto_blanco.svg"
+            : "icono_error_blanco.svg";
 
     private bool? _estadoImgCorreoElectronico;
     public bool? EstadoImgCorreoElectronico
@@ -106,8 +106,8 @@ public class CrearCuentaViewModel : BaseViewModel
     EstadoImgContrasena == null
         ? "icono_estado.png"
         : EstadoImgContrasena == true
-            ? "icono_correcto.svg"
-            : "icono_error.svg";
+            ? "icono_correcto_blanco.svg"
+            : "icono_error_blanco.svg";
 
     private bool? _estadoImgContrasena;
     public bool? EstadoImgContrasena
@@ -126,8 +126,8 @@ public class CrearCuentaViewModel : BaseViewModel
     EstadoImgConfirmarContrasena == null
         ? "icono_estado.png"
         : EstadoImgConfirmarContrasena == true
-            ? "icono_correcto.svg"
-            : "icono_error.svg";
+            ? "icono_correcto_blanco.svg"
+            : "icono_error_blanco.svg";
 
     private bool? _estadoImgConfirmarContrasena;
     public bool? EstadoImgConfirmarContrasena
@@ -146,9 +146,9 @@ public class CrearCuentaViewModel : BaseViewModel
 
     public ComandoNavegarVolverAtras ComandoNavVolverAtras { get; set; }
 
-    public CrearCuentaViewModel(AppSettings settings)
+    public CrearCuentaViewModel(AppSettings settings, ComprobadorDominio comprobador)
     {
-        ComandoConfirmar = new(settings, this);
+        ComandoConfirmar = new(settings, comprobador,this);
         ComandoNavVolverAtras = new();
     }
 

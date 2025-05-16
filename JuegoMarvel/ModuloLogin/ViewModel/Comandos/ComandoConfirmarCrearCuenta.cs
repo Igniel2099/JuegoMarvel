@@ -4,16 +4,17 @@ using JuegoMarvel.ModuloLogin.View;
 using MensajesServidor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 
-public class ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewModel crearCuentaViewModel) : BaseCommand
+public class ComandoConfirmarCrearCuenta(AppSettings settings, ComprobadorDominio comprobador ,CrearCuentaViewModel crearCuentaViewModel) : BaseCommand
 {
     private readonly AppSettings _settings = settings;
+    private readonly ComprobadorDominio _comprobador = comprobador; 
     private readonly CrearCuentaViewModel _crearCuentaViewModel = crearCuentaViewModel;
 
     public override async void Execute(object? parameter)
@@ -103,7 +104,7 @@ public class ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewMo
                 return (!existe, existe ? "El nombre de usuario ya existe." : null );
             }
         }
-        catch (Exception ex)
+        catch (SocketException ex)
         {
             Debug.WriteLine("==================================" + $"Error: {ex.Message}" + "==================================");
         }
@@ -112,14 +113,36 @@ public class ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewMo
 
     public async Task<(bool existe, string? mensaje)> ComprobarCorreoElectronico(string correoElectronico)
     {
-        // Comprobar el formato del correo electrónico
         if (string.IsNullOrWhiteSpace(correoElectronico))
-            return (false, "No puedes dejar vacio el Campo de Correo Electronico. ");
-        else if (!correoElectronico.Contains('@') || !correoElectronico.Contains('.')) // Hacer una comprobacion mas fuerte de la validacion del correo Electronico 
-            return (false, "El correo no es válido. ");
+            return (false, "El campo de correo no puede estar vacío.");
 
-        return await ExisteCorreoElectronico(correoElectronico);
+        // 1. Sintaxis
+        if (!FormatoCorreoElectronico(correoElectronico))
+            return (false, "Formato de correo inválido.");
+
+        // 2. ¿Ya existe en el servidor?
+        var (noExiste, msgExiste) = await ExisteCorreoElectronico(correoElectronico);
+        if (!noExiste)  // ExisteCorreoElectronico devuelve (true, null) si NO existe
+            return (false, msgExiste);
+
+        // 3. Dominio DNS/MX
+        bool dominioValido = await _comprobador
+            .ComprobarDominioCorreoElectronicoAsync(correoElectronico);
+        if (!dominioValido)
+            return (false, "El dominio del correo electrónico no es válido.");
+
+        // 4. Todo OK
+        return (true, null);
     }
+
+    public bool FormatoCorreoElectronico(string correoElectronico)
+    {
+        const string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        if (!Regex.IsMatch(correoElectronico.Trim(), patron, RegexOptions.IgnoreCase))
+            return false;
+        return true; 
+    }
+
 
     public async Task<(bool existe, string? mensaje)> ExisteCorreoElectronico(string correoElectronico)
     {
@@ -203,9 +226,22 @@ public class ComandoConfirmarCrearCuenta(AppSettings settings, CrearCuentaViewMo
 
     public (bool comprobacion, string? mensaje) ComprobarFormatoContrasena(string contraseña)
     {
-        if (contraseña.Length > 12) // Tambien si es alfanumerico, si contiene un caracter especial
-            return (true, null);
-        return (false, "La contraseña no Tiene un Formato Valido.");
+        if (contraseña.Length < 12)
+            return (false, "La contraseña debe tener al menos 12 caracteres.");
+
+        // 2. Al menos una letra
+        if (!Regex.IsMatch(contraseña, @"[A-Za-z]"))
+            return (false, "La contraseña debe contener al menos una letra.");
+
+        // 3. Al menos un dígito
+        if (!Regex.IsMatch(contraseña, @"\d"))
+            return (false, "La contraseña debe contener al menos un número.");
+
+        // 4. (Opcional) Al menos un carácter especial
+        if (!Regex.IsMatch(contraseña, @"[!@#$%^&*(),.?""':{}|<>_\-\[\]\\\/]"))
+            return (false, "La contraseña debe contener al menos un carácter especial.");
+
+        return (true, null);
     }
 
 

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.IO;
 using Microsoft.Maui.Storage;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace JuegoMarvel
 {
@@ -19,6 +20,11 @@ namespace JuegoMarvel
 
             var builder = MauiApp.CreateBuilder();
 
+            // Añadir el servicio de comprobar el Dominio de un Correo Electronico
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSingleton<ComprobadorDominio>();
+
+            // Añadir el archivo de configuracion
             using var stream = FileSystem
                 .OpenAppPackageFileAsync("appsettings.json")
                 .GetAwaiter()
@@ -59,6 +65,9 @@ namespace JuegoMarvel
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+
+            
 
             return builder.Build();
         }

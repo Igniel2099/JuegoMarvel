@@ -1,5 +1,4 @@
-﻿
-using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ModuloLogin.Model;
 using System.Collections.ObjectModel;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
@@ -15,6 +14,20 @@ public class PopupErroresCrearCuentaViewModel : BaseViewModel
             if (_tituloPantalla != value)
             {
                 _tituloPantalla = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private string? _imgTitulo;
+    public string? ImgTitulo
+    {
+        get => _imgTitulo;
+        set
+        {
+            if (_imgTitulo != value)
+            {
+                _imgTitulo = value;
                 OnPropertyChanged();
             }
         }
@@ -47,7 +60,6 @@ public class PopupErroresCrearCuentaViewModel : BaseViewModel
             }
         }
     }
-
 
     private string? _textoErrorContrasena;
     public string? TextoErrorContrasena
@@ -92,7 +104,6 @@ public class PopupErroresCrearCuentaViewModel : BaseViewModel
         string? txtErrorCorreoElec, 
         string? txtErrorContrasena)
     {
-
         _textoErrorNombreUsuario = txtErrorNombreUsuario;
         _textoErrorCorreoElectronico= txtErrorCorreoElec;
         _textoErrorContrasena = txtErrorContrasena;
@@ -103,17 +114,18 @@ public class PopupErroresCrearCuentaViewModel : BaseViewModel
             _textoErrorContrasena
         );
 
-
-
         if (string.IsNullOrEmpty(txtErrorNombreUsuario) && string.IsNullOrEmpty(txtErrorCorreoElec) && string.IsNullOrEmpty(txtErrorContrasena))
         {
             _tituloPantalla = "FELICIDADES! \n SE CREO LA CUENTA DE FORMA EXITOSA";
             _contendorTextosVisible = false;
+            _imgTitulo = "icono_correcto.svg"; 
         }
         else
         {
             _contendorTextosVisible = true;
             _tituloPantalla = "ERROR AL CREAR CUENTA";
+            _imgTitulo = "icono_error.svg";
+
         }
     }
 

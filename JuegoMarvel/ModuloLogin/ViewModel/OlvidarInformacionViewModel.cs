@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
+﻿using JuegoMarvel.ModuloLogin.Model;
+using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using System.Diagnostics;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
@@ -35,18 +36,31 @@ public class OlvidarInformacionViewModel : BaseViewModel
         }
     }
 
+
+    private bool _editable;
+    public bool Editable
+    {
+        get => _editable;
+        set
+        {
+            if (_editable != value)
+            {
+                _editable = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public ComandoEnviar ComandoEnviar { get; set; }
     public ComandoConfirmarOlvidarInformacion ComandoConfirmar { get; set; }
-    public ComandoVolverEnviar ComandoVolverEnviar { get; set; }
     public ComandoNavegarVolverAtras ComandoNavVolverAtras { get; set; }
 
-    public OlvidarInformacionViewModel()
+    public OlvidarInformacionViewModel(AppSettings settings, ComprobadorDominio comprobador)
     {
+        _editable = false;
         CorreoElectronico = string.Empty;
         CodigoConfirmacion = string.Empty;
-        ComandoEnviar = new();
-        ComandoConfirmar = new();
-        ComandoVolverEnviar = new();
+        ComandoEnviar = new(this, settings, comprobador);
+        ComandoConfirmar = new(this,settings);
         ComandoNavVolverAtras = new();
     }
 }

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <toolkit:Popup
-    x:Class="JuegoMarvel.ModuloLogin.View.PopupErroresCrearCuenta"
+    x:Class="JuegoMarvel.ModuloLogin.View.PopupErrores"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:JuegoMarvel.ModuloLogin.Model"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloLogin.ViewModel"
+    x:DataType="viewModels:PopupErroresViewModel"
     Color="Transparent">
-    <toolkit:Popup.BindingContext>
-        <viewModels:PopupErroresCrearCuentaViewModel />
-    </toolkit:Popup.BindingContext>
 
     <Grid HeightRequest="330" WidthRequest="760">
 
@@ -34,7 +32,7 @@
             <Grid
                 x:Name="MiGrid"
                 Grid.Row="1"
-                IsVisible="{Binding ContendorTextosVisible}">
+                IsVisible="{Binding ContenedorTextosVisible}">
                 <Image Source="contener_texto_crearcuenta.svg" />
                 <VerticalStackLayout
                     xmlns:bindable="http://schemas.microsoft.com/xaml/behaviors"
@@ -96,7 +94,8 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding TituloPantalla}"
                     TextColor="White"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="600" />
 
             </HorizontalStackLayout>
 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloLogin.View.CambiarContrasena"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloLogin.ViewModel"
+    x:Name="ViewCambiarContrasena"
+    Title="CambiarContrasena"
+    x:DataType="viewModels:CambiarContrasenaViewModel">
+    <Grid>
+        <!--  Imagen de fondo  -->
+        <Image Source="fondo_pantalla_completa.png" />
+        <AbsoluteLayout>
+            <!--  Imagen del logotipo  -->
+            <Image
+                AbsoluteLayout.LayoutBounds="0.98,0.015,65,65"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="65"
+                Source="icono_marvel.png"
+                WidthRequest="65" />
+
+            <Button
+                AbsoluteLayout.LayoutBounds="0.01,0.02,100,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Background="Black"
+                BorderColor="White"
+                BorderWidth="2"
+                Command="{Binding ComandoNavVolverAtras}"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontFamily="LuckiestGuy"
+                FontSize="18"
+                HeightRequest="40"
+                Text="&lt;ATRAS"
+                TextColor="White"
+                WidthRequest="100" />
+
+        </AbsoluteLayout>
+
+        <VerticalStackLayout Margin="0,10,0,0" Spacing="10">
+            <Grid HeightRequest="53" WidthRequest="551">
+                <Image
+                    HeightRequest="53"
+                    Source="fondo_titulo.png"
+                    WidthRequest="551" />
+                <Label
+                    Margin="0,5,0,0"
+                    FontFamily="LuckiestGuy"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="RECUPERAR USUARIO O CONTRASEÑA"
+                    TextColor="White" />
+            </Grid>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="Tu nombre de usuario es:"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    FontFamily="LuckiestGuy"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding NombreUsuario}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+
+            <Grid>
+
+                <Image Source="contenedor_contrasenas.svg" />
+
+                <VerticalStackLayout
+                    Margin="50,0,0,0"
+                    Spacing="10"
+                    VerticalOptions="Center"
+                    WidthRequest="550">
+
+                    <HorizontalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="Contraseña"
+                            TextColor="White"
+                            VerticalOptions="Center"
+                            WidthRequest="111" />
+                        <Border
+                            Padding="3,0"
+                            BackgroundColor="Black"
+                            HeightRequest="40"
+                            InputTransparent="False"
+                            StrokeShape="RoundRectangle 10">
+                            <Entry Text="{Binding Contrasena}" WidthRequest="200" />
+                        </Border>
+                        <Image
+                            Margin="7,0,0,0"
+                            HeightRequest="20"
+                            Source="{Binding ImgEstadoContrasena}"
+                            WidthRequest="20" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="Confirmar Contraseña"
+                            TextColor="White"
+                            VerticalOptions="Center"
+                            WidthRequest="111" />
+                        <Border
+                            Padding="3,0"
+                            BackgroundColor="Black"
+                            HeightRequest="40"
+                            InputTransparent="False"
+                            StrokeShape="RoundRectangle 10">
+                            <Entry Text="{Binding ConfirmarContrasena}" WidthRequest="200" />
+                        </Border>
+                        <Image
+                            Margin="7,0,0,0"
+                            HeightRequest="20"
+                            Source="{Binding ImgEstadoConfirmarContrasena}"
+                            WidthRequest="20" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+            </Grid>
+
+            <Button
+                Background="Black"
+                BorderColor="White"
+                BorderWidth="2"
+                Command="{Binding ComandoConfirmar}"
+                CommandParameter="{x:Reference ViewCambiarContrasena}"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="18"
+                HeightRequest="40"
+                Text="Confirmar"
+                TextColor="White"
+                WidthRequest="141" />
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

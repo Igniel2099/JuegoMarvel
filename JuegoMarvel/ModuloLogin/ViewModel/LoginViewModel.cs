@@ -6,8 +6,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 
 public class LoginViewModel : BaseViewModel
 {
-    private string _nombreUsuario;
-    public string NombreUsuario
+    private string? _nombreUsuario;
+    public string? NombreUsuario
     {
         get => _nombreUsuario;
         set
@@ -21,8 +21,8 @@ public class LoginViewModel : BaseViewModel
         }
     }
 
-    private string _contrasena;
-    public string Contrasena
+    private string? _contrasena;
+    public string? Contrasena
     {
         get => _contrasena;
         set
@@ -32,11 +32,10 @@ public class LoginViewModel : BaseViewModel
                
                 _contrasena = value;
                 OnPropertyChanged();
-                comandoLogearse._contrasena = value;
+                comandoLogearse._contrasena = value!;
             }
         }
     }
-
 
     public ComandoLogearse comandoLogearse { get; set; }
     public ComandoNavegarCrearCuenta ComandoNavCrearCuenta { get; set; }
@@ -47,6 +46,6 @@ public class LoginViewModel : BaseViewModel
     {
         comandoLogearse = new ComandoLogearse();
         ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta(settings, comprobador);
-        ComandoNavOlvidarInformacion = new ComandoNavegarOlvidarInformacion();
+        ComandoNavOlvidarInformacion = new ComandoNavegarOlvidarInformacion(settings, comprobador);
     }
 }

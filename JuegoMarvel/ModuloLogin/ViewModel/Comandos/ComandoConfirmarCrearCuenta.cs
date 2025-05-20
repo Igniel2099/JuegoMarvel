@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
+using MensajesServidor;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 public class ComandoConfirmarCrearCuenta : BaseCommand
@@ -18,7 +19,7 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         _comprobador = comprobador;
         _vm = vm;
         _validadorUsuario = new ValidadorNombreUsuario(_settings);
-        _validadorCorreo = new ValidadorCorreoElectronico(_settings, _comprobador);
+        _validadorCorreo = new ValidadorCorreoElectronico(EnumOrigen.CrearCuenta, _settings, _comprobador);
         _validadorContrasena = new ValidadorContrasena();
     }
 
@@ -37,13 +38,14 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
         if (parameter is CrearCuenta crearCuenta)
         {
             // Mostrar popup con mensajes: mensajeUsu, mensajeCorr, mensajePw
-            var popup = new PopupErroresCrearCuenta
-            {
-                BindingContext = new PopupErroresCrearCuentaViewModel(
-                usuarioOk ? null : mensajeUsu,
-                correoOk ? null : mensajeCorr,
-                pwOk ? null : mensajePw)
-            };
+            var popup = new PopupErrores(new PopupErroresViewModel(
+                    usuarioOk && correoOk && pwOk ? "FELICIDADES!\nSE CREO LA CUENTA DE FORMA EXITOSA"  : "ERROR AL CREAR CUENTA",
+                    usuarioOk ? null : mensajeUsu,
+                    correoOk ? null : mensajeCorr,
+                    pwOk ? null : mensajePw
+                )
+            );
+
             await crearCuenta.ShowPopupAsync(popup);
         }
     }

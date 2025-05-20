@@ -9,17 +9,12 @@ namespace JuegoMarvel.ModuloLogin.Model;
 /// <summary>
 /// Valida formato, existencia y dominio de direcciones de correo electrónico.
 /// </summary>
-public class ValidadorCorreoElectronico
+public class ValidadorCorreoElectronico(EnumOrigen origen, AppSettings configuracion, ComprobadorDominio validadorDominio)
 {
-    private readonly AppSettings _configuracion;
-    private readonly ComprobadorDominio _validadorDominio;
+    private readonly EnumOrigen _origen = origen;
+    private readonly AppSettings _configuracion = configuracion;
+    private readonly ComprobadorDominio _validadorDominio = validadorDominio;
     private const string PatronEmail = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
-
-    public ValidadorCorreoElectronico(AppSettings configuracion, ComprobadorDominio validadorDominio)
-    {
-        _configuracion = configuracion;
-        _validadorDominio = validadorDominio;
-    }
 
     /// <summary>
     /// Ejecuta todas las comprobaciones para validar un email.
@@ -32,13 +27,13 @@ public class ValidadorCorreoElectronico
         if (!Regex.IsMatch(correo.Trim(), PatronEmail, RegexOptions.IgnoreCase))
             return (false, "Formato de correo inválido.");
 
-        var (disponible, msgExistencia) = await ComprobarExistenciaAsync(correo);
-        if (!disponible)
-            return (false, msgExistencia);
-
         bool dominioOk = await _validadorDominio.ComprobarDominioCorreoElectronicoAsync(correo);
         if (!dominioOk)
             return (false, "El dominio del correo electrónico no es válido.");
+
+        var (disponible, msgExistencia) = await ComprobarExistenciaAsync(correo);
+        if (!disponible)
+            return (false, msgExistencia);
 
         return (true, null);
     }
@@ -52,7 +47,7 @@ public class ValidadorCorreoElectronico
             using var stream = cliente.GetStream();
 
             var mensaje = new MensajesModuloLogin(
-                EnumOrigen.CrearCuenta,
+                _origen,
                 EnumTipoRespuesta.Comprobar,
                 [ new Propiedad(EnumTipoValor.CorreoElectronico, correo) ],
                 null);
@@ -69,7 +64,12 @@ public class ValidadorCorreoElectronico
             if (respuestaServidor?.Respuesta is not null)
             {
                 bool existe = respuestaServidor.Respuesta == EnumRespuesta.Existente;
-                return (!existe, existe ? "El correo electrónico ya existe." : null);
+                return
+                    _origen == EnumOrigen.CrearCuenta
+                        ? (!existe, existe ? "El correo electrónico ya existe en la Base de datos." : null)
+                        : (existe, existe ? null : "El correo electrónico no existe en la Base de datos.")
+
+                    ;
             }
         }
         catch (SocketException)

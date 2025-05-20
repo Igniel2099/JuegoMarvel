@@ -1,13 +1,15 @@
 using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ModuloLogin.ViewModel;
 
 namespace JuegoMarvel.ModuloLogin.View;
 
-public partial class PopupErroresCrearCuenta : Popup
+public partial class PopupErrores : Popup
 {
-	public PopupErroresCrearCuenta()
+	public PopupErrores(PopupErroresViewModel vm)
 	{
 		InitializeComponent();
-	}
+        BindingContext = vm;
+    }
 
     private void ClickedBotonCerrar(object sender, EventArgs e)
     {

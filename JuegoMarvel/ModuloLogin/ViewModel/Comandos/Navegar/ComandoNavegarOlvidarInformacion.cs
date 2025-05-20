@@ -1,11 +1,14 @@
 ﻿
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using System.Diagnostics;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
 
-public partial class ComandoNavegarOlvidarInformacion : BaseCommand
+public partial class ComandoNavegarOlvidarInformacion(AppSettings settings, ComprobadorDominio comprobador) : BaseCommand
 {
+    private readonly AppSettings _settings = settings;
+    private readonly ComprobadorDominio _comprobador = comprobador;
     public override async void Execute(object? parameter)
     {
         try
@@ -15,8 +18,7 @@ public partial class ComandoNavegarOlvidarInformacion : BaseCommand
             var nav = window.Page.Navigation;
 
             // Para hacer el PushModal sin animación nativa:
-            await nav.PushModalAsync(new OlvidarInformacion(), false);
-
+            await nav.PushModalAsync(new OlvidarInformacion(new OlvidarInformacionViewModel(_settings, _comprobador)), false);
         }
         catch (Exception ex)
         {

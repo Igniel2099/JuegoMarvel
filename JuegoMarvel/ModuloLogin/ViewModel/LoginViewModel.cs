@@ -12,12 +12,11 @@ public class LoginViewModel : BaseViewModel
         get => _nombreUsuario;
         set
         {
-            if ( _nombreUsuario != value)
-            {
-                _nombreUsuario = value;
-                OnPropertyChanged();
-                comandoLogearse._nombre = value;
-            }
+            if ( _nombreUsuario == value) return;
+
+            _nombreUsuario = value;
+            OnPropertyChanged();
+            ComandoLogearse.Nombre = value!;
         }
     }
 
@@ -27,25 +26,25 @@ public class LoginViewModel : BaseViewModel
         get => _contrasena;
         set
         {
-            if (_contrasena != value)
-            {
-               
-                _contrasena = value;
-                OnPropertyChanged();
-                comandoLogearse._contrasena = value!;
-            }
+            if (_contrasena == value) return;
+
+            _contrasena = value;
+            OnPropertyChanged();
+            ComandoLogearse.Contrasena = value!;
         }
     }
 
-    public ComandoLogearse comandoLogearse { get; set; }
+    public ComandoLogearse ComandoLogearse { get; set; }
     public ComandoNavegarCrearCuenta ComandoNavCrearCuenta { get; set; }
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
     
-
     public LoginViewModel(AppSettings settings, ComprobadorDominio comprobador)
     {
-        comandoLogearse = new ComandoLogearse();
-        ComandoNavCrearCuenta = new ComandoNavegarCrearCuenta(settings, comprobador);
-        ComandoNavOlvidarInformacion = new ComandoNavegarOlvidarInformacion(settings, comprobador);
+        ComandoLogearse = 
+            new ComandoLogearse(settings);
+        ComandoNavCrearCuenta = 
+            new ComandoNavegarCrearCuenta(settings, comprobador);
+        ComandoNavOlvidarInformacion = 
+            new ComandoNavegarOlvidarInformacion(settings, comprobador);
     }
 }

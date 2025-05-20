@@ -1,12 +1,8 @@
 ﻿using MensajesServidor;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JuegoMarvel.ModuloLogin.Model;
 
@@ -39,7 +35,7 @@ public class ValidadorNombreUsuario(AppSettings configuracion)
             var mensaje = new MensajesModuloLogin(
                 EnumOrigen.CrearCuenta,
                 EnumTipoRespuesta.Comprobar,
-                [ new Propiedad(EnumTipoValor.NombreUsuario, nombreUsuario) ],
+                [new Propiedad(EnumTipoValor.NombreUsuario, nombreUsuario)],
                 null);
 
             var ajustesJson = new JsonSerializerSettings();

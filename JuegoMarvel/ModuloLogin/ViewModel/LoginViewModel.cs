@@ -46,5 +46,6 @@ public class LoginViewModel : BaseViewModel
             new ComandoNavegarCrearCuenta(settings, comprobador);
         ComandoNavOlvidarInformacion = 
             new ComandoNavegarOlvidarInformacion(settings, comprobador);
+
     }
 }

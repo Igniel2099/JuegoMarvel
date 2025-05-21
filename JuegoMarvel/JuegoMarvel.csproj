@@ -85,9 +85,15 @@
 	  <None Remove="Resources\Images\ImagenesPersonajes\Venom\ven_img_prin.png" />
 	  <None Remove="Resources\Images\Inicio\BarMenuInicio\bar_menu.png" />
 	  <None Remove="Resources\Images\Inicio\BarMenuInicio\boton_empezar.png" />
-	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_equipo.png" />
-	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_home.png" />
-	  <None Remove="Resources\Images\Inicio\BarMenuInicio\icono_tienda.png" />
+	  <None Remove="Resources\Images\Inicio\bar_menu_top.png" />
+	  <None Remove="Resources\Images\Inicio\icono_copyright.png" />
+	  <None Remove="Resources\Images\Inicio\icono_equipo.png" />
+	  <None Remove="Resources\Images\Inicio\icono_home.png" />
+	  <None Remove="Resources\Images\Inicio\icono_tienda.png" />
+	  <None Remove="Resources\Images\Inicio\img_cuatro.png" />
+	  <None Remove="Resources\Images\Inicio\img_dos.png" />
+	  <None Remove="Resources\Images\Inicio\img_tres.png" />
+	  <None Remove="Resources\Images\Inicio\img_uno.png" />
 	  <None Remove="Resources\Images\Inicio\MenuLateralInicio\caja_nivel.png" />
 	  <None Remove="Resources\Images\Inicio\MenuLateralInicio\icono_usuario.png" />
 	  <None Remove="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
@@ -158,11 +164,17 @@
 	  <MauiImage Include="Resources\Images\ImagenesPersonajes\Venom\ven_img_prin.png" />
 	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\bar_menu.png" />
 	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\boton_empezar.png" />
-	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_equipo.png" />
-	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_home.png" />
-	  <MauiImage Include="Resources\Images\Inicio\BarMenuInicio\icono_tienda.png" />
-	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\caja_nivel.png" />
-	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\icono_usuario.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuTop\bar_menu_top.png" />
+	  <MauiImage Include="Resources\Images\Inicio\icono_copyright.png" />
+	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\icono_equipo.png" />
+	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\icono_home.png" />
+	  <MauiImage Include="Resources\Images\Inicio\MenuLateralInicio\icono_tienda.png" />
+	  <MauiImage Include="Resources\Images\Inicio\img_cuatro.png" />
+	  <MauiImage Include="Resources\Images\Inicio\img_dos.png" />
+	  <MauiImage Include="Resources\Images\Inicio\img_tres.png" />
+	  <MauiImage Include="Resources\Images\Inicio\img_uno.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuTop\caja_nivel.png" />
+	  <MauiImage Include="Resources\Images\Inicio\BarMenuTop\icono_usuario.png" />
 	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
 	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
@@ -208,6 +220,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.70" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="OpenAI" Version="2.1.0" />
 
 	</ItemGroup>
 
@@ -254,7 +267,7 @@
 	  <MauiXaml Update="Views\InformacionPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Inicio.xaml">
+	  <MauiXaml Update="ModuloInicio\View\Inicio.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\Login.xaml">
@@ -267,6 +280,15 @@
 
 	<ItemGroup>
 	  <None Update="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ModuloAuxiliares\ModuloAyuda\" />
+	  <Folder Include="ModuloAuxiliares\ModuloConfiguracion\" />
+	  <Folder Include="ModuloInicio\Model\" />
+	  <Folder Include="ModuloEquipo\" />
+	  <Folder Include="ModuloTienda\" />
+	  <Folder Include="ModuloJuego\" />
 	</ItemGroup>
 
 </Project>

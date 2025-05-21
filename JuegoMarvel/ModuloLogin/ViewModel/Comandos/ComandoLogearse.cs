@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ModuloInicio.ViewModel;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using JuegoMarvel.Views;
@@ -82,7 +83,7 @@ public class ComandoLogearse(AppSettings configuracion) : BaseCommand
                         var nav = window.Page.Navigation;
 
                         // Para hacer el PushModal sin animación nativa:
-                        await nav.PushModalAsync(new Inicio());
+                        await nav.PushModalAsync(new Inicio(new InicioViewModel()));
                     }
                     else
                     {

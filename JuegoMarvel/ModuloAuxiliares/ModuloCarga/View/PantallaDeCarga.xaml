@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloAuxiliares.ModuloCarga.PantallaDeCarga"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:JuegoMarvel.Services"
+    xmlns:viewmodels="clr-namespace:JuegoMarvel.ModuloAuxiliares.ModuloCarga.ViewModels"
+    Title="PantallaDeCarga"
+    x:DataType="viewmodels:PantallaCargaViewModel">
+
+    <Grid>
+        <Image Aspect="AspectFill" Source="fondo_inicio.png" />
+
+        <Grid RowDefinitions="*,50">
+
+            <VerticalStackLayout Grid.Row="0" VerticalOptions="Center">
+                <Image
+                    x:Name="ImagenDeCarga"
+                    HeightRequest="154"
+                    HorizontalOptions="Center"
+                    Source="icono_circulo_carga.png"
+                    WidthRequest="154" />
+                <Label
+                    x:Name="loadingLabel"
+                    Margin="20,0"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Cargando Contenido..." />
+            </VerticalStackLayout>
+
+            <custom:ProgresssBarPersonalizada
+                Grid.Row="1"
+                HeightRequest="50"
+                Progress="{Binding Progreso}" />
+
+        </Grid>
+    </Grid>
+</ContentPage>

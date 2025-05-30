@@ -42,7 +42,8 @@
                 <Entry
                     Placeholder="NombreUsuario"
                     Style="{DynamicResource EntryLogin}"
-                    Text="{Binding NombreUsuario}" />
+                    Text="{Binding NombreUsuario}"
+                    TextColor="White" />
             </Border>
 
             <Border
@@ -53,7 +54,8 @@
                 <Entry
                     Placeholder="Contraseña"
                     Style="{DynamicResource EntryLogin}"
-                    Text="{Binding Contrasena}" />
+                    Text="{Binding Contrasena}"
+                    TextColor="White" />
             </Border>
 
 
@@ -119,6 +121,7 @@
 
                 </HorizontalStackLayout>
 
+
                 <Button
                     Grid.Column="1"
                     Background="#800000"
@@ -132,10 +135,27 @@
 
 
 
+
         <Image
             Grid.Column="1"
             Aspect="AspectFill"
             Source="marvel.png" />
+
+        <HorizontalStackLayout Grid.Column="1" Spacing="60">
+            <Button
+                BackgroundColor="Red"
+                Clicked="Button_Clicked"
+                HeightRequest="50"
+                Text="RecuperarBaseDatos"
+                TextColor="White"
+                WidthRequest="200" />
+            <Button
+                Command="{Binding ComandoBorraDatos}"
+                HeightRequest="50"
+                Text="BorrarDatos"
+                WidthRequest="130" />
+
+        </HorizontalStackLayout>
 
     </Grid>
 

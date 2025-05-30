@@ -1,87 +1,46 @@
-using System.Diagnostics;
 using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ModuloTienda.ViewModel;
+using JuegoMarvel.Services;
+using JuegoMarvelData.Models;
 
 namespace JuegoMarvel.Views;
 
 public partial class Tienda : ContentPage
 {
-	public Tienda()
-	{
-		InitializeComponent();
 
-        List<string> nombres = [
-            "Elektra", 
-            "Daredevil",
-            "Capitan America",
-            "Venom",
-            "Deadpool",
-            "Iron Fist"
-        ];
+    private async Task CargarDatos(TiendaViewModel vm)
+    {
+        List<Personaje> personajes = vm.GestionPersonajes.ObtenerPersonajes();
 
-        List<string> tipos = [
-            "Asesina",
-            "peleador",
-            "Tanque",
-            "Tanque",
-            "Asesino",
-            "pelador"
-        ];
+        var personajesImgenes = await vm.GestionPersonajes.CargarPersonajesAsync();
 
-        List<string> Grupos = [
-            "Mano",
-            "Callejero",
-            "Vengeador",
-            "Villano",
-            "Mutante",
-            "Vengador"
-        ];
+         List<string> nombres = [];
+        List<string> tipos = [];
+        List<string> Grupos = [];
+        List<string> dineros = [];
 
-        List<string> dineros = [
-            "1200",
-            "100",
-            "1240",
-            "1457",
-            "2574",
-            "9805"
-        ];
+        List<string> imgsPrins = [];
+        List<string> habilidad_1 = [];
+        List<string> habilidad_2 = [];
+        List<string> habilidad_3 = [];
 
-        List<string> imgsPrins = [
-            "elk_img_prin.png",
-            "dar_img_prin.png",
-            "cap_img_prin.png",
-            "ven_img_prin.png",
-            "dep_img_prin.png",
-            "irf_img_prin.png"
-        ];
+        foreach (var personaje in personajes)
+        {
+            nombres.Add(personaje.NombreCompleto);
+            tipos.Add(personaje.Tipo);
+            Grupos.Add(personaje.Grupo);
+            dineros.Add(personaje.Coste.ToString());
 
-        List<string> habilidad_1 = [
-            "elk_hb_1.png",
-            "dar_hb_1.png",
-            "cap_hb_1.png",
-            "ven_hb_1.png",
-            "dep_hb_1.png",
-            "irf_hb_1.png"
-        ];
-
-
-        List<string> habilidad_2 = [
-            "elk_hb_2.png",
-            "dar_hb_2.png",
-            "cap_hb_2.png",
-            "ven_hb_2.png",
-            "dep_hb_2.png",
-            "irf_hb_2.png"
-        ];
-
-
-        List<string> habilidad_3 = [
-            "elk_hb_3.png",
-            "dar_hb_3.png",
-            "cap_hb_3.png",
-            "ven_hb_3.png",
-            "dep_hb_3.png",
-            "irf_hb_3.png"
-        ];
+            if (personajesImgenes.TryGetValue(personaje.NombreCompleto, out var personajeImg))
+            {
+                imgsPrins.Add(personajeImg.ImgPrincipal);
+                habilidad_1.Add(personajeImg.ImgHabilidades["HabilidadUno"]);
+                habilidad_2.Add(personajeImg.ImgHabilidades["HabilidadDos"]);
+                habilidad_3.Add(personajeImg.ImgHabilidades["HabilidadTres"]); 
+            }
+            else
+                throw new Exception("El personaje no lo tengo registrado en el Json");
+        }
 
         int count = 0;
 
@@ -106,14 +65,20 @@ public partial class Tienda : ContentPage
                     habilidad_2[count],
                     habilidad_3[count]);
                 miHStack.Add(view);
-                
+
                 count++;
             }
             miVStack.Add(miHStack);
-
         }
     }
 
+    public Tienda(TiendaViewModel vm)
+	{
+		InitializeComponent();
+
+        BindingContext = vm;
+        _ = CargarDatos(vm);
+    }
 
     private View CreateCardView(
         string nombre,
@@ -308,16 +273,6 @@ public partial class Tienda : ContentPage
         iconos.Add(new Image
         { AnchorX = 0.5, AnchorY = 0.5, Source = imgHb3, HeightRequest = 34, WidthRequest = 34 }
         );
-
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    iconos.Children.Add(new BoxView
-        //    {
-        //        BackgroundColor = Colors.Black,
-        //        HeightRequest = 34,
-        //        WidthRequest = 34
-        //    });
-        //}
 
         charContent.Add(iconos, 0, 2);
 

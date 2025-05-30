@@ -8,16 +8,16 @@
     xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloLogin.ViewModel"
     x:DataType="viewModels:PopupErroresViewModel"
     Color="Transparent">
+    <Grid>
 
-    <Grid HeightRequest="330" WidthRequest="760">
-
+        <Image
+            Aspect="AspectFit"
+            HorizontalOptions="Fill"
+            Source="ventana_popup.svg"
+            VerticalOptions="Fill" />
         <AbsoluteLayout>
-            <!--  Imagen de fondo  -->
-            <Image Source="ventana_popup.svg" />
-
-            <!--  Boton cerrar  -->
             <ImageButton
-                AbsoluteLayout.LayoutBounds="1,0,40,40"
+                AbsoluteLayout.LayoutBounds="1,0,37,37"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 Clicked="ClickedBotonCerrar"
                 Source="boton_cerrar.png" />
@@ -101,4 +101,5 @@
 
         </Grid>
     </Grid>
+
 </toolkit:Popup>

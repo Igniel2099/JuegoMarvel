@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JuegoMarvel.Views;
+﻿
+namespace JuegoMarvel.Services;
 
 public static class AnimacionesComunes
 {

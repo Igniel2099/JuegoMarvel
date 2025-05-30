@@ -14,6 +14,7 @@ public partial class ComandoNavegarCrearCuenta : BaseCommand
         _settings = settings;
         _comprobador = comprobador;
     }
+
     public override async void Execute(object? parameter)
     {
         // Push sin animación nativa

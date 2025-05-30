@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿ <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android;net9.0-windows10.0.19041.0</TargetFrameworks>
@@ -54,12 +54,16 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="Resources\BaseDeDatos\base_datos_juego_marvel.db">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Properties\appsettings.json" />
 	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\AppIcon\app_icono.png" />
+	  <None Remove="Resources\BaseDeDatos\base_datos_juego_marvel.db" />
 	  <None Remove="Resources\Images\IconosComunes\icono_exp.png" />
 	  <None Remove="Resources\Images\IconosComunes\icono_moneda.png" />
 	  <None Remove="Resources\Images\IconosComunes\personaje_ejemplo.png" />
@@ -212,15 +216,16 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
 		<PackageReference Include="DnsClient" Version="1.8.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.60" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.70" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="OpenAI" Version="2.1.0" />
 
 	</ItemGroup>
 
@@ -237,6 +242,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Reference Include="JuegoMarvelData">
+	    <HintPath>..\..\JuegoMarvelData\JuegoMarvelData\bin\Debug\net9.0\JuegoMarvelData.dll</HintPath>
+	  </Reference>
 	  <Reference Include="MensajesServidor">
 	    <HintPath>..\..\MensajesServidor\MensajesServidor\bin\Debug\net9.0\MensajesServidor.dll</HintPath>
 	  </Reference>
@@ -246,12 +254,15 @@
 	  <Compile Update="ModuloLogin\View\PopupErrores.xaml.cs">
 	    <DependentUpon>PopupErrores.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\InformacionPopup.xaml.cs">
+	  <Compile Update="ModuloTienda\View\InformacionPopup.xaml.cs">
 	    <DependentUpon>InformacionPopup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ModuloAuxiliares\ModuloCarga\View\PantallaDeCarga.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\CambiarContrasena.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -264,7 +275,7 @@
 	  <MauiXaml Update="ModuloLogin\View\PopupErrores.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\InformacionPopup.xaml">
+	  <MauiXaml Update="ModuloTienda\View\InformacionPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloInicio\View\Inicio.xaml">
@@ -273,7 +284,7 @@
 	  <MauiXaml Update="ModuloLogin\View\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Tienda.xaml">
+	  <MauiXaml Update="ModuloTienda\View\Tienda.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -287,8 +298,13 @@
 	  <Folder Include="ModuloAuxiliares\ModuloConfiguracion\" />
 	  <Folder Include="ModuloInicio\Model\" />
 	  <Folder Include="ModuloEquipo\" />
-	  <Folder Include="ModuloTienda\" />
 	  <Folder Include="ModuloJuego\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\dict_imagenes_personajes.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

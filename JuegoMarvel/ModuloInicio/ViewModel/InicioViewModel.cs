@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JuegoMarvel.ModuloLogin.Model;
+using JuegoMarvelData.Data;
 using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
@@ -67,10 +64,16 @@ public class InicioViewModel : BaseViewModel
 
     public ICommand ComandoNavEquipo { get; set; }
 
-    public InicioViewModel()
+    public InicioViewModel(AppSettings configuracion, BbddjuegoMarvelContext context)
     {
-        ComandoNavTienda = new ComandoNavegar();
-        Nivel = "12";
+        ComandoNavTienda = new ComandoNavegar(context);
+        var primerUsuario = context.Usuarios.FirstOrDefault() ?? 
+            throw new Exception("Tenemos un problema, no hay usuarios en la tabla"); // Solo hay uno o deberia
+
+        _nombreUsuario = primerUsuario.NombreUsuario;
+        _nivel = "1";
+        _puntos = primerUsuario.SuperPuntos.ToString();
+        _monedas = primerUsuario.Monedas.ToString();
     }
 }
 

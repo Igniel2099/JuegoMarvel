@@ -1,4 +1,6 @@
-﻿using JuegoMarvel.Views;
+﻿using JuegoMarvel.ModuloTienda.ViewModel;
+using JuegoMarvel.Views;
+using JuegoMarvelData.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
 
-public class ComandoNavegar : BaseCommand
+public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
 {
+    private readonly BbddjuegoMarvelContext _context = context;
     public async override void Execute(object? parameter)
     {
         if (parameter is string pageName)
@@ -27,7 +30,7 @@ public class ComandoNavegar : BaseCommand
                     break;
 
                 case "Tienda":
-                    await nav.PushModalAsync(new Tienda());
+                    await nav.PushModalAsync(new Tienda(new TiendaViewModel(_context)));
                     break;
 
                 case "Equipo":

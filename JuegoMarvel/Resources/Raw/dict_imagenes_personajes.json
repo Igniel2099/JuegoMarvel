@@ -1,0 +1,50 @@
+{
+  "Elektra": {
+    "ImgPrincipal": "elk_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "elk_hb_1.png",
+      "HabilidadDos": "elk_hb_2.png",
+      "HabilidadTres": "elk_hb_3.png"
+    }
+  },
+  "DareDevil": {
+    "ImgPrincipal": "dar_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "dar_hb_1.png",
+      "HabilidadDos": "dar_hb_2.png",
+      "HabilidadTres": "dar_hb_3.png"
+    }
+  },
+  "Capitan America": {
+    "ImgPrincipal": "cap_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "cap_hb_1.png",
+      "HabilidadDos": "cap_hb_2.png",
+      "HabilidadTres": "cap_hb_3.png"
+    }
+  },
+  "Venom": {
+    "ImgPrincipal": "ven_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "ven_hb_1.png",
+      "HabilidadDos": "ven_hb_2.png",
+      "HabilidadTres": "ven_hb_3.png"
+    }
+  },
+  "Deadpool": {
+    "ImgPrincipal": "dep_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "dep_hb_1.png",
+      "HabilidadDos": "dep_hb_2.png",
+      "HabilidadTres": "dep_hb_3.png"
+    }
+  },
+  "Iron Fist": {
+    "ImgPrincipal": "irf_img_prin.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "irf_hb_1.png",
+      "HabilidadDos": "irf_hb_2.png",
+      "HabilidadTres": "irf_hb_3.png"
+    }
+  }
+}

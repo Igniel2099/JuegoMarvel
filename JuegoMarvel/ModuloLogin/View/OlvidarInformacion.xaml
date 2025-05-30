@@ -125,7 +125,10 @@
                         InputTransparent="False"
                         StrokeShape="RoundRectangle 10"
                         WidthRequest="88">
-                        <Entry Placeholder="1" Text="{Binding CodigoConfirmacion, Mode=TwoWay}" />
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="1"
+                            Text="{Binding CodigoConfirmacion, Mode=TwoWay}" />
                     </Border>
 
 

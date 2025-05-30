@@ -1,14 +1,14 @@
 ﻿using CommunityToolkit.Maui;
+using JuegoMarvel.ModuloInicio.ViewModel;
 using JuegoMarvel.ModuloLogin.Model;
-using JuegoMarvel.ModuloLogin.View;
 using JuegoMarvel.ModuloLogin.ViewModel;
+using JuegoMarvel.Services;
 using JuegoMarvel.Views;
+using JuegoMarvelData.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.IO;
-using Microsoft.Maui.Storage;
-using Microsoft.Maui.LifecycleEvents;
 
 namespace JuegoMarvel
 {
@@ -17,8 +17,13 @@ namespace JuegoMarvel
     {
         public static MauiApp CreateMauiApp()
         {
+            BaseDeDatosHelper.CopiarBaseDeDatosSiNoExiste();
 
             var builder = MauiApp.CreateBuilder();
+
+            builder.Services.AddDbContext<BbddjuegoMarvelContext>(options =>
+                options.UseSqlite($"Data Source={BaseDeDatosHelper.RutaBaseDeDatos}")
+            );
 
             // Añadir el servicio de comprobar el Dominio de un Correo Electronico
             builder.Services.AddMemoryCache();
@@ -34,8 +39,6 @@ namespace JuegoMarvel
                .AddJsonStream(stream)
                .AddEnvironmentVariables(); // opcional
 
-            
-
             // Mapear la sección "Servidor" del appsettings.json a la clase AppSettings
             builder.Services
                 .Configure<AppSettings>(builder.Configuration.GetSection("Servidor"));
@@ -44,10 +47,16 @@ namespace JuegoMarvel
             builder.Services
                 .AddSingleton(sp => sp.GetRequiredService<IOptions<AppSettings>>().Value);
 
+            // Paginas y ViewModels Añadidas
+
             builder.Services
-                .AddTransient<LoginViewModel>();      // el ViewModel
+                .AddTransient<LoginViewModel>();    
             builder.Services
-                .AddTransient<Login>();               // la página que recibe el VM por ctor
+                .AddTransient<Login>();             
+
+            builder.Services.AddTransient<InicioViewModel>();
+            builder.Services.AddTransient<Inicio>();
+
             builder.Services
                 .AddSingleton<App>(); // app principal
 
@@ -65,9 +74,6 @@ namespace JuegoMarvel
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
-
-            
 
             return builder.Build();
         }

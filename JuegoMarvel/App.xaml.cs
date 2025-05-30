@@ -1,7 +1,4 @@
-﻿using JuegoMarvel.ModuloLogin.View;
-using JuegoMarvel.Views;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.LifecycleEvents;
+﻿using JuegoMarvel.Views;
 
 namespace JuegoMarvel
 {

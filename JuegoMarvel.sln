@@ -5,6 +5,10 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuegoMarvel", "JuegoMarvel\JuegoMarvel.csproj", "{AC691060-E5A4-4951-9E60-C484EA8C87D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuegoMarvelData", "..\JuegoMarvelData\JuegoMarvelData\JuegoMarvelData.csproj", "{3C94ACDE-9B9C-1CE9-56A6-145653384BA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MensajesServidor", "..\MensajesServidor\MensajesServidor\MensajesServidor.csproj", "{69EBD325-146C-0213-51D5-DF5E3ABD8D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +20,14 @@ Global
 		{AC691060-E5A4-4951-9E60-C484EA8C87D7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{AC691060-E5A4-4951-9E60-C484EA8C87D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC691060-E5A4-4951-9E60-C484EA8C87D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C94ACDE-9B9C-1CE9-56A6-145653384BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C94ACDE-9B9C-1CE9-56A6-145653384BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C94ACDE-9B9C-1CE9-56A6-145653384BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C94ACDE-9B9C-1CE9-56A6-145653384BA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EBD325-146C-0213-51D5-DF5E3ABD8D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EBD325-146C-0213-51D5-DF5E3ABD8D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EBD325-146C-0213-51D5-DF5E3ABD8D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EBD325-146C-0213-51D5-DF5E3ABD8D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

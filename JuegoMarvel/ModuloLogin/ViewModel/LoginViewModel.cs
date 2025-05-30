@@ -1,6 +1,11 @@
 ﻿using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
+using JuegoMarvel.Services;
+using JuegoMarvelData.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
 
@@ -37,15 +42,41 @@ public class LoginViewModel : BaseViewModel
     public ComandoLogearse ComandoLogearse { get; set; }
     public ComandoNavegarCrearCuenta ComandoNavCrearCuenta { get; set; }
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
-    
-    public LoginViewModel(AppSettings settings, ComprobadorDominio comprobador)
+
+    public RelayCommand ComandoBorraDatos { get; set; }
+    public LoginViewModel(BbddjuegoMarvelContext context, AppSettings settings, ComprobadorDominio comprobador)
     {
+        // Borrar lo de la base de datos.
+
         ComandoLogearse = 
-            new ComandoLogearse(settings);
+            new ComandoLogearse(settings, context);
         ComandoNavCrearCuenta = 
             new ComandoNavegarCrearCuenta(settings, comprobador);
         ComandoNavOlvidarInformacion = 
             new ComandoNavegarOlvidarInformacion(settings, comprobador);
 
+        //Momentaneo 
+        NombreUsuario = "walther";
+        Contrasena = "Carbono143412_";
+        
+        
+        ComandoLogearse.Nombre = NombreUsuario!;
+
+        ComandoLogearse.Contrasena = Contrasena!;
+
+        ComandoBorraDatos = new RelayCommand(() =>
+            {
+                context.Database.ExecuteSqlRaw("DELETE FROM Usuario");
+                context.Database.ExecuteSqlRaw("DELETE FROM Habilidade");
+                context.Database.ExecuteSqlRaw("DELETE FROM Pelea");
+                context.Database.ExecuteSqlRaw("DELETE FROM Personaje");
+                context.Database.ExecuteSqlRaw("DELETE FROM PersonajeUsuario");
+                context.Database.ExecuteSqlRaw("DELETE FROM Equipo");
+                context.SaveChanges();
+                Debug.WriteLine("\n\n\nHecho Borrado datos de la Base de datos\n\n\n");
+            }
+        );
     }
+
+
 }

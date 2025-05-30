@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Maui.Views;
-using JuegoMarvel.ModuloInicio.ViewModel;
+using JuegoMarvel.ModuloAuxiliares.ModuloCarga;
+using JuegoMarvel.ModuloAuxiliares.ModuloCarga.ViewModels;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using JuegoMarvel.Views;
+using JuegoMarvelData.Data;
 using MensajesServidor;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Diagnostics;
@@ -12,10 +15,10 @@ using System.Text;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 
-public class ComandoLogearse(AppSettings configuracion) : BaseCommand
+public class ComandoLogearse(AppSettings configuracion, BbddjuegoMarvelContext context) : BaseCommand
 {
     private readonly AppSettings _configuracion = configuracion;
-
+    private readonly BbddjuegoMarvelContext _context = context;
     public string? Nombre { get; set; }
     public string? Contrasena { get; set; }
 
@@ -74,6 +77,7 @@ public class ComandoLogearse(AppSettings configuracion) : BaseCommand
                             new PopupErroresViewModel(
                                 "HAS INICIADO SESION"
                             )
+
                         );
                         await login.ShowPopupAsync(popup);
 
@@ -83,7 +87,11 @@ public class ComandoLogearse(AppSettings configuracion) : BaseCommand
                         var nav = window.Page.Navigation;
 
                         // Para hacer el PushModal sin animación nativa:
-                        await nav.PushModalAsync(new Inicio(new InicioViewModel()));
+                        await nav.PushModalAsync(new PantallaDeCarga(new PantallaCargaViewModel(
+                            _configuracion,
+                            _context, 
+                            Nombre.Trim()
+                            )));
                     }
                     else
                     {

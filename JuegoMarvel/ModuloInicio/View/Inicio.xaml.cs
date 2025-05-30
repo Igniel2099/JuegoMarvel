@@ -25,8 +25,12 @@ public partial class Inicio : ContentPage
         // Animación: escalar al 80% y volver al 100%
         await border.ScaleTo(0.8, 100, Easing.CubicIn);
         await border.ScaleTo(1.0, 100, Easing.CubicOut);
-    }
 
+        if (BindingContext is InicioViewModel vm)
+        {
+            vm.ComandoNavTienda.Execute("Tienda");
+        }
+    }
     private async void OnEquipoTapped(object sender, TappedEventArgs e)
     {
         var border = (Border)sender;

@@ -65,7 +65,7 @@
                             <HorizontalStackLayout Spacing="5">
                                 <Image HeightRequest="40" Source="icono_exp.png" />
 
-                                <Label HeightRequest="20" Text="1000" />
+                                <Label HeightRequest="20" Text="{Binding Puntos}" />
                             </HorizontalStackLayout>
 
                             <Border
@@ -79,7 +79,7 @@
                             <HorizontalStackLayout Spacing="5">
                                 <Image HeightRequest="40" Source="icono_moneda.png" />
 
-                                <Label HeightRequest="20" Text="1000" />
+                                <Label HeightRequest="20" Text="{Binding Monedas}" />
                             </HorizontalStackLayout>
 
 
@@ -231,10 +231,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="100">
                                 <Border.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding ComandoNavTienda}"
-                                        CommandParameter="Tienda"
-                                        Tapped="OnTiendaTapped" />
+                                    <TapGestureRecognizer Tapped="OnTiendaTapped" />
                                 </Border.GestureRecognizers>
                                 <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
                                 <StackLayout

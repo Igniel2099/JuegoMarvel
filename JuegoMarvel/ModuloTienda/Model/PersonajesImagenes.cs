@@ -9,7 +9,7 @@ public class PersonajeImg
 {
     [JsonPropertyName("ImgPrincipal")]
     public string ImgPrincipal { get; set; }
-
+    public string ImgCuerpo { get; set; }
     [JsonPropertyName("ImgHabilidades")]
     public Dictionary<string, string> ImgHabilidades { get; set; }
 }

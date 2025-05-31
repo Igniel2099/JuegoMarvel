@@ -3,8 +3,16 @@
     x:Class="JuegoMarvel.Views.InformacionPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:JuegoMarvel.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:JuegoMarvel.ModuloTienda.ViewModel"
+    x:DataType="viewmodel:InformacionPoupViewModel"
     Color="Transparent">
+    <toolkit:Popup.Resources>
+        <ResourceDictionary>
+            <converters:TipoHabilidadAImagenConverter x:Key="TipoHabilidadAImagenConverter" />
+        </ResourceDictionary>
+    </toolkit:Popup.Resources>
 
     <Grid HeightRequest="330" WidthRequest="752">
 
@@ -18,8 +26,6 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 Clicked="ClickedBotonCerrar"
                 Source="boton_cerrar.png" />
-
-
         </AbsoluteLayout>
 
         <Grid ColumnDefinitions="*,auto">
@@ -33,7 +39,7 @@
                     FontFamily="LuckiestGuy"
                     FontSize="24"
                     HorizontalOptions="Center"
-                    Text="ELEKTRA NATCHIOS"
+                    Text="{Binding Nombre}"
                     TextColor="White" />
                 <!--  habilidades con la linea  -->
                 <VerticalStackLayout Grid.Row="1">
@@ -73,7 +79,7 @@
                                 FontFamily="LuckiestGuy"
                                 FontSize="12"
                                 HorizontalOptions="Center"
-                                Text="NOMBRE DE HABILIDAD1"
+                                Text="{Binding NombreHabilidadUno}"
                                 TextColor="White"
                                 VerticalOptions="Center" />
                         </Grid>
@@ -81,11 +87,11 @@
                         <HorizontalStackLayout HorizontalOptions="Center">
                             <Image
                                 HeightRequest="40"
-                                Source="img_habilidad.png"
+                                Source="{Binding ImgHabilidadUno}"
                                 WidthRequest="40" />
                             <Image
                                 HeightRequest="35"
-                                Source="tipo_habilidad_ejemplo.png"
+                                Source="{Binding ImgTipoUno, Converter={StaticResource TipoHabilidadAImagenConverter}}"
                                 WidthRequest="35" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
@@ -101,7 +107,7 @@
                                 FontFamily="LuckiestGuy"
                                 FontSize="12"
                                 HorizontalOptions="Center"
-                                Text="NOMBRE DE HABILIDAD2"
+                                Text="{Binding NombreHabilidadDos}"
                                 TextColor="White"
                                 VerticalOptions="Center" />
                         </Grid>
@@ -109,11 +115,11 @@
                         <HorizontalStackLayout HorizontalOptions="Center">
                             <Image
                                 HeightRequest="40"
-                                Source="img_habilidad2.png"
+                                Source="{Binding ImgHabilidadDos}"
                                 WidthRequest="40" />
                             <Image
                                 HeightRequest="35"
-                                Source="tipo_habilidad_ejemplo.png"
+                                Source="{Binding ImgTipoDos, Converter={StaticResource TipoHabilidadAImagenConverter}}"
                                 WidthRequest="35" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
@@ -129,7 +135,7 @@
                                 FontFamily="LuckiestGuy"
                                 FontSize="12"
                                 HorizontalOptions="Center"
-                                Text="NOMBRE DE HABILIDAD3"
+                                Text="{Binding NombreHabilidadTres}"
                                 TextColor="White"
                                 VerticalOptions="Center" />
                         </Grid>
@@ -137,11 +143,11 @@
                         <HorizontalStackLayout>
                             <Image
                                 HeightRequest="40"
-                                Source="img_habilidad3.png"
+                                Source="{Binding ImgHabilidadTres}"
                                 WidthRequest="40" />
                             <Image
                                 HeightRequest="35"
-                                Source="tipo_habilidad_ejemplo.png"
+                                Source="{Binding ImgTipoTres, Converter={StaticResource TipoHabilidadAImagenConverter}}"
                                 WidthRequest="35" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
@@ -163,7 +169,7 @@
                             AbsoluteLayout.LayoutBounds="0.12,0.5,40,40"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             HeightRequest="200"
-                            Source="personaje_ejemplo_elektra.png"
+                            Source="{Binding ImgCuerpo}"
                             WidthRequest="100" />
 
                         <!--  imagen play  -->
@@ -187,7 +193,7 @@
             <Image
                 Grid.Column="1"
                 HeightRequest="250"
-                Source="personaje_ejemplo_elektra.png"
+                Source="{Binding ImgCuerpo}"
                 WidthRequest="220" />
         </Grid>
     </Grid>

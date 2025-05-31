@@ -3,7 +3,10 @@
     x:Class="JuegoMarvel.Views.Tienda"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Tienda">
+    xmlns:viewmodel="clr-namespace:JuegoMarvel.ModuloTienda.ViewModel"
+    x:Name="ViewTienda"
+    Title="Tienda"
+    x:DataType="viewmodel:TiendaViewModel">
 
     <Grid>
         <!--  Fondo  -->
@@ -90,8 +93,190 @@
 
             <!--#region Contenido-->
             <ScrollView Grid.Row="1">
-                <!--  contenedor dinamico de los personajes  -->
-                <VerticalStackLayout x:Name="miVStack" Spacing="5" />
+                <CollectionView ItemsSource="{Binding PersonajesCards}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="3"
+                            VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:CardViewModel">
+                            <Grid>
+                                <!--  Imagen de fondo tipo carta  -->
+                                <Image
+                                    HeightRequest="154"
+                                    Source="carta_contenido.png"
+                                    WidthRequest="250" />
+
+                                <!--  Grid interior  -->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <!--  FILA 0: Contenido de la carta  -->
+                                    <Grid
+                                        Grid.Row="0"
+                                        Margin="20,10,0,8"
+                                        ColumnSpacing="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--  Imagen de personaje con contenedor  -->
+                                        <Grid>
+                                            <Image
+                                                HeightRequest="106"
+                                                Source="contenedor_personaje.png"
+                                                WidthRequest="89" />
+                                            <Image
+                                                HeightRequest="106"
+                                                Source="{Binding ImgPrincipal}"
+                                                WidthRequest="89" />
+                                        </Grid>
+
+                                        <!--  Contenido del personaje  -->
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <!--  Nombre + icono info  -->
+                                            <HorizontalStackLayout
+                                                Grid.Row="0"
+                                                HorizontalOptions="Start"
+                                                MaximumWidthRequest="134"
+                                                Spacing="5">
+                                                <Label
+                                                    FontFamily="LuckiestGuy"
+                                                    FontSize="12"
+                                                    MaximumWidthRequest="104"
+                                                    Text="{Binding Nombre}"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                                <Grid>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding MostrarInformacionCommand}" CommandParameter="{x:Reference ViewTienda}" />
+                                                        <!--  Ajusta tu ICommand  -->
+                                                    </Grid.GestureRecognizers>
+                                                    <Image
+                                                        HeightRequest="25"
+                                                        Source="contenedor_info.png"
+                                                        WidthRequest="25" />
+                                                    <Image
+                                                        HeightRequest="25"
+                                                        Source="icono_info.png"
+                                                        WidthRequest="25" />
+                                                </Grid>
+                                            </HorizontalStackLayout>
+
+                                            <!--  Grupo y Tipo  -->
+                                            <HorizontalStackLayout Grid.Row="1" Spacing="7">
+                                                <!--  Grupo  -->
+                                                <Border
+                                                    BackgroundColor="#FF3100"
+                                                    HeightRequest="37"
+                                                    Stroke="Red"
+                                                    WidthRequest="60">
+                                                    <VerticalStackLayout>
+                                                        <Label
+                                                            FontFamily="LuckiestGuy"
+                                                            FontSize="10"
+                                                            Text="GRUPO"
+                                                            TextColor="White" />
+                                                        <Border
+                                                            BackgroundColor="DarkRed"
+                                                            HeightRequest="20"
+                                                            Stroke="DarkRed"
+                                                            WidthRequest="57">
+                                                            <Label
+                                                                FontSize="10"
+                                                                Text="{Binding Grupo}"
+                                                                TextColor="White" />
+                                                        </Border>
+                                                    </VerticalStackLayout>
+                                                </Border>
+
+                                                <!--  Tipo  -->
+                                                <Border
+                                                    BackgroundColor="#FF3100"
+                                                    HeightRequest="37"
+                                                    Stroke="#FF3100"
+                                                    WidthRequest="60">
+                                                    <VerticalStackLayout>
+                                                        <Label
+                                                            FontFamily="LuckiestGuy"
+                                                            FontSize="10"
+                                                            Text="TIPO"
+                                                            TextColor="White" />
+                                                        <Border
+                                                            BackgroundColor="DarkRed"
+                                                            HeightRequest="24"
+                                                            Stroke="DarkRed"
+                                                            WidthRequest="57">
+                                                            <Label
+                                                                FontSize="10"
+                                                                Text="{Binding Tipo}"
+                                                                TextColor="White" />
+                                                        </Border>
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                            </HorizontalStackLayout>
+
+                                            <!--  Iconos habilidades  -->
+                                            <HorizontalStackLayout Grid.Row="2" Spacing="12">
+                                                <Image
+                                                    AnchorX="0.5"
+                                                    AnchorY="0.5"
+                                                    HeightRequest="34"
+                                                    Source="{Binding ImgHabilidadUno}"
+                                                    WidthRequest="34" />
+                                                <Image
+                                                    AnchorX="0.5"
+                                                    AnchorY="0.5"
+                                                    HeightRequest="34"
+                                                    Source="{Binding ImgHabilidadDos}"
+                                                    WidthRequest="34" />
+                                                <Image
+                                                    AnchorX="0.5"
+                                                    AnchorY="0.5"
+                                                    HeightRequest="34"
+                                                    Source="{Binding ImgHabilidadTres}"
+                                                    WidthRequest="34" />
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!--  FILA 1: Botón moneda  -->
+                                    <Grid Grid.Row="1">
+                                        <Image
+                                            HeightRequest="27"
+                                            Source="contenedor_boton.png"
+                                            WidthRequest="244" />
+                                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                                            <Image
+                                                HeightRequest="22"
+                                                Source="icono_moneda.png"
+                                                WidthRequest="22" />
+                                            <Label
+                                                FontSize="15"
+                                                Text="{Binding Costo}"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
 
             </ScrollView>
             <!--#endregion-->

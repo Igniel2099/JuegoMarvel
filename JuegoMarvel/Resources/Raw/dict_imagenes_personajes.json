@@ -1,6 +1,7 @@
 {
   "Elektra": {
     "ImgPrincipal": "elk_img_prin.png",
+    "ImgCuerpo": "elk_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "elk_hb_1.png",
       "HabilidadDos": "elk_hb_2.png",
@@ -9,6 +10,7 @@
   },
   "DareDevil": {
     "ImgPrincipal": "dar_img_prin.png",
+    "ImgCuerpo": "dar_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "dar_hb_1.png",
       "HabilidadDos": "dar_hb_2.png",
@@ -17,6 +19,7 @@
   },
   "Capitan America": {
     "ImgPrincipal": "cap_img_prin.png",
+    "ImgCuerpo": "cap_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "cap_hb_1.png",
       "HabilidadDos": "cap_hb_2.png",
@@ -25,6 +28,7 @@
   },
   "Venom": {
     "ImgPrincipal": "ven_img_prin.png",
+    "ImgCuerpo": "ven_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "ven_hb_1.png",
       "HabilidadDos": "ven_hb_2.png",
@@ -33,6 +37,7 @@
   },
   "Deadpool": {
     "ImgPrincipal": "dep_img_prin.png",
+    "ImgCuerpo": "dep_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "dep_hb_1.png",
       "HabilidadDos": "dep_hb_2.png",
@@ -41,10 +46,20 @@
   },
   "Iron Fist": {
     "ImgPrincipal": "irf_img_prin.png",
+    "ImgCuerpo": "irf_cuerpo.png",
     "ImgHabilidades": {
       "HabilidadUno": "irf_hb_1.png",
       "HabilidadDos": "irf_hb_2.png",
       "HabilidadTres": "irf_hb_3.png"
+    }
+  },
+  "Cyclops": {
+    "ImgPrincipal": "cyc_img_prin.png",
+    "ImgCuerpo": "cyc_cuerpo.png",
+    "ImgHabilidades": {
+      "HabilidadUno": "cyc_hb_1.png",
+      "HabilidadDos": "cyc_hb_2.png",
+      "HabilidadTres": "cyc_hb_3.png"
     }
   }
 }

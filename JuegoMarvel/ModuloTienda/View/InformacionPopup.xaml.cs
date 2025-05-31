@@ -1,13 +1,15 @@
 using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ModuloTienda.ViewModel;
 using JuegoMarvel.Services;
 
 namespace JuegoMarvel.Views;
 
 public partial class InformacionPopup : Popup
 {
-    public InformacionPopup()
+    public InformacionPopup(InformacionPoupViewModel vm)
     {
         InitializeComponent();
+        BindingContext = vm;
     }
 
     private async void ClickedBotonCerrar(object sender, EventArgs e)

@@ -5,7 +5,6 @@ using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
 

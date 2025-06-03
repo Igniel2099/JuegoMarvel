@@ -68,9 +68,9 @@ public class LoginViewModel : BaseViewModel
                 context.Database.ExecuteSqlRaw("DELETE FROM Usuario");
                 context.Database.ExecuteSqlRaw("DELETE FROM Habilidade");
                 context.Database.ExecuteSqlRaw("DELETE FROM Pelea");
-                context.Database.ExecuteSqlRaw("DELETE FROM Personaje");
                 context.Database.ExecuteSqlRaw("DELETE FROM PersonajeUsuario");
                 context.Database.ExecuteSqlRaw("DELETE FROM Equipo");
+                context.Database.ExecuteSqlRaw("DELETE FROM Personaje");
                 context.SaveChanges();
                 Debug.WriteLine("\n\n\nHecho Borrado datos de la Base de datos\n\n\n");
             }

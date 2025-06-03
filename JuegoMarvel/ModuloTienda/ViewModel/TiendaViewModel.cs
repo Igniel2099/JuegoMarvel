@@ -24,7 +24,7 @@ public class TiendaViewModel : BaseViewModel
      {
         List<Personaje> personajes = GestionPersonajes.ObtenerPersonajes();
 
-        var personajesImgenes = await GestionPersonajes.CargarPersonajesAsync();
+        var personajesImgenes = await GestionPersonajes.CargarPersonajesJsonAsync();
 
         if (personajesImgenes.Count != personajes.Count)
             throw new Exception("No tienes la misma cantidad de personajes que de personajes con imagenes");

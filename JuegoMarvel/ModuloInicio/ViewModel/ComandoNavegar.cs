@@ -1,4 +1,6 @@
-﻿using JuegoMarvel.ModuloTienda.ViewModel;
+﻿using JuegoMarvel.ModuloEquipo.View;
+using JuegoMarvel.ModuloEquipo.ViewModel;
+using JuegoMarvel.ModuloTienda.ViewModel;
 using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
 using System;
@@ -34,7 +36,10 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                     break;
 
                 case "Equipo":
-                    //await nav.PushAsync(new Equipo());
+                    // Cargo los datos de manera asincrona antes de iniciar la vista(Buena practica)
+                    EquipoViewModel vm = new(_context);
+                    await vm.InicializarPersonajesUsuarioViewModelAync(_context);
+                    await nav.PushAsync(new Equipo(vm));
                     break;
 
                 case "Empezar":

@@ -1,15 +1,13 @@
 ﻿
 using JuegoMarvel.ModuloTienda.Model;
+using JuegoMarvel.ModuloTienda.ViewModel.Comandos;
 using JuegoMarvelData.Models;
 
 namespace JuegoMarvel.ModuloTienda.ViewModel;
 
-public class InformacionPoupViewModel(
-    string nombre,
-    List<Habilidade> habilidades,
-    PersonajeImg personajeImg) : BaseViewModel
+public class InformacionPoupViewModel : BaseViewModel
 {
-    private string _nombre = nombre;
+    private string _nombre;
     public string Nombre
     {
         get => _nombre;
@@ -22,7 +20,7 @@ public class InformacionPoupViewModel(
     }
 
 
-    private string _nombreHabilidadUno = habilidades[0].Nombre;
+    private string _nombreHabilidadUno;
     public string NombreHabilidadUno
     {
         get => _nombreHabilidadUno;
@@ -34,7 +32,7 @@ public class InformacionPoupViewModel(
         }
     }
 
-    private string _nombreHabilidadDos = habilidades[1].Nombre;
+    private string _nombreHabilidadDos;
     public string NombreHabilidadDos
     {
         get => _nombreHabilidadDos;
@@ -46,7 +44,7 @@ public class InformacionPoupViewModel(
         }
     }
 
-    private string _nombreHabilidadTres = habilidades[2].Nombre;
+    private string _nombreHabilidadTres;
     public string NombreHabilidadTres
     {
         get => _nombreHabilidadTres;
@@ -59,7 +57,7 @@ public class InformacionPoupViewModel(
     }
 
 
-    private string _imgCuerpo = personajeImg.ImgCuerpo;
+    private string _imgCuerpo;
     public string ImgCuerpo
     {
         get => _imgCuerpo;
@@ -73,7 +71,7 @@ public class InformacionPoupViewModel(
 
 
 
-    private string _imgHabilidadUno = personajeImg.ImgHabilidades["HabilidadUno"];
+    private string _imgHabilidadUno;
     public string ImgHabilidadUno
     {
         get => _imgHabilidadUno;
@@ -84,7 +82,7 @@ public class InformacionPoupViewModel(
             OnPropertyChanged();
         }
     }
-    private string _imgHabilidadDos = personajeImg.ImgHabilidades["HabilidadDos"];
+    private string _imgHabilidadDos;
     public string ImgHabilidadDos
     {
         get => _imgHabilidadDos;
@@ -96,7 +94,7 @@ public class InformacionPoupViewModel(
         }
     }
 
-    private string _imgHabilidadTres = personajeImg.ImgHabilidades["HabilidadTres"];
+    private string _imgHabilidadTres;
     public string ImgHabilidadTres
     {
         get => _imgHabilidadTres;
@@ -107,8 +105,8 @@ public class InformacionPoupViewModel(
             OnPropertyChanged();
         }
     }
-    
-    private string _imgTipoUno = habilidades[0].Tipo;
+
+    private string _imgTipoUno;
     public string ImgTipoUno
     {
         get => _imgTipoUno;
@@ -119,7 +117,7 @@ public class InformacionPoupViewModel(
             OnPropertyChanged();
         }
     }
-    private string _imgTipoDos = habilidades[1].Tipo;
+    private string _imgTipoDos;
     public string ImgTipoDos
     {
         get => _imgTipoDos;
@@ -131,7 +129,7 @@ public class InformacionPoupViewModel(
         }
     }
 
-    private string _imgTipoTres = habilidades[2].Tipo;
+    private string _imgTipoTres;
     public string ImgTipoTres
     {
         get => _imgTipoTres;
@@ -141,6 +139,66 @@ public class InformacionPoupViewModel(
             _imgTipoTres = value;
             OnPropertyChanged();
         }
+    }
+
+
+
+    private string _nombreHabilidadSeleccionada;
+    public string NombreHabilidadSeleccionada
+    {
+        get => _nombreHabilidadSeleccionada;
+        set
+        {
+            if (value == _nombreHabilidadSeleccionada) return;
+            _nombreHabilidadSeleccionada = value;
+            EmpezarAnimacion.OnSeleccionadaCambio(value);
+        }
+    }
+
+    private string _imgPlay;
+    public string ImgPlay
+    {
+        get => _imgPlay;
+        set
+        {
+            if (value == _imgPlay) return;
+            _imgPlay = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public ComandoTerminarAnimacion TerminarAnimacion { get; set; }
+    public ComandoEmpezarAnimación EmpezarAnimacion { get; set; }
+
+    public InformacionPoupViewModel(
+        string nombre,
+        List<Habilidade> habilidades,
+        PersonajeImg personajeImg)
+    {
+        _nombreHabilidadSeleccionada = habilidades[0].Nombre;
+        _imgTipoTres = habilidades[2].Tipo;
+        _imgTipoDos = habilidades[1].Tipo;
+        _imgTipoUno = habilidades[0].Tipo;
+        _imgHabilidadTres = personajeImg.Habilidades[2].Casillas.Original;
+        _imgHabilidadDos = personajeImg.Habilidades[1].Casillas.Original;
+        _imgHabilidadUno = personajeImg.Habilidades[0].Casillas.Original;
+        _imgCuerpo = personajeImg.ImgCuerpo;
+        _imgPlay = personajeImg.ImgCuerpo;
+        _nombreHabilidadTres = habilidades[2].Nombre;
+        _nombreHabilidadDos = habilidades[1].Nombre;
+        _nombreHabilidadUno = habilidades[0].Nombre;
+        _nombre = nombre;
+
+
+        var dispatcher = Application.Current?.Dispatcher
+                         ?? throw new InvalidOperationException("Dispatcher no disponible");
+
+        IDispatcherTimer timer = dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromMilliseconds(100);
+        timer.IsRepeating = true;
+
+        EmpezarAnimacion = new ComandoEmpezarAnimación(personajeImg, habilidades[0].Nombre, this, timer);
+        TerminarAnimacion = new(this, timer);
     }
 
 

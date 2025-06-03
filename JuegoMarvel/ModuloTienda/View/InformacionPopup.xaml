@@ -166,11 +166,10 @@
                     <AbsoluteLayout>
                         <!--  Imagen personaje  -->
                         <Image
-                            AbsoluteLayout.LayoutBounds="0.12,0.5,40,40"
+                            AbsoluteLayout.LayoutBounds="0.12,0.5"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
-                            HeightRequest="200"
-                            Source="{Binding ImgCuerpo}"
-                            WidthRequest="100" />
+                            HeightRequest="130"
+                            Source="{Binding ImgPlay}" />
 
                         <!--  imagen play  -->
                         <Image

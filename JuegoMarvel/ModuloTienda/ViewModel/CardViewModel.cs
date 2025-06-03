@@ -69,9 +69,9 @@ public class CardViewModel : BaseViewModel
         get => _imgHabilidadUno;
         set
         {
-            if (value == _imgHabilidadUno ) return;
-        _imgHabilidadUno = value;
-        OnPropertyChanged();
+            if (value == _imgHabilidadUno) return;
+            _imgHabilidadUno = value;
+            OnPropertyChanged();
         }
     }
     private string _imgHabilidadDos;
@@ -81,7 +81,7 @@ public class CardViewModel : BaseViewModel
         set
         {
             if (value == _imgHabilidadDos) return;
-            _imgHabilidadDos= value;
+            _imgHabilidadDos = value;
             OnPropertyChanged();
         }
     }
@@ -115,8 +115,8 @@ public class CardViewModel : BaseViewModel
         _costo = costo;
 
         _imgPrincipal = personajeImg.ImgPrincipal;
-        _imgHabilidadUno = personajeImg.ImgHabilidades["HabilidadUno"];
-        _imgHabilidadDos = personajeImg.ImgHabilidades["HabilidadDos"];
-        _imgHabilidadTres = personajeImg.ImgHabilidades["HabilidadTres"];
+        _imgHabilidadUno = personajeImg.Habilidades[0].Casillas.Original;
+        _imgHabilidadDos = personajeImg.Habilidades[1].Casillas.Original;
+        _imgHabilidadTres = personajeImg.Habilidades[2].Casillas.Original;
     }
 }

@@ -10,12 +10,54 @@ public class GestionPersonajes(BbddjuegoMarvelContext context)
 {
     private readonly BbddjuegoMarvelContext _context = context;
 
+    public Dictionary<int, string> ObtenerNombresPersonajesUsuario(List<PersonajeUsuario> listPersonajeUsuarios)
+    {
+        var personajeIds = listPersonajeUsuarios
+            .Select(pu => pu.IdPersonaje)
+            .Distinct()
+            .ToList();
+
+        var dict = _context.Personajes
+            .Where(p => personajeIds.Contains(p.IdPersonaje))
+            .ToDictionary(
+                p => p.IdPersonaje,
+                p => p.NombreCompleto
+            );
+
+        return dict;
+    }
+
+
     public List<Personaje> ObtenerPersonajes()
     {
         return [.. _context.Personajes];
     }
 
-    public async Task<PersonajesImagenes> CargarPersonajesAsync()
+    public List<PersonajeUsuario> ObtenerPersonajesUsuario()
+    {
+        return [.. _context.PersonajeUsuarios];
+    }
+
+    public List<Habilidade> ObtenerTodasLasHabilidades()
+    {
+        return [.. _context.Habilidade];
+    }
+
+    public List<Habilidade> ObtenerHabilidadesPersonajesUsuarios(List<PersonajeUsuario> listPersonajesUsuario)
+    {
+        var personajeIds = listPersonajesUsuario
+        .Select(pu => pu.IdPersonaje)
+        .Distinct()
+        .ToList();
+
+        var habilidades = _context.Habilidade
+            .Where(h => personajeIds.Contains(h.IdPersonaje))
+            .ToList();
+
+        return habilidades;
+    }
+
+    public static async Task<PersonajesImagenes> CargarPersonajesJsonAsync()
     {
         try
         {
@@ -34,7 +76,7 @@ public class GestionPersonajes(BbddjuegoMarvelContext context)
         catch (Exception ex)
         {
             Console.WriteLine($"Error cargando JSON: {ex.Message}");
-            return new PersonajesImagenes(); // Devuelve un objeto vacío si hay error
+            return new PersonajesImagenes();
         }
     }
 }

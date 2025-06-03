@@ -1,65 +1,506 @@
 {
-  "Elektra": {
-    "ImgPrincipal": "elk_img_prin.png",
-    "ImgCuerpo": "elk_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "elk_hb_1.png",
-      "HabilidadDos": "elk_hb_2.png",
-      "HabilidadTres": "elk_hb_3.png"
-    }
-  },
-  "DareDevil": {
-    "ImgPrincipal": "dar_img_prin.png",
-    "ImgCuerpo": "dar_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "dar_hb_1.png",
-      "HabilidadDos": "dar_hb_2.png",
-      "HabilidadTres": "dar_hb_3.png"
-    }
-  },
-  "Capitan America": {
-    "ImgPrincipal": "cap_img_prin.png",
-    "ImgCuerpo": "cap_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "cap_hb_1.png",
-      "HabilidadDos": "cap_hb_2.png",
-      "HabilidadTres": "cap_hb_3.png"
-    }
-  },
-  "Venom": {
-    "ImgPrincipal": "ven_img_prin.png",
-    "ImgCuerpo": "ven_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "ven_hb_1.png",
-      "HabilidadDos": "ven_hb_2.png",
-      "HabilidadTres": "ven_hb_3.png"
-    }
+  "Cyclops": {
+    "ImgPrincipal": "cyc_img_prin.png",
+    "ImgCuerpo": "cyc_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "MMA con un Ojo",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "cyc_hb_1.png",
+          "Pulsada": "cyc_hb_1_pulsada.png",
+          "Deshabilitada": "cyc_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cyc_mov1_1.png" },
+          { "path": "cyc_mov1_2.png" },
+          { "path": "cyc_mov1_3.png" },
+          { "path": "cyc_mov1_3.png" },
+          { "path": "cyc_mov1_4.png" },
+          { "path": "cyc_mov1_5.png" },
+          { "path": "cyc_mov1_6.png" },
+          { "path": "cyc_mov1_7.png" },
+          { "path": "cyc_mov1_8.png" },
+          { "path": "cyc_mov1_8.png" }
+        ]
+      },
+      {
+        "Nombre": "Rasho Lazer",
+        "Distancia": "Media",
+        "Casillas": {
+          "Original": "cyc_hb_2.png",
+          "Pulsada": "cyc_hb_2_pulsada.png",
+          "Deshabilitada": "cyc_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cyc_mov2_0.png" },
+          { "path": "cyc_mov2_1.png" },
+          { "path": "cyc_mov2_2.png" },
+          { "path": "cyc_mov2_2.png" },
+          { "path": "cyc_mov2_2.png" },
+          { "path": "cyc_mov2_2.png" },
+          { "path": "cyc_mov2_2.png" },
+          { "path": "cyc_mov2_2.png" }
+        ]
+      },
+      {
+        "Nombre": "Rasho Masonico",
+        "Distancia": "Larga",
+        "Casillas": {
+          "Original": "cyc_hb_3.png",
+          "Pulsada": "cyc_hb_3_pulsada.png",
+          "Deshabilitada": "cyc_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cyc_mov3_0.png" },
+          { "path": "cyc_mov3_1.png" },
+          { "path": "cyc_mov3_2.png" },
+          { "path": "cyc_mov3_3.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_4.png" },
+          { "path": "cyc_mov3_3.png" },
+          { "path": "cyc_mov3_2.png" }
+        ]
+      }
+    ]
   },
   "Deadpool": {
     "ImgPrincipal": "dep_img_prin.png",
     "ImgCuerpo": "dep_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "dep_hb_1.png",
-      "HabilidadDos": "dep_hb_2.png",
-      "HabilidadTres": "dep_hb_3.png"
-    }
+    "Habilidades": [
+      {
+        "Nombre": "Oe pero colabora",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dep_hb_1.png",
+          "Pulsada": "dep_hb_1_pulsada.png",
+          "Deshabilitada": "dep_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dep_mov1_0.png" },
+          { "path": "dep_mov1_1.png" },
+          { "path": "dep_mov1_2.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_3.png" },
+          { "path": "dep_mov1_4.png" },
+          { "path": "dep_mov1_5.png" },
+          { "path": "dep_mov1_6.png" },
+          { "path": "dep_mov1_7.png" },
+          { "path": "dep_mov1_8.png" }
+        ]
+      },
+      {
+        "Nombre": "Espadazos Locos",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dep_hb_2.png",
+          "Pulsada": "dep_hb_2_pulsada.png",
+          "Deshabilitada": "dep_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dep_mov2_0.png" },
+          { "path": "dep_mov2_1.png" },
+          { "path": "dep_mov2_2.png" },
+          { "path": "dep_mov2_3.png" },
+          { "path": "dep_mov2_4.png" },
+          { "path": "dep_mov2_5.png" },
+          { "path": "dep_mov2_6.png" },
+          { "path": "dep_mov2_6.png" },
+          { "path": "dep_mov2_6.png" },
+          { "path": "dep_mov2_7.png" },
+          { "path": "dep_mov2_8.png" }
+        ]
+      },
+      {
+        "Nombre": "Romper 4 pared",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dep_hb_3.png",
+          "Pulsada": "dep_hb_3_pulsada.png",
+          "Deshabilitada": "dep_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dep_mov3_0.png" },
+          { "path": "dep_mov3_1.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_2.png" },
+          { "path": "dep_mov3_1.png" }
+        ]
+      }
+    ]
   },
   "Iron Fist": {
-    "ImgPrincipal": "irf_img_prin.png",
-    "ImgCuerpo": "irf_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "irf_hb_1.png",
-      "HabilidadDos": "irf_hb_2.png",
-      "HabilidadTres": "irf_hb_3.png"
-    }
+    "ImgPrincipal": "iro_img_prin.png",
+    "ImgCuerpo": "iro_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "Patadon Bruce Lee",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "iro_hb_1.png",
+          "Pulsada": "iro_hb_1_pulsada.png",
+          "Deshabilitada": "iro_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "iro_mov1_0.png" },
+          { "path": "iro_mov1_1.png" },
+          { "path": "iro_mov1_2.png" },
+          { "path": "iro_mov1_3.png" },
+          { "path": "iro_mov1_4.png" },
+          { "path": "iro_mov1_5.png" },
+          { "path": "iro_mov1_6.png" },
+          { "path": "iro_mov1_7.png" },
+          { "path": "iro_mov1_8.png" },
+          { "path": "iro_mov1_9.png" },
+          { "path": "iro_mov1_10.png" },
+          { "path": "iro_mov1_11.png" },
+          { "path": "iro_mov1_11.png" }
+        ]
+      },
+      {
+        "Nombre": "Puño fortuito",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "iro_hb_2.png",
+          "Pulsada": "iro_hb_2_pulsada.png",
+          "Deshabilitada": "iro_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "iro_mov2_0.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_2.png" },
+          { "path": "iro_mov2_2.png" },
+          { "path": "iro_mov2_2.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_1.png" },
+          { "path": "iro_mov2_3.png" },
+          { "path": "iro_mov2_3.png" },
+          { "path": "iro_mov2_1.png" }
+        ]
+      },
+      {
+        "Nombre": "La de Buda?",
+        "Distancia": "Ninguna",
+        "Casillas": {
+          "Original": "iro_hb_3.png",
+          "Pulsada": "iro_hb_3_pulsada.png",
+          "Deshabilitada": "iro_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "iro_mov3_0.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" },
+          { "path": "iro_mov3_1.png" }
+        ]
+      }
+    ]
   },
-  "Cyclops": {
-    "ImgPrincipal": "cyc_img_prin.png",
-    "ImgCuerpo": "cyc_cuerpo.png",
-    "ImgHabilidades": {
-      "HabilidadUno": "cyc_hb_1.png",
-      "HabilidadDos": "cyc_hb_2.png",
-      "HabilidadTres": "cyc_hb_3.png"
-    }
+  "Capitan America": {
+    "ImgPrincipal": "cap_img_prin.png",
+    "ImgCuerpo": "cap_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "Estampida America",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "cap_hb_1.png",
+          "Pulsada": "cap_hb_1_pulsada.png",
+          "Deshabilitada": "cap_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cap_mov1_0.png" },
+          { "path": "cap_mov1_1.png" },
+          { "path": "cap_mov1_3.png" },
+          { "path": "cap_mov1_4.png" },
+          { "path": "cap_mov1_5.png" },
+          { "path": "cap_mov1_6.png" },
+          { "path": "cap_mov1_6.png" }
+        ]
+      },
+      {
+        "Nombre": "Puño de la Libertad",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "cap_hb_2.png",
+          "Pulsada": "cap_hb_2_pulsada.png",
+          "Deshabilitada": "cap_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cap_mov2_0.png" },
+          { "path": "cap_mov2_1.png" },
+          { "path": "cap_mov2_3.png" },
+          { "path": "cap_mov2_4.png" },
+          { "path": "cap_mov2_5.png" },
+          { "path": "cap_mov2_6.png" },
+          { "path": "cap_mov2_7.png" },
+          { "path": "cap_mov2_8.png" }
+        ]
+      },
+      {
+        "Nombre": "Escudo Libertario",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "cap_hb_3.png",
+          "Pulsada": "cap_hb_3_pulsada.png",
+          "Deshabilitada": "cap_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "cap_mov3_0.png" },
+          { "path": "cap_mov3_1.png" },
+          { "path": "cap_mov3_2.png" },
+          { "path": "cap_mov3_3.png" },
+          { "path": "cap_mov3_4.png" },
+          { "path": "cap_mov3_5.png" }
+        ]
+      }
+    ]
+  },
+  "DareDevil": {
+    "ImgPrincipal": "dar_img_prin.png",
+    "ImgCuerpo": "dar_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "Baritas Locas",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dar_hb_1.png",
+          "Pulsada": "dar_hb_1_pulsada.png",
+          "Deshabilitada": "dar_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dar_mov1_0.png" },
+          { "path": "dar_mov1_1.png" },
+          { "path": "dar_mov1_2.png" },
+          { "path": "dar_mov1_2.png" },
+          { "path": "dar_mov1_3.png" },
+          { "path": "dar_mov1_4.png" },
+          { "path": "dar_mov1_5.png" },
+          { "path": "dar_mov1_6.png" },
+          { "path": "dar_mov1_7.png" },
+          { "path": "dar_mov1_8.png" }
+        ]
+      },
+      {
+        "Nombre": "Patadon Historico",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dar_hb_2.png",
+          "Pulsada": "dar_hb_2_pulsada.png",
+          "Deshabilitada": "dar_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dar_mov2_0.png" },
+          { "path": "dar_mov2_1.png" },
+          { "path": "dar_mov2_2.png" },
+          { "path": "dar_mov2_3.png" },
+          { "path": "dar_mov2_4.png" },
+          { "path": "dar_mov2_5.png" },
+          { "path": "dar_mov2_6.png" },
+          { "path": "dar_mov2_7.png" }
+        ]
+      },
+      {
+        "Nombre": "MMA masivo",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "dar_hb_3.png",
+          "Pulsada": "dar_hb_3_pulsada.png",
+          "Deshabilitada": "dar_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "dar_mov3_0.png" },
+          { "path": "dar_mov3_1.png" },
+          { "path": "dar_mov3_2.png" },
+          { "path": "dar_mov3_3.png" },
+          { "path": "dar_mov3_4.png" },
+          { "path": "dar_mov3_5.png" },
+          { "path": "dar_mov3_6.png" },
+          { "path": "dar_mov3_7.png" },
+          { "path": "dar_mov3_8.png" },
+          { "path": "dar_mov3_8.png" },
+          { "path": "dar_mov3_8.png" },
+          { "path": "dar_mov3_9.png" }
+        ]
+      }
+    ]
+  },
+  "Elektra": {
+    "ImgPrincipal": "elk_img_prin.png",
+    "ImgCuerpo": "elk_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "Copia de Rafaelo",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "elk_hb_1.png",
+          "Pulsada": "elk_hb_1_pulsada.png",
+          "Deshabilitada": "elk_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "elk_mov1_0.png" },
+          { "path": "elk_mov1_1.png" },
+          { "path": "elk_mov1_2.png" },
+          { "path": "elk_mov1_3.png" },
+          { "path": "elk_mov1_4.png" },
+          { "path": "elk_mov1_4.png" },
+          { "path": "elk_mov1_4.png" },
+          { "path": "elk_mov1_5.png" },
+          { "path": "elk_mov1_5.png" },
+          { "path": "elk_mov1_6.png" },
+          { "path": "elk_mov1_6.png" },
+          { "path": "elk_mov1_7.png" }
+        ]
+      },
+      {
+        "Nombre": "Damisela Kick",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "elk_hb_2.png",
+          "Pulsada": "elk_hb_2_pulsada.png",
+          "Deshabilitada": "elk_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "elk_mov2_0.png" },
+          { "path": "elk_mov2_1.png" },
+          { "path": "elk_mov2_2.png" },
+          { "path": "elk_mov2_3.png" },
+          { "path": "elk_mov2_4.png" },
+          { "path": "elk_mov2_4.png" },
+          { "path": "elk_mov2_4.png" },
+          { "path": "elk_mov2_5.png" },
+          { "path": "elk_mov2_5.png" },
+          { "path": "elk_mov2_6.png" },
+          { "path": "elk_mov2_6.png" },
+          { "path": "elk_mov2_7.png" },
+          { "path": "elk_mov2_8.png" },
+          { "path": "elk_mov2_9.png" },
+          { "path": "elk_mov2_9.png" },
+          { "path": "elk_mov2_10.png" }
+        ]
+      },
+      {
+        "Nombre": "Estampida Femenina",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "elk_hb_3.png",
+          "Pulsada": "elk_hb_3_pulsada.png",
+          "Deshabilitada": "elk_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "elk_mov3_0.png" },
+          { "path": "elk_mov3_1.png" },
+          { "path": "elk_mov3_2.png" },
+          { "path": "elk_mov3_3.png" },
+          { "path": "elk_mov3_4.png" },
+          { "path": "elk_mov3_4.png" },
+          { "path": "elk_mov3_5.png" },
+          { "path": "elk_mov3_5.png" },
+          { "path": "elk_mov3_5.png" },
+          { "path": "elk_mov3_6.png" },
+          { "path": "elk_mov3_7.png" }
+        ]
+      }
+    ]
+  },
+  "Venom": {
+    "ImgPrincipal": "ven_img_prin.png",
+    "ImgCuerpo": "ven_cuerpo.png",
+    "Habilidades": [
+      {
+        "Nombre": "El Venudo loco",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "ven_hb_1.png",
+          "Pulsada": "ven_hb_1_pulsada.png",
+          "Deshabilitada": "ven_hb_1_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "ven_mov1_0.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" },
+          { "path": "ven_mov1_1.png" }
+        ]
+      },
+      {
+        "Nombre": "Garra de Negro",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "ven_hb_2.png",
+          "Pulsada": "ven_hb_2_pulsada.png",
+          "Deshabilitada": "ven_hb_2_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "ven_mov2_0.png" },
+          { "path": "ven_mov2_1.png" },
+          { "path": "ven_mov2_1.png" },
+          { "path": "ven_mov2_1.png" },
+          { "path": "ven_mov2_2.png" },
+          { "path": "ven_mov2_2.png" },
+          { "path": "ven_mov2_3.png" },
+          { "path": "ven_mov2_3.png" },
+          { "path": "ven_mov2_4.png" },
+          { "path": "ven_mov2_4.png" },
+          { "path": "ven_mov2_5.png" },
+          { "path": "ven_mov2_5.png" },
+          { "path": "ven_mov2_6.png" },
+          { "path": "ven_mov2_6.png" },
+          { "path": "ven_mov2_7.png" },
+          { "path": "ven_mov2_7.png" },
+          { "path": "ven_mov2_7.png" },
+          { "path": "ven_mov2_1.png" },
+          { "path": "ven_mov2_1.png" }
+        ]
+      },
+      {
+        "Nombre": "A lo Venezolano",
+        "Distancia": "Corta",
+        "Casillas": {
+          "Original": "ven_hb_3.png",
+          "Pulsada": "ven_hb_3_pulsada.png",
+          "Deshabilitada": "ven_hb_3_deshabilitada.png"
+        },
+        "Sprites": [
+          { "path": "ven_mov3_0.png" },
+          { "path": "ven_mov3_1.png" },
+          { "path": "ven_mov3_1.png" },
+          { "path": "ven_mov3_1.png" },
+          { "path": "ven_mov3_2.png" },
+          { "path": "ven_mov3_3.png" },
+          { "path": "ven_mov3_3.png" },
+          { "path": "ven_mov3_3.png" },
+          { "path": "ven_mov3_4.png" },
+          { "path": "ven_mov3_5.png" },
+          { "path": "ven_mov3_5.png" },
+          { "path": "ven_mov3_5.png" },
+          { "path": "ven_mov3_6.png" }
+        ]
+      }
+    ]
   }
 }

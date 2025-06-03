@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloEquipo.View.Equipo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:JuegoMarvel.Services"
+    xmlns:viewmodels="clr-namespace:JuegoMarvel.ModuloEquipo.ViewModel"
+    Title="Equipo"
+    x:DataType="viewmodels:EquipoViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TipoHabilidadAImagenConverter x:Key="TipoHabilidadAImagenConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Image Aspect="Fill" Source="fondo_pantalla_completa.png" />
+        <Grid RowDefinitions="1.2*,*">
+            <Grid Grid.Row="0">
+                <Grid ColumnDefinitions="*,9*,*">
+                    <Image
+                        Grid.Column="0"
+                        Aspect="AspectFill"
+                        Source="vista_pilar.png" />
+                    <Grid Grid.Column="1">
+                        <Image Aspect="AspectFill" Source="vista_tres_personajes.png" />
+                        <AbsoluteLayout>
+                            <Image
+                                AbsoluteLayout.LayoutBounds="0.15,0.45"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                HeightRequest="130"
+                                Source="{Binding PersonajeUnoEquipo}" />
+                            <Image
+                                AbsoluteLayout.LayoutBounds="0.5,0.65"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                HeightRequest="130"
+                                Source="{Binding PersonajeDosEquipo}" />
+                            <Image
+                                AbsoluteLayout.LayoutBounds="0.86,0.45"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                HeightRequest="130"
+                                Source="{Binding PersonajeTresEquipo}" />
+                        </AbsoluteLayout>
+                    </Grid>
+                    <Image
+                        Grid.Column="2"
+                        Aspect="AspectFill"
+                        Source="vista_pilar.png" />
+                </Grid>
+                <Button
+                    Margin="5"
+                    Padding="15,0"
+                    BackgroundColor="Black"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    CornerRadius="15"
+                    FontFamily="LuckiestGuy"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    MaximumHeightRequest="35"
+                    Text="&lt;ATRAS"
+                    TextColor="White"
+                    VerticalOptions="Start" />
+            </Grid>
+
+
+
+            <Grid Grid.Row="1" RowDefinitions="4*,*">
+                <ScrollView Grid.Row="0" Orientation="Horizontal">
+                    <CollectionView ItemsSource="{Binding PersonajesUsuarios}">
+                        <CollectionView.ItemsLayout>
+
+                            <GridItemsLayout HorizontalItemSpacing="5" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodels:PersonajeUsuarioViewModel">
+                                <Grid
+                                    x:Name="Contenedor"
+                                    Margin="0,3"
+                                    WidthRequest="155">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ComandoSeleccionarPersonaje}" CommandParameter="{x:Reference Contenedor}" />
+                                    </Grid.GestureRecognizers>
+                                    <Image Aspect="Fill" Source="{Binding ImagenContenedor}" />
+                                    <Grid
+                                        Padding="0,7"
+                                        ColumnDefinitions="*,*"
+                                        ColumnSpacing="3"
+                                        WidthRequest="140">
+                                        <Image
+                                            Grid.Column="0"
+                                            Aspect="Fill"
+                                            Source="fondo_personaje_equipo.png" />
+                                        <Image
+                                            Grid.Column="0"
+                                            Margin="3"
+                                            Source="{Binding ImgCuerpo}" />
+
+                                        <VerticalStackLayout Grid.Column="1">
+                                            <Label
+                                                Margin="0"
+                                                Padding="0"
+                                                FontFamily="LuckiestGuy"
+                                                FontSize="10"
+                                                Text="{Binding Nombre}" />
+                                            <Grid
+                                                HeightRequest="88"
+                                                RowDefinitions="*,*,*"
+                                                RowSpacing="3">
+                                                <Grid Grid.Row="0">
+                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Grid
+                                                        Padding="5,2"
+                                                        ColumnDefinitions="*,*"
+                                                        ColumnSpacing="3">
+                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadUno}" />
+                                                        <Image Grid.Column="1" Source="{Binding TipoUno, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Grid
+                                                        Padding="5,2"
+                                                        ColumnDefinitions="*,*"
+                                                        ColumnSpacing="3">
+                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadDos}" />
+                                                        <Image Grid.Column="1" Source="{Binding TipoDos, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid Grid.Row="2">
+                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Grid
+                                                        Padding="5,2"
+                                                        ColumnDefinitions="*,*"
+                                                        ColumnSpacing="3">
+                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadTres}" />
+                                                        <Image Grid.Column="1" Source="{Binding TipoTres, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </ScrollView>
+
+                <Grid Grid.Row="1">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <ImageButton
+                            BackgroundColor="Black"
+                            BorderColor="White"
+                            BorderWidth="2"
+                            CornerRadius="15"
+                            MaximumHeightRequest="35"
+                            Source="anadir_per_equipo.png"
+                            WidthRequest="60" />
+
+                        <ImageButton
+                            BackgroundColor="Black"
+                            BorderColor="White"
+                            BorderWidth="2"
+                            CornerRadius="15"
+                            MaximumHeightRequest="35"
+                            Source="eliminar_per_equipo.png"
+                            WidthRequest="60" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

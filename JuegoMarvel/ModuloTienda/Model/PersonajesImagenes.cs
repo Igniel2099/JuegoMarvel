@@ -1,22 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace JuegoMarvel.ModuloTienda.Model;
+
+// Este diccionario contendrá todas las entradas bajo las claves "Cyclops", "Deadpool", etc.
+public class PersonajesImagenes : Dictionary<string, PersonajeImg>
+{
+}
 
 public class PersonajeImg
 {
     [JsonPropertyName("ImgPrincipal")]
     public string ImgPrincipal { get; set; }
+
+    [JsonPropertyName("ImgCuerpo")]
     public string ImgCuerpo { get; set; }
-    [JsonPropertyName("ImgHabilidades")]
-    public Dictionary<string, string> ImgHabilidades { get; set; }
+
+    // Coincide con la propiedad "Habilidades": un arreglo de objetos.
+    [JsonPropertyName("Habilidades")]
+    public List<HabilidadImg> Habilidades { get; set; }
+
 }
 
-public class PersonajesImagenes : Dictionary<string, PersonajeImg>
+public class HabilidadImg
 {
+    // Coincide con "Nombre"
+    [JsonPropertyName("Nombre")]
+    public string Nombre { get; set; }
+
+    // Coincide con "Distancia"
+    [JsonPropertyName("Distancia")]
+    public string Distancia { get; set; }
+
+    // Coincide con "Casillas"
+    [JsonPropertyName("Casillas")]
+    public Casillas Casillas { get; set; }
+
+    // Coincide con "Sprites", que es un arreglo de objetos con campo "path"
+    [JsonPropertyName("Sprites")]
+    public List<Sprite> Sprites { get; set; }
 }
 
- 
+public class Casillas
+{
+    // Coincide con "Original"
+    [JsonPropertyName("Original")]
+    public string Original { get; set; }
 
+    // Coincide con "Pulsada"
+    [JsonPropertyName("Pulsada")]
+    public string Pulsada { get; set; }
+
+    // Coincide con "Deshabilitada"
+    [JsonPropertyName("Deshabilitada")]
+    public string Deshabilitada { get; set; }
+}
+
+public class Sprite
+{
+    // Coincide con "path"
+    [JsonPropertyName("path")]
+    public string Path { get; set; }
+}

@@ -27,7 +27,7 @@ public class ComandoEmpezarAnimación : BaseCommand
     private int _categoriaIndice;
     private int _frameIndice;
 
-    public ComandoEmpezarAnimación(
+    public ComandoEmpezarAnimación(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         PersonajeImg personajeImg,
         string nombreHabilidad,
         InformacionPoupViewModel informacionVm,

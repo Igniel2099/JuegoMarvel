@@ -15,10 +15,10 @@
         <Grid RowDefinitions="auto,*">
 
             <!--#region Region Top-->
-            <Grid>
+            <Grid Margin="5" ColumnDefinitions="*,*,*,*,*">
                 <!--#region BotonAtras-->
-
                 <Button
+                    Grid.Column="0"
                     Padding="15,0"
                     BackgroundColor="Black"
                     BorderColor="White"
@@ -34,57 +34,93 @@
 
                 <!--#endregion-->
 
-                <!--#region BarMenuTop-->
-                <Grid HorizontalOptions="Center">
-                    <Image Source="bar_menu_fondo.png" WidthRequest="296" />
+                <Grid Grid.Column="1" />
 
-                    <Grid
-                        Margin="40,10"
-                        ColumnDefinitions="*,*,*"
-                        ColumnSpacing="10">
+                <!--#region BarMenuTop-->
+                <Grid Grid.Column="2">
+                    <Image
+                        Aspect="Fill"
+                        Source="bar_menu_fondo.png"
+                        WidthRequest="290" />
+
+                    <Grid ColumnDefinitions="*,1.2*,1.5*" ColumnSpacing="15">
                         <Grid x:Name="GridAll" Grid.Column="0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
-                            <Image Source="bar_seleccion.png" />
+                            <Image
+                                Margin="0,7"
+                                Aspect="Fill"
+                                Source="bar_seleccion.png" />
+
                             <Label
+                                Margin="0"
                                 FontFamily="LuckiestGuy"
                                 FontSize="15"
                                 HorizontalTextAlignment="Center"
                                 Text="ALL"
-                                TextColor="White" />
+                                TextColor="White"
+                                VerticalOptions="Center" />
                         </Grid>
 
                         <Grid x:Name="GridTipo" Grid.Column="1">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
-                            <Image />
+                            <Image Margin="0,7" Aspect="Fill" />
                             <Label
+                                Margin="0"
                                 FontFamily="LuckiestGuy"
                                 FontSize="15"
                                 HorizontalTextAlignment="Center"
                                 Text="TIPO"
-                                TextColor="White" />
+                                TextColor="White"
+                                VerticalOptions="Center" />
                         </Grid>
 
                         <Grid x:Name="GridGrupo" Grid.Column="2">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
-                            <Image />
+                            <Image Margin="0,7" Aspect="Fill" />
                             <Label
+                                Margin="0"
                                 FontFamily="LuckiestGuy"
                                 FontSize="15"
                                 HorizontalTextAlignment="Center"
                                 Text="GRUPO"
-                                TextColor="White" />
+                                TextColor="White"
+                                VerticalOptions="Center" />
                         </Grid>
 
                     </Grid>
 
                 </Grid>
                 <!--#endregion-->
+
+                <Grid Grid.Column="3" />
+
+                <Grid Grid.Column="4">
+                    <Image Aspect="Fill" Source="bar_menu_top.png" />
+                    <Grid
+                        Margin="8"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <HorizontalStackLayout Grid.Column="0" Spacing="5">
+                            <Image Source="icono_exp.png" />
+
+                            <Label HeightRequest="20" Text="{Binding Puntos}" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Grid.Column="1" Spacing="5">
+                            <Image Source="icono_moneda.png" />
+
+                            <Label HeightRequest="20" Text="{Binding Monedas}" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Grid>
 
             </Grid>
             <!--#endregion-->

@@ -11,7 +11,7 @@ public class ComandoTerminarAnimacion(
     public override void Execute(object? parameter)
     {
         _viewModel.ImgPlay = _viewModel.ImgCuerpo;
-
+        _viewModel.EjeX = 0;
         if (_timer.IsRunning)
             _timer.Stop();
 

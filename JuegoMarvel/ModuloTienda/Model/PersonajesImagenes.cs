@@ -18,7 +18,6 @@ public class PersonajeImg
     // Coincide con la propiedad "Habilidades": un arreglo de objetos.
     [JsonPropertyName("Habilidades")]
     public List<HabilidadImg> Habilidades { get; set; }
-
 }
 
 public class HabilidadImg
@@ -35,9 +34,9 @@ public class HabilidadImg
     [JsonPropertyName("Casillas")]
     public Casillas Casillas { get; set; }
 
-    // Coincide con "Sprites", que es un arreglo de objetos con campo "path"
+    // Coincide con el nuevo objeto "Sprites", que contiene cuatro categorías.
     [JsonPropertyName("Sprites")]
-    public List<Sprite> Sprites { get; set; }
+    public Sprites Sprites { get; set; }
 }
 
 public class Casillas
@@ -55,9 +54,35 @@ public class Casillas
     public string Deshabilitada { get; set; }
 }
 
-public class Sprite
+// Representa el contenedor de las cuatro categorías dentro de "Sprites"
+public class Sprites
 {
-    // Coincide con "path"
+    [JsonPropertyName("Estatico")]
+    public CategoriaSprite Estatico { get; set; }
+
+    [JsonPropertyName("Adelante")]
+    public CategoriaSprite Adelante { get; set; }
+
+    [JsonPropertyName("Ataque")]
+    public CategoriaSprite Ataque { get; set; }
+
+    [JsonPropertyName("Atras")]
+    public CategoriaSprite Atras { get; set; }
+}
+
+// Cada categoría ("Estatico", "Adelante", "Ataque", "Atras") tiene un tiempo y una lista de frames.
+public class CategoriaSprite
+{
+    [JsonPropertyName("Tiempo")]
+    public string Tiempo { get; set; }
+
+    [JsonPropertyName("Frames")]
+    public List<SpriteFrame> Frames { get; set; }
+}
+
+// Cada frame ahora se deserializa a este tipo, que coincide con { "path": "..." } en el JSON
+public class SpriteFrame
+{
     [JsonPropertyName("path")]
     public string Path { get; set; }
 }

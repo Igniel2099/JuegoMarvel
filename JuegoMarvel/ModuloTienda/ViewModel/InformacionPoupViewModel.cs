@@ -167,6 +167,17 @@ public class InformacionPoupViewModel : BaseViewModel
         }
     }
 
+    private double _ejeX;
+    public double EjeX
+    {
+        get => _ejeX;
+        set
+        {
+            if (_ejeX == value) return;
+            _ejeX = value;
+            OnPropertyChanged();
+        }
+    }
     public ComandoTerminarAnimacion TerminarAnimacion { get; set; }
     public ComandoEmpezarAnimación EmpezarAnimacion { get; set; }
 
@@ -184,6 +195,7 @@ public class InformacionPoupViewModel : BaseViewModel
         _imgHabilidadUno = personajeImg.Habilidades[0].Casillas.Original;
         _imgCuerpo = personajeImg.ImgCuerpo;
         _imgPlay = personajeImg.ImgCuerpo;
+        _ejeX = 0;
         _nombreHabilidadTres = habilidades[2].Nombre;
         _nombreHabilidadDos = habilidades[1].Nombre;
         _nombreHabilidadUno = habilidades[0].Nombre;

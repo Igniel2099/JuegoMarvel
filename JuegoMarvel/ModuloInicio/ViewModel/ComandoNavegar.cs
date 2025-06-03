@@ -32,14 +32,17 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                     break;
 
                 case "Tienda":
-                    await nav.PushModalAsync(new Tienda(new TiendaViewModel(_context)));
+
+                    TiendaViewModel tVm = new(_context);
+                    await tVm.CargarDatosDelView();
+                    await nav.PushModalAsync(new Tienda(tVm));
                     break;
 
                 case "Equipo":
                     // Cargo los datos de manera asincrona antes de iniciar la vista(Buena practica)
                     EquipoViewModel vm = new(_context);
                     await vm.InicializarPersonajesUsuarioViewModelAync(_context);
-                    await nav.PushAsync(new Equipo(vm));
+                    await nav.PushModalAsync(new Equipo(vm));
                     break;
 
                 case "Empezar":

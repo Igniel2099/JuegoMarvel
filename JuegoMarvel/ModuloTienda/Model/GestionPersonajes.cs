@@ -1,5 +1,6 @@
 ﻿using JuegoMarvelData.Data;
 using JuegoMarvelData.Models;
+using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using System;
 using System.Text.Json;
@@ -32,6 +33,11 @@ public class GestionPersonajes(BbddjuegoMarvelContext context)
     {
         return [.. _context.Personajes];
     }
+
+    public async Task<List<Personaje>> ObtenerPersonajesSinPersonajesUsuarioAsync() => await _context.Personajes
+            .Where(p => !_context.PersonajeUsuarios
+            .Any(pu => pu.IdPersonaje == p.IdPersonaje))
+            .ToListAsync();
 
     public List<PersonajeUsuario> ObtenerPersonajesUsuario()
     {

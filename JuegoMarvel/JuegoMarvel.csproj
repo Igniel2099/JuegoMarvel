@@ -127,6 +127,7 @@
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\casillas\cap_hb_1_pulsada.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_0.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_1.png" />
+	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_2.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_3.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_4.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_5.png" />
@@ -174,6 +175,7 @@
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\casillas\cyc_hb_3_deshabilitada.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\casillas\cyc_hb_3_pulsada.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_0.png" />
+	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_1.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_2.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_3.png" />
 	  <None Remove="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_4.png" />
@@ -417,10 +419,10 @@
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\casillas\cap_hb_1_pulsada.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_0.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_1.png" />
+	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_2.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_3.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_4.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_5.png" />
-	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov1\sprites\cap_mov1_6.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov2\casillas\cap_hb_2.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov2\casillas\cap_hb_2_deshabilitada.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\capitan_america\mov2\casillas\cap_hb_2_pulsada.png" />
@@ -464,10 +466,10 @@
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\casillas\cyc_hb_3_deshabilitada.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\casillas\cyc_hb_3_pulsada.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_0.png" />
+	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_1.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_2.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_3.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_4.png" />
-	  <MauiImage Include="Resources\Images\PersonajesImagenes\cyclops\mov3\sprites\cyc_mov3_5.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\daredevil\dar_cuerpo.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\daredevil\dar_img_prin.png" />
 	  <MauiImage Include="Resources\Images\PersonajesImagenes\daredevil\mov1\casillas\dar_hb_1.png" />
@@ -680,15 +682,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="JuegoMarvelData">
-	    <HintPath>..\..\JuegoMarvelData\JuegoMarvelData\bin\Debug\net9.0\JuegoMarvelData.dll</HintPath>
-	  </Reference>
-	  <Reference Include="MensajesServidor">
-	    <HintPath>..\..\MensajesServidor\MensajesServidor\bin\Debug\net9.0\MensajesServidor.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="ModuloLogin\View\PopupErrores.xaml.cs">
 	    <DependentUpon>PopupErrores.xaml</DependentUpon>
 	  </Compile>
@@ -738,6 +731,11 @@
 	  <Folder Include="ModuloAuxiliares\ModuloAyuda\" />
 	  <Folder Include="ModuloAuxiliares\ModuloConfiguracion\" />
 	  <Folder Include="ModuloEquipo\Model\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\JuegoMarvelData\JuegoMarvelData\JuegoMarvelData.csproj" />
+	  <ProjectReference Include="..\..\MensajesServidor\MensajesServidor\MensajesServidor.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

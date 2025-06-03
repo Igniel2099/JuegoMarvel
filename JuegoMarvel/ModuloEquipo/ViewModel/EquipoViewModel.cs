@@ -61,9 +61,10 @@ public class EquipoViewModel : BaseViewModel
         ComandoEliminarPersonaje = new();
 
         // personajes
-        _personajeUnoEquipo = null;
-        _personajeDosEquipo = null;
-        _personajeTresEquipo = null;
+        _personajeUnoEquipo = string.Empty;
+        _personajeDosEquipo = string.Empty;
+        _personajeTresEquipo = string.Empty;
+        PersonajesUsuarios = [];
     }
 
     private async Task<(Dictionary<int, string> nombres,List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(BbddjuegoMarvelContext context)

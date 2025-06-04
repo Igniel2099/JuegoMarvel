@@ -1,11 +1,12 @@
-﻿using JuegoMarvelData.Data;
+﻿using JuegoMarvel.ModuloTienda.Model;
+using JuegoMarvelData.Data;
 using JuegoMarvelData.Models;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using System;
 using System.Text.Json;
 
-namespace JuegoMarvel.ModuloTienda.Model;
+namespace JuegoMarvel.Services;
 
 public class GestionPersonajes(BbddjuegoMarvelContext context)
 {
@@ -84,5 +85,30 @@ public class GestionPersonajes(BbddjuegoMarvelContext context)
             Console.WriteLine($"Error cargando JSON: {ex.Message}");
             return new PersonajesImagenes();
         }
+    }
+
+    public async Task<List<string>?> CargarNombresEquipoPersonajesUsuario()
+    {
+        // 1. Cargar el equipo de forma asíncrona
+        var equipo = await _context.Equipos.FirstOrDefaultAsync();
+        if (equipo == null) return null;
+
+        // 2. Si existen varias ranuras nulas, filtramos solo los IDs no nulos
+        var idsEnEquipo = new List<int>();
+        if (equipo.IdPersonajeUsuario1.HasValue)
+            idsEnEquipo.Add(equipo.IdPersonajeUsuario1.Value);
+        if (equipo.IdPersonajeUsuario2.HasValue)
+            idsEnEquipo.Add(equipo.IdPersonajeUsuario2.Value);
+        if (equipo.IdPersonajeUsuario3.HasValue)
+            idsEnEquipo.Add(equipo.IdPersonajeUsuario3.Value);
+
+        if (idsEnEquipo.Count == 0) return null;
+
+        var nombres = await _context.PersonajeUsuarios
+           .Where(pu => idsEnEquipo.Contains(pu.IdPersonajeUsuario))
+           .Select(pu => pu.IdPersonajeNavigation!.NombreCompleto)
+           .ToListAsync();
+
+        return nombres;
     }
 }

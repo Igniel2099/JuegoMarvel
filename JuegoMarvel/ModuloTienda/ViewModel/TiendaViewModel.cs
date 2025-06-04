@@ -1,9 +1,11 @@
 ﻿
 using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.ModuloTienda.ViewModel.Comandos;
+using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
 using JuegoMarvelData.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloTienda.ViewModel;
 
@@ -32,9 +34,11 @@ public class TiendaViewModel(BbddjuegoMarvelContext context) : BaseViewModel
         }
     }
 
+
+    public ObservableCollection<CardViewModel> PersonajesCards { get; set; } = [];
+
     private readonly BbddjuegoMarvelContext _context = context;
     public GestionPersonajes GestionPersonajes { get; } = new(context);
-    public ObservableCollection<CardViewModel> PersonajesCards { get; set; } = [];
 
     public async Task CargarDatosDelView()
     {
@@ -64,7 +68,7 @@ public class TiendaViewModel(BbddjuegoMarvelContext context) : BaseViewModel
                     nombre,
                     personaje.Tipo,
                     personaje.Grupo,
-                    personaje.Coste.ToString(),
+                    personaje.Coste.Value,
                     personajeImg
                 );
                 card.MostrarInformacionCommand = new MostrarInformacionCommand(
@@ -73,11 +77,22 @@ public class TiendaViewModel(BbddjuegoMarvelContext context) : BaseViewModel
                     personajeImg
                 );
 
+                card.AvisarIdCompradol += OnAvisarIdComprado;
+
+                card.NavCompraPopup = new ComandoNavCompraPopup(card, _context, personajesImagenes[nombre].ImgCuerpo);
+
                 PersonajesCards.Add(card);
             }
             else
                 throw new Exception("Error al buscar al personajeImg dentro de personajeImagenes");
 
         }
+    }
+
+    public void OnAvisarIdComprado(object? sender, int e)
+    {
+        if (sender is CardViewModel card)
+            PersonajesCards.Remove(card);
+        Monedas = context.Usuarios.FirstOrDefault().Monedas.ToString();
     }
 }

@@ -3,6 +3,7 @@
     x:Class="JuegoMarvel.Views.Tienda"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:viewmodel="clr-namespace:JuegoMarvel.ModuloTienda.ViewModel"
     x:Name="ViewTienda"
     Title="Tienda"
@@ -124,8 +125,6 @@
 
             </Grid>
             <!--#endregion-->
-
-
 
             <!--#region Contenido-->
             <ScrollView Grid.Row="1">
@@ -290,7 +289,10 @@
                                     </Grid>
 
                                     <!--  FILA 1: Botón moneda  -->
-                                    <Grid Grid.Row="1">
+                                    <Grid x:Name="GridMoneda" Grid.Row="1">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding NavCompraPopup}" CommandParameter="{x:Reference GridMoneda}" />
+                                        </Grid.GestureRecognizers>
                                         <Image
                                             HeightRequest="27"
                                             Source="contenedor_boton.png"
@@ -316,7 +318,6 @@
 
             </ScrollView>
             <!--#endregion-->
-
 
         </Grid>
     </Grid>

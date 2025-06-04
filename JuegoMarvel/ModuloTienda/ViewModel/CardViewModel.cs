@@ -1,6 +1,5 @@
 ﻿using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.ModuloTienda.ViewModel.Comandos;
-using JuegoMarvelData.Models;
 
 namespace JuegoMarvel.ModuloTienda.ViewModel;
 
@@ -41,8 +40,8 @@ public class CardViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-    private string _costo;
-    public string Costo
+    private int _costo;
+    public int Costo
     {
         get => _costo;
         set
@@ -100,12 +99,16 @@ public class CardViewModel : BaseViewModel
 
     public MostrarInformacionCommand MostrarInformacionCommand { get; set; }
 
+    public ComandoNavCompraPopup NavCompraPopup { get; set; }
+
+    public event EventHandler<int> AvisarIdCompradol;
+
     public CardViewModel(
         int id,
         string nombre,
         string tipo,
         string grupo,
-        string costo,
+        int costo,
         PersonajeImg personajeImg)
     {
         IdPersonaje = id;
@@ -118,5 +121,10 @@ public class CardViewModel : BaseViewModel
         _imgHabilidadUno = personajeImg.Habilidades[0].Casillas.Original;
         _imgHabilidadDos = personajeImg.Habilidades[1].Casillas.Original;
         _imgHabilidadTres = personajeImg.Habilidades[2].Casillas.Original;
+    }
+
+    public void OnAvisarIdComprado(object? sender, int e)
+    {
+        AvisarIdCompradol.Invoke(this, e);
     }
 }

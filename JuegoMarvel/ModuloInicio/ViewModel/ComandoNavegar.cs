@@ -42,7 +42,7 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                     // Cargo los datos de manera asincrona antes de iniciar la vista(Buena practica)
                     EquipoViewModel vm = new(_context);
                     await vm.InicializarPersonajesUsuarioViewModelAync(_context);
-                    await nav.PushModalAsync(new Equipo(vm));
+                    await nav.PushModalAsync(new EquipoView(vm));
                     break;
 
                 case "Empezar":

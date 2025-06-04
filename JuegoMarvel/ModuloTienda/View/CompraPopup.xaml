@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="JuegoMarvel.ModuloTienda.View.CompraPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloTienda.ViewModel"
+    x:Name="ViewCompraPopup"
+    x:DataType="viewModels:CompraViewModel"
+    Color="Transparent">
+    <Grid>
+        <Image
+            Aspect="AspectFit"
+            HorizontalOptions="Fill"
+            Source="ventana_popup.svg"
+            VerticalOptions="Fill" />
+        <AbsoluteLayout>
+            <ImageButton
+                x:Name="BotonCerrar"
+                AbsoluteLayout.LayoutBounds="1,0,37,37"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Clicked="ClickedBotonCerrar"
+                Source="boton_cerrar.png" />
+
+        </AbsoluteLayout>
+        <Grid RowDefinitions="*,2.5*,*">
+            <Label
+                Grid.Row="0"
+                Margin="20"
+                FontFamily="LuckiestGuy"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="{Binding Nombre}" />
+
+            <Image Grid.Row="1" Source="{Binding ImgCuerpo}" />
+
+            <Grid
+                x:Name="GridCompra"
+                Grid.Row="2"
+                Margin="10"
+                VerticalOptions="Start">
+
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ComandoComprar}" CommandParameter="{x:Reference ViewCompraPopup}" />
+                </Grid.GestureRecognizers>
+
+                <Image Source="contenedor_compra.png" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Image
+                        HeightRequest="22"
+                        Source="icono_moneda.png"
+                        WidthRequest="22" />
+                    <Label
+                        FontSize="15"
+                        Text="{Binding Costo}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</toolkit:Popup>

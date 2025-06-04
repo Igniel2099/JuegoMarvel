@@ -1,11 +1,14 @@
-﻿using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
+﻿using Android.Content;
+using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
 using JuegoMarvel.ModuloTienda.Model;
+using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
 using JuegoMarvelData.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,11 +57,14 @@ public class EquipoViewModel : BaseViewModel
     public ComandoEliminarPersonaje ComandoEliminarPersonaje { get; set; }
 
     public PersonajeUsuarioViewModel? PersonajeUsuarioSeleccionado{ get; set; }
+
+    public readonly BbddjuegoMarvelContext Context;
     public EquipoViewModel(BbddjuegoMarvelContext context )
     {
+        Context = context;
         // Comandos
-        ComandoAnadirPersonaje = new();
-        ComandoEliminarPersonaje = new();
+        ComandoAnadirPersonaje = new(this);
+        ComandoEliminarPersonaje = new(this);
 
         // personajes
         _personajeUnoEquipo = string.Empty;
@@ -67,9 +73,9 @@ public class EquipoViewModel : BaseViewModel
         PersonajesUsuarios = [];
     }
 
-    private async Task<(Dictionary<int, string> nombres,List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(BbddjuegoMarvelContext context)
+    private async Task<(Dictionary<int, string> nombres,List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(GestionPersonajes gestionPersonajes)
     {
-        GestionPersonajes gestionPersonajes = new(context);
+        
         List<PersonajeUsuario> listPersonajeUsuarios = gestionPersonajes.ObtenerPersonajesUsuario();
         Dictionary<int, string> nombres = gestionPersonajes.ObtenerNombresPersonajesUsuario(listPersonajeUsuarios);
         List<Habilidade> habilidadesPerUsu = gestionPersonajes.ObtenerHabilidadesPersonajesUsuarios(listPersonajeUsuarios);
@@ -77,11 +83,33 @@ public class EquipoViewModel : BaseViewModel
         return (nombres, listPersonajeUsuarios, habilidadesPerUsu);
     }
 
-    public async Task InicializarPersonajesUsuarioViewModelAync(BbddjuegoMarvelContext context)
+    private async Task CargarImagenesPersonajesEquipo(GestionPersonajes gestionPersonajes, PersonajesImagenes personajesImagenes)
     {
-        var (nombres, personajesUsuarios, habilidadesPerUsu) = await ObtenerInformacionNecesaria(context);
-        var personajesImagenes = await GestionPersonajes.CargarPersonajesJsonAsync();
+        var listaNombresPersonajesUsuarioEquipo = await gestionPersonajes.CargarNombresEquipoPersonajesUsuario();
+        if (listaNombresPersonajesUsuarioEquipo != null)
+        {
+            for (int i = 0; i < listaNombresPersonajesUsuarioEquipo.Count; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        PersonajeUnoEquipo = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        continue;
+                    case 1:
+                        PersonajeDosEquipo = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        continue;
+                    case 2:
+                        PersonajeTresEquipo = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        break;
+                }
+            }
+        }
+    }
 
+
+
+    private async Task CargarPersonajeUsuariosViewModel(List<PersonajeUsuario> personajesUsuarios,  Dictionary<int,string> nombres, PersonajesImagenes personajesImagenes, List<Habilidade> habilidadesPerUsu)
+    {
         foreach (var personajeUsuario in personajesUsuarios)
         {
             string nombre = nombres[(int)personajeUsuario.IdPersonaje!];
@@ -111,6 +139,17 @@ public class EquipoViewModel : BaseViewModel
                 imgHTres
             ));
         }
-    }
 
+    }
+    public async Task InicializarPersonajesUsuarioViewModelAync(BbddjuegoMarvelContext context)
+    {
+        GestionPersonajes gestionPersonajes = new(context);
+
+        var (nombres, personajesUsuarios, habilidadesPerUsu) = await ObtenerInformacionNecesaria(gestionPersonajes);
+        var personajesImagenes = await GestionPersonajes.CargarPersonajesJsonAsync();
+
+        await CargarImagenesPersonajesEquipo(gestionPersonajes, personajesImagenes);
+
+        await CargarPersonajeUsuariosViewModel(personajesUsuarios, nombres, personajesImagenes, habilidadesPerUsu);
+    }
 }

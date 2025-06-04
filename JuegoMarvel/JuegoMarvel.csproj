@@ -360,6 +360,7 @@
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
 	  <None Remove="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	  <None Remove="Resources\Images\Tienda\contenedor_compra.png" />
 	  <None Remove="Resources\Splash\splash_juego.svg" />
 	</ItemGroup>
 
@@ -651,6 +652,7 @@
 	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\contenedor_info.png" />
 	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\contenedor_personaje.png" />
 	  <MauiImage Include="Resources\Images\Tienda\CartaContenido\icono_info.png" />
+	  <MauiImage Include="Resources\Images\Tienda\contenedor_compra.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -682,8 +684,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="ModuloEquipo\View\EquipoView.xaml.cs">
+	    <DependentUpon>EquipoView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="ModuloLogin\View\PopupErrores.xaml.cs">
 	    <DependentUpon>PopupErrores.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ModuloTienda\View\CompraPopup.xaml.cs">
+	    <DependentUpon>CompraPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="ModuloTienda\View\InformacionPopup.xaml.cs">
 	    <DependentUpon>InformacionPopup.xaml</DependentUpon>
@@ -694,7 +702,7 @@
 	  <MauiXaml Update="ModuloAuxiliares\ModuloCarga\View\PantallaDeCarga.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ModuloEquipo\View\Equipo.xaml">
+	  <MauiXaml Update="ModuloEquipo\View\EquipoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\CambiarContrasena.xaml">
@@ -707,6 +715,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\PopupErrores.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloTienda\View\CompraPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloTienda\View\InformacionPopup.xaml">

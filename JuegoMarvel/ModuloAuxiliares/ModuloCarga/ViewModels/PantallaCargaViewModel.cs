@@ -146,7 +146,7 @@ public class PantallaCargaViewModel : BaseViewModel
                 _context.Add(pelea);
             }
 
-            _context.SaveChanges(); // Opcional de momento
+            _context.SaveChanges(); 
 
             Progreso = 0.6;
             Progreso = 0.7;
@@ -166,6 +166,12 @@ public class PantallaCargaViewModel : BaseViewModel
         {
             Debug.WriteLine($"Error de conexión: {ex.Message}");
         } 
+        catch(JsonException)
+        {
+            await Application.Current.MainPage
+                .Navigation
+                .PopModalAsync(false);
+        }
     }
 
     private async static Task<string> RecibirRespuestaServidor(Stream stream)

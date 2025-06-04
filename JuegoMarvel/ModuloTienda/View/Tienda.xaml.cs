@@ -5,10 +5,11 @@ namespace JuegoMarvel.Views;
 
 public partial class Tienda : ContentPage
 {
+    private readonly TiendaViewModel _vm;
     public Tienda(TiendaViewModel vm)
 	{
 		InitializeComponent();
-
+        _vm = vm;
         BindingContext = vm;
     }
 
@@ -22,7 +23,6 @@ public partial class Tienda : ContentPage
         AnimacionesComunes.BorrarImagenGrid(GridsBarMenuTop);
         
         AnimacionesComunes.AnimacionImagen(gridTocado);
-
     }
 
     private async void OnInformationTapped(object sender, EventArgs e)
@@ -40,4 +40,6 @@ public partial class Tienda : ContentPage
             .Navigation
             .PopModalAsync(false);
     }
+
+    
 }

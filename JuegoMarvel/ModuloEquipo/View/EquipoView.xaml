@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="JuegoMarvel.ModuloEquipo.View.Equipo"
+    x:Class="JuegoMarvel.ModuloEquipo.View.EquipoView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:JuegoMarvel.Services"
@@ -52,6 +52,7 @@
                     BackgroundColor="Black"
                     BorderColor="White"
                     BorderWidth="2"
+                    Clicked="Button_Clicked"
                     CornerRadius="15"
                     FontFamily="LuckiestGuy"
                     FontSize="15"
@@ -152,19 +153,22 @@
                             BackgroundColor="Black"
                             BorderColor="White"
                             BorderWidth="2"
+                            Command="{Binding ComandoEliminarPersonaje}"
                             CornerRadius="15"
                             MaximumHeightRequest="35"
-                            Source="anadir_per_equipo.png"
+                            Source="eliminar_per_equipo.png"
                             WidthRequest="60" />
 
                         <ImageButton
                             BackgroundColor="Black"
                             BorderColor="White"
                             BorderWidth="2"
+                            Command="{Binding ComandoAnadirPersonaje}"
                             CornerRadius="15"
                             MaximumHeightRequest="35"
-                            Source="eliminar_per_equipo.png"
+                            Source="anadir_per_equipo.png"
                             WidthRequest="60" />
+
                     </HorizontalStackLayout>
                 </Grid>
 

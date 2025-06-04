@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </toolkit:Popup.Resources>
 
-    <Grid HeightRequest="330" WidthRequest="752">
+    <Grid>
 
         <AbsoluteLayout>
             <!--  Imagen de fondo  -->
@@ -182,7 +182,6 @@
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TappedPlayOrPause" />
                             </Image.GestureRecognizers>
-
                         </Image>
 
                     </AbsoluteLayout>

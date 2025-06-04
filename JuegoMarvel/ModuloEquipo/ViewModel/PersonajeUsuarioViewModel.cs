@@ -9,7 +9,7 @@ namespace JuegoMarvel.ModuloEquipo.ViewModel;
 
 public class PersonajeUsuarioViewModel : BaseViewModel
 {
-    private readonly int _idPersonajeUsuario;
+    public readonly int IdPersonajeUsuario;
 
     private string _imgContenedor;
     public string ImagenContenedor
@@ -134,9 +134,10 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         string imgHabilidadTres)
     {
         // info
-        _idPersonajeUsuario = idPersonajeUsuario;
+        IdPersonajeUsuario = idPersonajeUsuario;
         // Comandos
         ComandoSeleccionarPersonaje = new(vm,this);
+
         // Visual
         
         _imgContenedor = "fondo_contenedor_equipo.png";

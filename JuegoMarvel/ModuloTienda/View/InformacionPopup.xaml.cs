@@ -50,22 +50,16 @@ public partial class InformacionPopup : Popup
         await img.ScaleTo(1, 100, Easing.CubicIn); // Escala al 80% en 100ms
         if (img.Source is FileImageSource fileImgSource)
         {
-
             if (fileImgSource.File == "icono_play.png")
             {
                 fileImgSource.File = "icono_pausa.png";
                 _vm.EmpezarAnimacion.Execute(null);
-
             }
             else
             {
                 fileImgSource.File = "icono_play.png";
                 _vm.TerminarAnimacion.Execute(null);
             }
-
-
-
-
         }
     }
 

@@ -1,16 +1,9 @@
-﻿using Android.Content;
-using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
+﻿using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
 using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
 using JuegoMarvelData.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JuegoMarvel.ModuloEquipo.ViewModel;
 

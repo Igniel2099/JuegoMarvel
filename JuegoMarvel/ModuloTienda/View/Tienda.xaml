@@ -44,7 +44,7 @@
                         Source="bar_menu_fondo.png"
                         WidthRequest="290" />
 
-                    <Grid ColumnDefinitions="*,1.2*,1.5*" ColumnSpacing="15">
+                    <Grid ColumnDefinitions="*,1.2*,1.7*" ColumnSpacing="15">
                         <Grid x:Name="GridAll" Grid.Column="0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />

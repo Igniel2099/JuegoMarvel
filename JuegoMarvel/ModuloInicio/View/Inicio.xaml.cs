@@ -5,9 +5,20 @@ namespace JuegoMarvel.Views;
 
 public partial class Inicio : ContentPage
 {
-	public Inicio(InicioViewModel vm)
-	{
-		InitializeComponent();
+
+    public Inicio()
+    {
+        InitializeComponent();
+
+        if (!DesignMode.IsDesignModeEnabled)
+        {
+            // Solo asigna el ViewModel en tiempo de ejecución, no en diseño
+            BindingContext = new InicioViewModel();
+        }
+    }
+
+    public Inicio(InicioViewModel vm) : this()
+    {
         BindingContext = vm;
 	}
 

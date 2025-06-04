@@ -18,7 +18,6 @@
 
         <VerticalStackLayout
             Grid.Column="0"
-            Margin="0,12,0,0"
             Padding="20"
             Spacing="5">
             <HorizontalStackLayout HorizontalOptions="Center">

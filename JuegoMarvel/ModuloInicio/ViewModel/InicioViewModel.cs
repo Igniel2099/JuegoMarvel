@@ -75,5 +75,9 @@ public class InicioViewModel : BaseViewModel
         _puntos = primerUsuario.SuperPuntos.ToString();
         _monedas = primerUsuario.Monedas.ToString();
     }
+
+    public InicioViewModel()
+    {
+    }
 }
 

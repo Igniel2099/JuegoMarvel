@@ -17,7 +17,7 @@ public partial class InformacionPopup : Popup
         double altoPantalla = infoPantalla.Height / infoPantalla.Density;
 
         // Calculamos el tamaño deseado (por ejemplo, 80% del ancho y 50% del alto)
-        double anchoPopup = anchoPantalla * 0.87;
+        double anchoPopup = anchoPantalla * 0.9;
         double altoPopup = altoPantalla * 0.9;
 
         // Asignamos el tamaño al popup

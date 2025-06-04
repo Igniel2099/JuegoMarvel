@@ -16,12 +16,10 @@
 
         <Grid Grid.Column="0" RowDefinitions="*,auto">
 
-            <!--#region ContenidoPrincipal-->
             <Grid
                 Grid.Row="0"
                 ColumnDefinitions="auto,*,auto"
                 ColumnSpacing="10" />
-            <!--#endregion-->
 
             <Grid RowDefinitions="auto,*">
 
@@ -121,184 +119,187 @@
 
                 </Grid>
 
-                <HorizontalStackLayout Grid.Row="1" Margin="170,10,0,0">
-                    <Grid ColumnDefinitions="*,auto" ColumnSpacing="90">
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,0,0,15"
+                    ColumnDefinitions="1.2*,2.3*,*">
 
-                        <VerticalStackLayout Spacing="10">
-                            <HorizontalStackLayout Spacing="10">
+                    <Grid Grid.Column="0" />
+                    <Grid
+                        Grid.Column="1"
+                        RowDefinitions="*,*"
+                        RowSpacing="5">
 
-                                <Grid>
-                                    <Image Source="img_dos.png" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="16"
-                                        HorizontalTextAlignment="Center"
-                                        Text="BASADO EN MARVEL AVENGERS ALLIANCE"
-                                        WidthRequest="160" />
+                        <Grid
+                            Grid.Row="0"
+                            ColumnDefinitions="1.5*,*"
+                            ColumnSpacing="5">
+                            <Grid Grid.Column="0">
+                                <Image Aspect="Fill" Source="img_dos.png" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    Text="BASADO EN MARVEL AVENGERS ALLIANCE"
+                                    WidthRequest="160" />
 
-                                </Grid>
+                            </Grid>
 
-                                <Grid>
-                                    <Image Source="img_uno.png" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="16"
-                                        HorizontalTextAlignment="Center"
-                                        Text="HECHO POR UN FAN"
-                                        WidthRequest="160" />
+                            <Grid Grid.Column="1">
 
-                                </Grid>
+                                <Image Aspect="Fill" Source="img_uno.png" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    Text="HECHO POR UN FAN"
+                                    WidthRequest="160" />
 
-                            </HorizontalStackLayout>
+                            </Grid>
 
-                            <HorizontalStackLayout Spacing="10">
+                        </Grid>
 
-                                <Grid>
-                                    <Image Source="img_tres.png" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="18"
-                                        HorizontalTextAlignment="Center"
-                                        Text="DISFRUTEN!"
-                                        WidthRequest="160" />
+                        <Grid
+                            Grid.Row="1"
+                            ColumnDefinitions="*,1.5*"
+                            ColumnSpacing="5">
+                            <Grid Grid.Column="0">
+                                <Image Aspect="Fill" Source="img_tres.png" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Text="DISFRUTEN!"
+                                    WidthRequest="160" />
 
-                                </Grid>
+                            </Grid>
 
-                                <Grid>
-                                    <Image Source="img_cuatro.png" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="16"
-                                        HorizontalTextAlignment="Center"
-                                        Text="SUPERHEROES: SOLO MARVEL"
-                                        WidthRequest="160" />
+                            <Grid Grid.Column="1">
+                                <Image Aspect="Fill" Source="img_cuatro.png" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    Text="SUPERHEROES: SOLO MARVEL"
+                                    WidthRequest="160" />
 
-                                </Grid>
+                            </Grid>
 
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
+                        </Grid>
+
 
                         <!--  botones home, tienda, equipo  -->
-                        <VerticalStackLayout Grid.Column="1" Spacing="12">
-
-                            <Border
-                                Grid.Column="2"
-                                Padding="0"
-                                BackgroundColor="Black"
-                                HeightRequest="63"
-                                HorizontalOptions="Center"
-                                Stroke="White"
-                                StrokeThickness="2"
-                                VerticalOptions="Center"
-                                WidthRequest="100">
-                                <Border.GestureRecognizers>
-                                    <!--
-                                        Command="{Binding HomeTappedCommand}"
-                                        CommandParameter="Home"
-                                    -->
-                                    <TapGestureRecognizer Tapped="OnHomeTapped" />
-                                </Border.GestureRecognizers>
-
-                                <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
-                                <StackLayout
-                                    HorizontalOptions="Center"
-                                    Spacing="0"
-                                    VerticalOptions="Center">
-                                    <Image
-                                        HeightRequest="35"
-                                        HorizontalOptions="Center"
-                                        Source="icono_home.png"
-                                        VerticalOptions="End"
-                                        WidthRequest="35" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="20"
-                                        HorizontalOptions="Center"
-                                        Text="HOME"
-                                        TextColor="White"
-                                        VerticalOptions="Start" />
-                                </StackLayout>
-                            </Border>
-
-                            <Border
-                                Grid.Column="2"
-                                Padding="0"
-                                BackgroundColor="Black"
-                                HeightRequest="63"
-                                HorizontalOptions="Center"
-                                Stroke="White"
-                                StrokeThickness="2"
-                                VerticalOptions="Center"
-                                WidthRequest="100">
-                                <Border.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnTiendaTapped" />
-                                </Border.GestureRecognizers>
-                                <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
-                                <StackLayout
-                                    HorizontalOptions="Center"
-                                    Spacing="-5"
-                                    VerticalOptions="Center">
-                                    <Image
-                                        HeightRequest="40"
-                                        HorizontalOptions="Center"
-                                        Source="icono_tienda.png"
-                                        WidthRequest="60" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="20"
-                                        HorizontalOptions="Center"
-                                        Text="TIENDA"
-                                        TextColor="White"
-                                        VerticalOptions="Start" />
-                                </StackLayout>
-                            </Border>
-
-                            <Border
-                                Grid.Column="2"
-                                Padding="0"
-                                BackgroundColor="Black"
-                                HeightRequest="63"
-                                HorizontalOptions="Center"
-                                Stroke="White"
-                                StrokeThickness="2"
-                                VerticalOptions="Center"
-                                WidthRequest="100">
-                                <Border.GestureRecognizers>
-                                    <!--
-                                        Command="{Binding HomeTappedCommand}"
-                                        CommandParameter="Home"
-                                    -->
-                                    <TapGestureRecognizer Tapped="OnEquipoTapped" />
-                                </Border.GestureRecognizers>
-                                <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
-                                <StackLayout
-                                    HorizontalOptions="Center"
-                                    Spacing="-5"
-                                    VerticalOptions="Center">
-                                    <Image
-                                        HeightRequest="40"
-                                        HorizontalOptions="Center"
-                                        Source="icono_equipo.png"
-                                        WidthRequest="40" />
-                                    <Label
-                                        FontFamily="LuckiestGuy"
-                                        FontSize="18"
-                                        HorizontalOptions="Center"
-                                        Text="EQUIPO"
-                                        TextColor="White"
-                                        VerticalOptions="Start" />
-                                </StackLayout>
-                            </Border>
-
-
-
-                        </VerticalStackLayout>
                     </Grid>
-                </HorizontalStackLayout>
+                    <Grid Grid.Column="2" RowDefinitions="*,*,*">
+
+                        <Border
+                            Grid.Row="0"
+                            Padding="0"
+                            BackgroundColor="Black"
+                            HeightRequest="63"
+                            HorizontalOptions="Center"
+                            Stroke="White"
+                            StrokeThickness="2"
+                            VerticalOptions="Center"
+                            WidthRequest="100">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnHomeTapped" />
+                            </Border.GestureRecognizers>
+
+                            <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
+                            <StackLayout
+                                HorizontalOptions="Center"
+                                Spacing="0"
+                                VerticalOptions="Center">
+                                <Image
+                                    HeightRequest="35"
+                                    HorizontalOptions="Center"
+                                    Source="icono_home.png"
+                                    VerticalOptions="End"
+                                    WidthRequest="35" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    Text="HOME"
+                                    TextColor="White"
+                                    VerticalOptions="Start" />
+                            </StackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="1"
+                            Padding="0"
+                            BackgroundColor="Black"
+                            HeightRequest="63"
+                            HorizontalOptions="Center"
+                            Stroke="White"
+                            StrokeThickness="2"
+                            VerticalOptions="Center"
+                            WidthRequest="100">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTiendaTapped" />
+                            </Border.GestureRecognizers>
+                            <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
+                            <StackLayout
+                                HorizontalOptions="Center"
+                                Spacing="-5"
+                                VerticalOptions="Center">
+                                <Image
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    Source="icono_tienda.png"
+                                    WidthRequest="60" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    Text="TIENDA"
+                                    TextColor="White"
+                                    VerticalOptions="Start" />
+                            </StackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="2"
+                            Padding="0"
+                            BackgroundColor="Black"
+                            HeightRequest="63"
+                            HorizontalOptions="Center"
+                            Stroke="White"
+                            StrokeThickness="2"
+                            VerticalOptions="Center"
+                            WidthRequest="100">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnEquipoTapped" />
+                            </Border.GestureRecognizers>
+                            <!--  Contenido: imagen arriba, texto abajo, ambos centrados  -->
+                            <StackLayout
+                                HorizontalOptions="Center"
+                                Spacing="-5"
+                                VerticalOptions="Center">
+                                <Image
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    Source="icono_equipo.png"
+                                    WidthRequest="40" />
+                                <Label
+                                    FontFamily="LuckiestGuy"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    Text="EQUIPO"
+                                    TextColor="White"
+                                    VerticalOptions="Start" />
+                            </StackLayout>
+                        </Border>
+
+
+
+                    </Grid>
+                </Grid>
 
             </Grid>
 
-            <!--#region BarMenuBotton-->
             <Grid Grid.Row="1">
                 <Grid ColumnDefinitions="auto,auto,*">
                     <BoxView
@@ -363,6 +364,7 @@
                 </Grid>
 
             </Grid>
+            <!--#region BarMenuBotton-->
             <!--#endregion-->
 
         </Grid>
@@ -378,11 +380,7 @@
                 Margin="0,0,0,5"
                 AbsoluteLayout.LayoutBounds="0.022,0.95"
                 AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Grid.GestureRecognizers>
-                    <!--
-                        Command="{Binding HomeTappedCommand}"
-                        CommandParameter="Home"
-                    -->
+                <Grid.GestureRecognizers Command="{Binding HomeTappedCommand}" CommandParameter="Home">
                     <TapGestureRecognizer Tapped="OnEmpezarTapped" />
                 </Grid.GestureRecognizers>
 

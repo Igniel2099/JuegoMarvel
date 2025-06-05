@@ -90,8 +90,8 @@ public class LoginViewModel : BaseViewModel
             new ComandoNavegarOlvidarInformacion(settings, comprobador);
 
         //Momentaneo 
-        NombreUsuario = "walther";
-        Contrasena = "Carbono143412_";
+        NombreUsuario = "Sentry";
+        Contrasena = "Alexander1234567890_";
         
         
         ComandoLogearse.Nombre = NombreUsuario!;

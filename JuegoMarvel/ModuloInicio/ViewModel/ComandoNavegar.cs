@@ -1,8 +1,10 @@
-﻿using JuegoMarvel.ModuloEquipo.View;
+﻿using JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.View;
+using JuegoMarvel.ModuloEquipo.View;
 using JuegoMarvel.ModuloEquipo.ViewModel;
 using JuegoMarvel.ModuloJuego.View;
 using JuegoMarvel.ModuloJuego.ViewModel;
 using JuegoMarvel.ModuloTienda.ViewModel;
+using JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel;
 using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
 
@@ -21,7 +23,7 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
             switch (pageName)
             {
                 case "Configuración":
-                    //await nav.PushAsync(new Configuracion());
+                    await nav.PushModalAsync(new ConfiguracionView(new ConfiguracionViewModel()));
                     break;
 
                 case "Ayuda":

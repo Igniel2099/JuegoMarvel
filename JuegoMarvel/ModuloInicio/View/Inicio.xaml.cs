@@ -79,5 +79,9 @@ public partial class Inicio : ContentPage
         // Animación: escalar al 80% y volver al 100%
         await imageButton.ScaleTo(0.8, 100, Easing.CubicIn);
         await imageButton.ScaleTo(1.0, 100, Easing.CubicOut);
+        if (BindingContext is InicioViewModel vm)
+        {
+            vm.ComandoNav.Execute("Configuración");
+        }
     }
 }

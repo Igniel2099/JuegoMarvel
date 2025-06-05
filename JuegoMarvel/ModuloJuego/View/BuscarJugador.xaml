@@ -7,14 +7,10 @@
     x:DataType="viewModels:BuscarJugadorViewModel">
 
     <Grid>
-        <Image
-            Aspect="Fill"
-            Source="fondo_pantalla_completa.png" />
+        <Image Aspect="Fill" Source="fondo_pantalla_completa.png" />
 
         <Grid RowDefinitions="6*,*">
-            <Grid
-                Grid.Row="0"
-                RowDefinitions="*,5*">
+            <Grid Grid.Row="0" RowDefinitions="*,5*">
 
                 <Button
                     Grid.Row="0"
@@ -41,25 +37,20 @@
 
                     <Border
                         Grid.Row="0"
-                        Background="Black" />
+                        Background="Black"
+                        StrokeShape="RoundRectangle 10" />
                     <Label
                         Grid.Row="0"
                         Margin="0"
                         Padding="0"
-                        FontSize="20"
+                        FontFamily="LuckiestGuy"
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
                         Text="{Binding Nombre}" />
-                    <Grid
-                        Grid.Row="1"
-                        ColumnDefinitions="*,*,*">
-                        <Image
-                            Grid.Column="0"
-                            Source="{Binding ImgCuerpoJugadorUno}" />
-                        <Image
-                            Grid.Column="1"
-                            Source="{Binding ImgCuerpoJugadorDos}" />
-                        <Image
-                            Grid.Column="2"
-                            Source="{Binding ImgCuerpoJugadorTres}" />
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
+                        <Image Grid.Column="0" Source="{Binding ImgCuerpoJugadorUno}" />
+                        <Image Grid.Column="1" Source="{Binding ImgCuerpoJugadorDos}" />
+                        <Image Grid.Column="2" Source="{Binding ImgCuerpoJugadorTres}" />
                     </Grid>
                 </Grid>
 

@@ -6,40 +6,68 @@
     xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel"
     Title="ConfiguracionView"
     x:DataType="viewModels:ConfiguracionViewModel"
-    Background="DarkGray">
-    <Grid>
-        <Border
-            Margin="20"
-            Stroke="White"
-            StrokeThickness="5">
-            <Grid RowDefinitions="*,6*">
-                <Label
-                    Grid.Row="0"
-                    FontFamily="LuckiestGuy"
-                    FontSize="25"
-                    Text="CONFIGURACIÓN" />
-                <Border
-                    Grid.Row="1"
-                    Margin="20"
-                    Stroke="White"
-                    StrokeThickness="5">
-                    <Grid>
-                        <VerticalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label
-                                    FontSize="15"
-                                    Text="Cerrar sesión actual:" />
-                                <Button
-                                    Command="{Binding ComandoCerrarSesion}"
-                                    MaximumHeightRequest="100"
-                                    MaximumWidthRequest="200"
-                                    Text="&lt;Salir" />
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Grid>
-                </Border>
-            </Grid>
-        </Border>
+    Background="#2A2A2A">
+    <Grid RowDefinitions="*,8*">
+
+        <Button
+            Grid.Row="0"
+            BackgroundColor="Black"
+            BorderColor="White"
+            BorderWidth="2"
+            Command="{Binding NavAtras}"
+            CornerRadius="15"
+            FontFamily="LuckiestGuy"
+            FontSize="15"
+            HorizontalOptions="Start"
+            MaximumHeightRequest="35"
+            Text="&lt;ATRAS"
+            TextColor="White" />
+        <Label
+            Grid.Row="0"
+            FontFamily="LuckiestGuy"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="CONFIGURACIÓN"
+            VerticalOptions="Center" />
+
+        <Grid Grid.Row="1">
+            <Border
+                Margin="10"
+                Stroke="White"
+                StrokeThickness="5">
+                <Grid RowDefinitions="*,6*">
+
+                    <Border
+                        Grid.Row="1"
+                        Margin="20"
+                        Stroke="White"
+                        StrokeThickness="5">
+                        <Grid>
+                            <VerticalStackLayout Margin="5">
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label FontSize="15" Text="Cerrar sesión actual:" />
+                                    <Button
+                                        Grid.Row="0"
+                                        Padding="5"
+                                        BackgroundColor="Red"
+                                        BorderColor="White"
+                                        BorderWidth="2"
+                                        Command="{Binding ComandoCerrarSesion}"
+                                        CornerRadius="15"
+                                        FontFamily="LuckiestGuy"
+                                        FontSize="10"
+                                        HorizontalOptions="Start"
+                                        MaximumHeightRequest="30"
+                                        Text="&lt;SALIR"
+                                        TextColor="White" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
     </Grid>
 </ContentPage>
 

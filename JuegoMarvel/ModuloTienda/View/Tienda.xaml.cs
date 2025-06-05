@@ -21,7 +21,7 @@ public partial class Tienda : ContentPage
         AnimacionesComunes.CambiarImagenGrid(GridsBarMenuTop, gridTocado,"bar_seleccion.png");
 
         AnimacionesComunes.BorrarImagenGrid(GridsBarMenuTop);
-        
+
         AnimacionesComunes.AnimacionImagen(gridTocado);
     }
 
@@ -31,15 +31,5 @@ public partial class Tienda : ContentPage
 
         AnimacionesComunes.AnimacionImagen(gridInformación);
         //  Deneria Enlazarlo para hacer la animación y desde aqui lanzar el comando pero bueno
-        
     }
-
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-        await Application.Current.MainPage
-            .Navigation
-            .PopModalAsync(false);
-    }
-
-    
 }

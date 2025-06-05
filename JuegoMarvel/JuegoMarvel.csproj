@@ -54,18 +54,18 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<AndroidResource Remove="ModuloEquipo\Model\**" />
 		<AndroidResource Remove="ModuloInicio\Model\**" />
-		<AndroidResource Remove="ModuloJuego\**" />
+		<Compile Remove="ModuloEquipo\Model\**" />
 		<Compile Remove="ModuloInicio\Model\**" />
-		<Compile Remove="ModuloJuego\**" />
+		<EmbeddedResource Remove="ModuloEquipo\Model\**" />
 		<EmbeddedResource Remove="ModuloInicio\Model\**" />
-		<EmbeddedResource Remove="ModuloJuego\**" />
+		<MauiCss Remove="ModuloEquipo\Model\**" />
 		<MauiCss Remove="ModuloInicio\Model\**" />
-		<MauiCss Remove="ModuloJuego\**" />
+		<MauiXaml Remove="ModuloEquipo\Model\**" />
 		<MauiXaml Remove="ModuloInicio\Model\**" />
-		<MauiXaml Remove="ModuloJuego\**" />
+		<None Remove="ModuloEquipo\Model\**" />
 		<None Remove="ModuloInicio\Model\**" />
-		<None Remove="ModuloJuego\**" />
 		<MauiAsset Include="Resources\BaseDeDatos\base_datos_juego_marvel.db">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiAsset>
@@ -702,7 +702,13 @@
 	  <MauiXaml Update="ModuloAuxiliares\ModuloCarga\View\PantallaDeCarga.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ModuloAuxiliares\ModuloConfiguracion\View\ConfiguracionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ModuloEquipo\View\EquipoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloJuego\View\BuscarJugador.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\CambiarContrasena.xaml">
@@ -740,8 +746,6 @@
 
 	<ItemGroup>
 	  <Folder Include="ModuloAuxiliares\ModuloAyuda\" />
-	  <Folder Include="ModuloAuxiliares\ModuloConfiguracion\" />
-	  <Folder Include="ModuloEquipo\Model\" />
 	</ItemGroup>
 
 	<ItemGroup>

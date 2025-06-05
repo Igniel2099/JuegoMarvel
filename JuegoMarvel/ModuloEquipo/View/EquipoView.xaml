@@ -13,7 +13,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
-        <Image Aspect="Fill" Source="fondo_pantalla_completa.png" />
+        <Image
+            Aspect="Fill"
+            Source="fondo_pantalla_completa.png" />
         <Grid RowDefinitions="1.2*,*">
             <Grid Grid.Row="0">
                 <Grid ColumnDefinitions="*,9*,*">
@@ -22,7 +24,9 @@
                         Aspect="AspectFill"
                         Source="vista_pilar.png" />
                     <Grid Grid.Column="1">
-                        <Image Aspect="AspectFill" Source="vista_tres_personajes.png" />
+                        <Image
+                            Aspect="AspectFill"
+                            Source="vista_tres_personajes.png" />
                         <AbsoluteLayout>
                             <Image
                                 AbsoluteLayout.LayoutBounds="0.15,0.45"
@@ -52,7 +56,7 @@
                     BackgroundColor="Black"
                     BorderColor="White"
                     BorderWidth="2"
-                    Clicked="Button_Clicked"
+                    Command="{Binding NavAtras}"
                     CornerRadius="15"
                     FontFamily="LuckiestGuy"
                     FontSize="15"
@@ -65,12 +69,18 @@
 
 
 
-            <Grid Grid.Row="1" RowDefinitions="4*,*">
-                <ScrollView Grid.Row="0" Orientation="Horizontal">
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="4*,*">
+                <ScrollView
+                    Grid.Row="0"
+                    Orientation="Horizontal">
                     <CollectionView ItemsSource="{Binding PersonajesUsuarios}">
                         <CollectionView.ItemsLayout>
 
-                            <GridItemsLayout HorizontalItemSpacing="5" Orientation="Horizontal" />
+                            <GridItemsLayout
+                                HorizontalItemSpacing="5"
+                                Orientation="Horizontal" />
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="viewmodels:PersonajeUsuarioViewModel">
@@ -79,9 +89,13 @@
                                     Margin="0,3"
                                     WidthRequest="155">
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding ComandoSeleccionarPersonaje}" CommandParameter="{x:Reference Contenedor}" />
+                                        <TapGestureRecognizer
+                                            Command="{Binding ComandoSeleccionarPersonaje}"
+                                            CommandParameter="{x:Reference Contenedor}" />
                                     </Grid.GestureRecognizers>
-                                    <Image Aspect="Fill" Source="{Binding ImagenContenedor}" />
+                                    <Image
+                                        Aspect="Fill"
+                                        Source="{Binding ImagenContenedor}" />
                                     <Grid
                                         Padding="0,7"
                                         ColumnDefinitions="*,*"
@@ -108,33 +122,51 @@
                                                 RowDefinitions="*,*,*"
                                                 RowSpacing="3">
                                                 <Grid Grid.Row="0">
-                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Image
+                                                        Aspect="Fill"
+                                                        Source="fondo_habilidad_equipo.png" />
                                                     <Grid
                                                         Padding="5,2"
                                                         ColumnDefinitions="*,*"
                                                         ColumnSpacing="3">
-                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadUno}" />
-                                                        <Image Grid.Column="1" Source="{Binding TipoUno, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                        <Image
+                                                            Grid.Column="0"
+                                                            Source="{Binding ImgHabilidadUno}" />
+                                                        <Image
+                                                            Grid.Column="1"
+                                                            Source="{Binding TipoUno, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
                                                     </Grid>
                                                 </Grid>
                                                 <Grid Grid.Row="1">
-                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Image
+                                                        Aspect="Fill"
+                                                        Source="fondo_habilidad_equipo.png" />
                                                     <Grid
                                                         Padding="5,2"
                                                         ColumnDefinitions="*,*"
                                                         ColumnSpacing="3">
-                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadDos}" />
-                                                        <Image Grid.Column="1" Source="{Binding TipoDos, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                        <Image
+                                                            Grid.Column="0"
+                                                            Source="{Binding ImgHabilidadDos}" />
+                                                        <Image
+                                                            Grid.Column="1"
+                                                            Source="{Binding TipoDos, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
                                                     </Grid>
                                                 </Grid>
                                                 <Grid Grid.Row="2">
-                                                    <Image Aspect="Fill" Source="fondo_habilidad_equipo.png" />
+                                                    <Image
+                                                        Aspect="Fill"
+                                                        Source="fondo_habilidad_equipo.png" />
                                                     <Grid
                                                         Padding="5,2"
                                                         ColumnDefinitions="*,*"
                                                         ColumnSpacing="3">
-                                                        <Image Grid.Column="0" Source="{Binding ImgHabilidadTres}" />
-                                                        <Image Grid.Column="1" Source="{Binding TipoTres, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
+                                                        <Image
+                                                            Grid.Column="0"
+                                                            Source="{Binding ImgHabilidadTres}" />
+                                                        <Image
+                                                            Grid.Column="1"
+                                                            Source="{Binding TipoTres, Converter={StaticResource TipoHabilidadAImagenConverter}}" />
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
@@ -148,7 +180,9 @@
                 </ScrollView>
 
                 <Grid Grid.Row="1">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="10">
                         <ImageButton
                             BackgroundColor="Black"
                             BorderColor="White"

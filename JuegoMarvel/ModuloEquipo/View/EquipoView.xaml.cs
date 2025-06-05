@@ -10,11 +10,4 @@ public partial class EquipoView : ContentPage
 
 		BindingContext = vm;
 	}
-
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-        await Application.Current.MainPage
-            .Navigation
-            .PopModalAsync(false);
-    }
 }

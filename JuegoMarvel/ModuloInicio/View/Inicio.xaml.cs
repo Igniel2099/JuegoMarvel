@@ -39,7 +39,7 @@ public partial class Inicio : ContentPage
 
         if (BindingContext is InicioViewModel vm)
         {
-            vm.ComandoNavTienda.Execute("Tienda");
+            vm.ComandoNav.Execute("Tienda");
         }
     }
     private async void OnEquipoTapped(object sender, TappedEventArgs e)
@@ -50,15 +50,19 @@ public partial class Inicio : ContentPage
         await border.ScaleTo(1.0, 100, Easing.CubicOut);
         if (BindingContext is InicioViewModel vm)
         {
-            vm.ComandoNavTienda.Execute("Equipo");
+            vm.ComandoNav.Execute("Equipo");
         }
     }
-    private async void OnEmpezarTapped(object sender, TappedEventArgs e)
+    private async void OnEmpezarTapped(object sender, EventArgs e)
     {
-        var border = (Border)sender;
+        var border = (Button)sender;
         // Animación: escalar al 80% y volver al 100%
         await border.ScaleTo(0.8, 100, Easing.CubicIn);
         await border.ScaleTo(1.0, 100, Easing.CubicOut);
+        if (BindingContext is InicioViewModel vm)
+        {
+            vm.ComandoNav.Execute("Empezar");
+        }
     }
 
     private async void OnAyudaTapped(object sender, EventArgs e)

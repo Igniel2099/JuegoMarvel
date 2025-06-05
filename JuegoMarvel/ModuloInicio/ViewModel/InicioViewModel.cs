@@ -60,14 +60,14 @@ public class InicioViewModel : BaseViewModel
 
     public ICommand ComandoNavEmpezar { get; set; }
 
-    public ComandoNavegar ComandoNavTienda { get; set; }
+    public ComandoNavegar ComandoNav { get; set; }
 
-    public ICommand ComandoNavEquipo { get; set; }
 
     public InicioViewModel(AppSettings configuracion, BbddjuegoMarvelContext context)
     {
-        ComandoNavTienda = new ComandoNavegar(context);
-        var primerUsuario = context.Usuarios.FirstOrDefault() ?? 
+        ComandoNav = new ComandoNavegar(context);
+
+        var primerUsuario = context.Usuarios.FirstOrDefault() ??
             throw new Exception("Tenemos un problema, no hay usuarios en la tabla"); // Solo hay uno o deberia
 
         _nombreUsuario = primerUsuario.NombreUsuario;

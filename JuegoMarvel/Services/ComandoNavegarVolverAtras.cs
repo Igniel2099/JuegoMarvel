@@ -1,5 +1,4 @@
-﻿
-namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
+﻿namespace JuegoMarvel.Services;
 
 public class ComandoNavegarVolverAtras : BaseCommand
 {

@@ -11,12 +11,16 @@
 
     <Grid>
         <!--  Fondo  -->
-        <Image Aspect="Fill" Source="fondo_pantalla_completa.png" />
+        <Image
+            Aspect="Fill"
+            Source="fondo_pantalla_completa.png" />
 
         <Grid RowDefinitions="auto,*">
 
             <!--#region Region Top-->
-            <Grid Margin="5" ColumnDefinitions="*,*,*,*,*">
+            <Grid
+                Margin="5"
+                ColumnDefinitions="*,*,*,*,*">
                 <!--#region BotonAtras-->
                 <Button
                     Grid.Column="0"
@@ -24,7 +28,7 @@
                     BackgroundColor="Black"
                     BorderColor="White"
                     BorderWidth="2"
-                    Clicked="Button_Clicked"
+                    Command="{Binding NavAtras}"
                     CornerRadius="15"
                     FontFamily="LuckiestGuy"
                     FontSize="15"
@@ -44,8 +48,12 @@
                         Source="bar_menu_fondo.png"
                         WidthRequest="290" />
 
-                    <Grid ColumnDefinitions="*,1.2*,1.7*" ColumnSpacing="15">
-                        <Grid x:Name="GridAll" Grid.Column="0">
+                    <Grid
+                        ColumnDefinitions="*,1.2*,1.7*"
+                        ColumnSpacing="15">
+                        <Grid
+                            x:Name="GridAll"
+                            Grid.Column="0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
@@ -64,11 +72,15 @@
                                 VerticalOptions="Center" />
                         </Grid>
 
-                        <Grid x:Name="GridTipo" Grid.Column="1">
+                        <Grid
+                            x:Name="GridTipo"
+                            Grid.Column="1">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
-                            <Image Margin="0,7" Aspect="Fill" />
+                            <Image
+                                Margin="0,7"
+                                Aspect="Fill" />
                             <Label
                                 Margin="0"
                                 FontFamily="LuckiestGuy"
@@ -79,11 +91,15 @@
                                 VerticalOptions="Center" />
                         </Grid>
 
-                        <Grid x:Name="GridGrupo" Grid.Column="2">
+                        <Grid
+                            x:Name="GridGrupo"
+                            Grid.Column="2">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnGridTapped" />
                             </Grid.GestureRecognizers>
-                            <Image Margin="0,7" Aspect="Fill" />
+                            <Image
+                                Margin="0,7"
+                                Aspect="Fill" />
                             <Label
                                 Margin="0"
                                 FontFamily="LuckiestGuy"
@@ -102,23 +118,33 @@
                 <Grid Grid.Column="3" />
 
                 <Grid Grid.Column="4">
-                    <Image Aspect="Fill" Source="bar_menu_top.png" />
+                    <Image
+                        Aspect="Fill"
+                        Source="bar_menu_top.png" />
                     <Grid
                         Margin="8"
                         ColumnDefinitions="*,*"
                         ColumnSpacing="10"
                         HorizontalOptions="Center"
                         VerticalOptions="Center">
-                        <HorizontalStackLayout Grid.Column="0" Spacing="5">
+                        <HorizontalStackLayout
+                            Grid.Column="0"
+                            Spacing="5">
                             <Image Source="icono_exp.png" />
 
-                            <Label HeightRequest="20" Text="{Binding Puntos}" />
+                            <Label
+                                HeightRequest="20"
+                                Text="{Binding Puntos}" />
                         </HorizontalStackLayout>
 
-                        <HorizontalStackLayout Grid.Column="1" Spacing="5">
+                        <HorizontalStackLayout
+                            Grid.Column="1"
+                            Spacing="5">
                             <Image Source="icono_moneda.png" />
 
-                            <Label HeightRequest="20" Text="{Binding Monedas}" />
+                            <Label
+                                HeightRequest="20"
+                                Text="{Binding Monedas}" />
                         </HorizontalStackLayout>
                     </Grid>
                 </Grid>
@@ -197,7 +223,9 @@
                                                     VerticalTextAlignment="Center" />
                                                 <Grid>
                                                     <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding MostrarInformacionCommand}" CommandParameter="{x:Reference ViewTienda}" />
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding MostrarInformacionCommand}"
+                                                            CommandParameter="{x:Reference ViewTienda}" />
                                                         <!--  Ajusta tu ICommand  -->
                                                     </Grid.GestureRecognizers>
                                                     <Image
@@ -212,7 +240,9 @@
                                             </HorizontalStackLayout>
 
                                             <!--  Grupo y Tipo  -->
-                                            <HorizontalStackLayout Grid.Row="1" Spacing="7">
+                                            <HorizontalStackLayout
+                                                Grid.Row="1"
+                                                Spacing="7">
                                                 <!--  Grupo  -->
                                                 <Border
                                                     BackgroundColor="#FF3100"
@@ -265,7 +295,9 @@
                                             </HorizontalStackLayout>
 
                                             <!--  Iconos habilidades  -->
-                                            <HorizontalStackLayout Grid.Row="2" Spacing="12">
+                                            <HorizontalStackLayout
+                                                Grid.Row="2"
+                                                Spacing="12">
                                                 <Image
                                                     AnchorX="0.5"
                                                     AnchorY="0.5"
@@ -289,15 +321,21 @@
                                     </Grid>
 
                                     <!--  FILA 1: Botón moneda  -->
-                                    <Grid x:Name="GridMoneda" Grid.Row="1">
+                                    <Grid
+                                        x:Name="GridMoneda"
+                                        Grid.Row="1">
                                         <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding NavCompraPopup}" CommandParameter="{x:Reference GridMoneda}" />
+                                            <TapGestureRecognizer
+                                                Command="{Binding NavCompraPopup}"
+                                                CommandParameter="{x:Reference GridMoneda}" />
                                         </Grid.GestureRecognizers>
                                         <Image
                                             HeightRequest="27"
                                             Source="contenedor_boton.png"
                                             WidthRequest="244" />
-                                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                                        <HorizontalStackLayout
+                                            HorizontalOptions="Center"
+                                            Spacing="5">
                                             <Image
                                                 HeightRequest="22"
                                                 Source="icono_moneda.png"

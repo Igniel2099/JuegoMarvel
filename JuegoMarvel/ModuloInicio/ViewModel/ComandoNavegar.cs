@@ -1,13 +1,10 @@
 ﻿using JuegoMarvel.ModuloEquipo.View;
 using JuegoMarvel.ModuloEquipo.ViewModel;
+using JuegoMarvel.ModuloJuego.View;
+using JuegoMarvel.ModuloJuego.ViewModel;
 using JuegoMarvel.ModuloTienda.ViewModel;
 using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
 
@@ -46,14 +43,15 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                     break;
 
                 case "Empezar":
-                    //await nav.PushAsync(new Juego());
+                    BuscarJugadorViewModel bjVm = new();
+                    await bjVm.CargarDatos(_context);
+                    await nav.PushModalAsync(new BuscarJugador(bjVm));
                     break;
             }
         }
         else
         {
             Console.WriteLine("Parámetro inválido para la navegación.");
-
         }
     }
 }

@@ -48,7 +48,7 @@ public class EquipoViewModel : BaseViewModel
     public ObservableCollection<PersonajeUsuarioViewModel> PersonajesUsuarios { get; set; }
     public ComandoAnadirPersonaje ComandoAnadirPersonaje { get; set; }
     public ComandoEliminarPersonaje ComandoEliminarPersonaje { get; set; }
-
+    public ComandoNavegarVolverAtras NavAtras { get; set; }
     public PersonajeUsuarioViewModel? PersonajeUsuarioSeleccionado{ get; set; }
 
     public readonly BbddjuegoMarvelContext Context;
@@ -58,6 +58,7 @@ public class EquipoViewModel : BaseViewModel
         // Comandos
         ComandoAnadirPersonaje = new(this);
         ComandoEliminarPersonaje = new(this);
+        NavAtras = new();
 
         // personajes
         _personajeUnoEquipo = string.Empty;
@@ -68,7 +69,6 @@ public class EquipoViewModel : BaseViewModel
 
     private async Task<(Dictionary<int, string> nombres,List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(GestionPersonajes gestionPersonajes)
     {
-        
         List<PersonajeUsuario> listPersonajeUsuarios = gestionPersonajes.ObtenerPersonajesUsuario();
         Dictionary<int, string> nombres = gestionPersonajes.ObtenerNombresPersonajesUsuario(listPersonajeUsuarios);
         List<Habilidade> habilidadesPerUsu = gestionPersonajes.ObtenerHabilidadesPersonajesUsuarios(listPersonajeUsuarios);

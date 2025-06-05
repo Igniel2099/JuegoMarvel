@@ -33,8 +33,7 @@ public class TiendaViewModel(BbddjuegoMarvelContext context) : BaseViewModel
             OnPropertyChanged();
         }
     }
-
-
+    public ComandoNavegarVolverAtras NavAtras { get; set; } = new();
     public ObservableCollection<CardViewModel> PersonajesCards { get; set; } = [];
 
     private readonly BbddjuegoMarvelContext _context = context;

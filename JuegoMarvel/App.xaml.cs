@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.Views;
+﻿using JuegoMarvel.ModuloJuego.View;
+using JuegoMarvel.Views;
 
 namespace JuegoMarvel
 {

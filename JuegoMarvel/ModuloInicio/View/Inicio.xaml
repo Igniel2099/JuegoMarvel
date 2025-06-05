@@ -14,7 +14,9 @@
             Aspect="AspectFill"
             Source="fondo_inicio.png" />
 
-        <Grid Grid.Column="0" RowDefinitions="*,auto">
+        <Grid
+            Grid.Column="0"
+            RowDefinitions="*,auto">
 
             <Grid
                 Grid.Row="0"
@@ -23,7 +25,9 @@
 
             <Grid RowDefinitions="auto,*">
 
-                <Grid Grid.Row="0" ColumnDefinitions="*,auto">
+                <Grid
+                    Grid.Row="0"
+                    ColumnDefinitions="*,auto">
                     <HorizontalStackLayout
                         Grid.Column="0"
                         Margin="10,-5,0,0"
@@ -59,11 +63,17 @@
                             HeightRequest="60"
                             Source="bar_menu_top.png" />
 
-                        <HorizontalStackLayout Margin="20,-7,0,0" Spacing="10">
+                        <HorizontalStackLayout
+                            Margin="20,-7,0,0"
+                            Spacing="10">
                             <HorizontalStackLayout Spacing="5">
-                                <Image HeightRequest="40" Source="icono_exp.png" />
+                                <Image
+                                    HeightRequest="40"
+                                    Source="icono_exp.png" />
 
-                                <Label HeightRequest="20" Text="{Binding Puntos}" />
+                                <Label
+                                    HeightRequest="20"
+                                    Text="{Binding Puntos}" />
                             </HorizontalStackLayout>
 
                             <Border
@@ -75,9 +85,13 @@
                                 WidthRequest="6" />
 
                             <HorizontalStackLayout Spacing="5">
-                                <Image HeightRequest="40" Source="icono_moneda.png" />
+                                <Image
+                                    HeightRequest="40"
+                                    Source="icono_moneda.png" />
 
-                                <Label HeightRequest="20" Text="{Binding Monedas}" />
+                                <Label
+                                    HeightRequest="20"
+                                    Text="{Binding Monedas}" />
                             </HorizontalStackLayout>
 
 
@@ -95,7 +109,9 @@
                                         HeightRequest="50"
                                         Source="icono_usuario.png"
                                         WidthRequest="50" />
-                                    <Grid Margin="0,30,0,0" HeightRequest="15">
+                                    <Grid
+                                        Margin="0,30,0,0"
+                                        HeightRequest="15">
                                         <Image Source="caja_nivel.png" />
                                         <Label
                                             Margin="0,3,0,0"
@@ -135,7 +151,9 @@
                             ColumnDefinitions="1.5*,*"
                             ColumnSpacing="5">
                             <Grid Grid.Column="0">
-                                <Image Aspect="Fill" Source="img_dos.png" />
+                                <Image
+                                    Aspect="Fill"
+                                    Source="img_dos.png" />
                                 <Label
                                     FontFamily="LuckiestGuy"
                                     FontSize="16"
@@ -147,7 +165,9 @@
 
                             <Grid Grid.Column="1">
 
-                                <Image Aspect="Fill" Source="img_uno.png" />
+                                <Image
+                                    Aspect="Fill"
+                                    Source="img_uno.png" />
                                 <Label
                                     FontFamily="LuckiestGuy"
                                     FontSize="16"
@@ -164,7 +184,9 @@
                             ColumnDefinitions="*,1.5*"
                             ColumnSpacing="5">
                             <Grid Grid.Column="0">
-                                <Image Aspect="Fill" Source="img_tres.png" />
+                                <Image
+                                    Aspect="Fill"
+                                    Source="img_tres.png" />
                                 <Label
                                     FontFamily="LuckiestGuy"
                                     FontSize="18"
@@ -175,7 +197,9 @@
                             </Grid>
 
                             <Grid Grid.Column="1">
-                                <Image Aspect="Fill" Source="img_cuatro.png" />
+                                <Image
+                                    Aspect="Fill"
+                                    Source="img_cuatro.png" />
                                 <Label
                                     FontFamily="LuckiestGuy"
                                     FontSize="16"
@@ -190,7 +214,9 @@
 
                         <!--  botones home, tienda, equipo  -->
                     </Grid>
-                    <Grid Grid.Column="2" RowDefinitions="*,*,*">
+                    <Grid
+                        Grid.Column="2"
+                        RowDefinitions="*,*,*">
 
                         <Border
                             Grid.Row="0"
@@ -319,7 +345,9 @@
                     </BoxView>
 
 
-                    <Grid Grid.Column="1" RowDefinitions="*,auto">
+                    <Grid
+                        Grid.Column="1"
+                        RowDefinitions="*,auto">
 
                         <BoxView
                             Grid.Row="0"
@@ -334,7 +362,9 @@
                             WidthRequest="160" />
                     </Grid>
 
-                    <Grid Grid.Column="2" VerticalOptions="End">
+                    <Grid
+                        Grid.Column="2"
+                        VerticalOptions="End">
 
                         <BoxView
                             BackgroundColor="#181818"
@@ -380,15 +410,15 @@
                 Margin="0,0,0,5"
                 AbsoluteLayout.LayoutBounds="0.022,0.95"
                 AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Grid.GestureRecognizers Command="{Binding HomeTappedCommand}" CommandParameter="Home">
-                    <TapGestureRecognizer Tapped="OnEmpezarTapped" />
-                </Grid.GestureRecognizers>
 
-                <Image Grid.Column="0" Source="boton_empezar.png" />
+                <Image
+                    Grid.Column="0"
+                    Source="boton_empezar.png" />
 
                 <Button
                     Grid.Column="0"
                     BackgroundColor="Transparent"
+                    Clicked="OnEmpezarTapped"
                     FontAttributes="Bold"
                     FontFamily="LuckiestGuy"
                     FontSize="25"

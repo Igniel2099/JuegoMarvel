@@ -10,73 +10,101 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace JuegoMarvel
+namespace JuegoMarvel;
+
+/// <summary>
+/// Clase estática encargada de configurar y construir la aplicación MAUI.
+/// Registra servicios, ViewModels, páginas y configuraciones necesarias para la app.
+/// </summary>
+public static class MauiProgram
 {
-
-    public static class MauiProgram
+    /// <summary>
+    /// Método principal que configura el entorno de ejecución de la aplicación MAUI.
+    /// </summary>
+    /// <returns>Una instancia configurada de <see cref="MauiApp"/>.</returns>
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            BaseDeDatosHelper.CopiarBaseDeDatosSiNoExiste();
+        /// <summary>
+        /// Copia la base de datos SQLite si aún no existe en el sistema de archivos local.
+        /// </summary>
+        BaseDeDatosHelper.CopiarBaseDeDatosSiNoExiste();
 
-            var builder = MauiApp.CreateBuilder();
+        var builder = MauiApp.CreateBuilder();
 
-            builder.Services.AddDbContext<BbddjuegoMarvelContext>(options =>
-                options.UseSqlite($"Data Source={BaseDeDatosHelper.RutaBaseDeDatos}")
-            );
+        /// <summary>
+        /// Registra el contexto de base de datos usando SQLite como proveedor.
+        /// </summary>
+        builder.Services.AddDbContext<BbddjuegoMarvelContext>(options =>
+            options.UseSqlite($"Data Source={BaseDeDatosHelper.RutaBaseDeDatos}")
+        );
 
-            // Añadir el servicio de comprobar el Dominio de un Correo Electronico
-            builder.Services.AddMemoryCache();
-            builder.Services.AddSingleton<ComprobadorDominio>();
+        /// <summary>
+        /// Agrega servicios auxiliares como caché en memoria y comprobador de dominios.
+        /// </summary>
+        builder.Services.AddMemoryCache();
+        builder.Services.AddSingleton<ComprobadorDominio>();
 
-            // Añadir el archivo de configuracion
-            using var stream = FileSystem
-                .OpenAppPackageFileAsync("appsettings.json")
-                .GetAwaiter()
-                .GetResult();
+        /// <summary>
+        /// Carga el archivo de configuración appsettings.json desde los recursos de la app.
+        /// </summary>
+        using var stream = FileSystem
+            .OpenAppPackageFileAsync("appsettings.json")
+            .GetAwaiter()
+            .GetResult();
 
-            builder.Configuration
-               .AddJsonStream(stream)
-               .AddEnvironmentVariables(); // opcional
+        builder.Configuration
+            .AddJsonStream(stream)
+            .AddEnvironmentVariables();
 
-            // Mapear la sección "Servidor" del appsettings.json a la clase AppSettings
-            builder.Services
-                .Configure<AppSettings>(builder.Configuration.GetSection("Servidor"));
+        /// <summary>
+        /// Mapea la sección "Servidor" a la clase <see cref="AppSettings"/> para inyección de dependencias.
+        /// </summary>
+        builder.Services
+            .Configure<AppSettings>(builder.Configuration.GetSection("Servidor"));
 
-            // Registrar la clase AppSettings como singleton
-            builder.Services
-                .AddSingleton(sp => sp.GetRequiredService<IOptions<AppSettings>>().Value);
+        /// <summary>
+        /// Registra <see cref="AppSettings"/> como singleton para acceso global a la configuración.
+        /// </summary>
+        builder.Services
+            .AddSingleton(sp => sp.GetRequiredService<IOptions<AppSettings>>().Value);
 
-            // Paginas y ViewModels Añadidas
+        /// <summary>
+        /// Registra páginas y ViewModels que se inyectarán por dependencias.
+        /// </summary>
+        builder.Services
+            .AddTransient<LoginViewModel>();
+        builder.Services
+            .AddTransient<Login>();
+        builder.Services
+            .AddTransient<InicioViewModel>();
+        builder.Services
+            .AddTransient<Inicio>();
 
-            builder.Services
-                .AddTransient<LoginViewModel>();    
-            builder.Services
-                .AddTransient<Login>();             
+        /// <summary>
+        /// Registra la clase principal <see cref="App"/> como singleton.
+        /// </summary>
+        builder.Services.AddSingleton<App>();
 
-            builder.Services.AddTransient<InicioViewModel>();
-            builder.Services.AddTransient<Inicio>();
-
-            builder.Services
-                .AddSingleton<App>(); // app principal
-
-            builder
-                .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuy");
-
-                });
+        /// <summary>
+        /// Configura la app MAUI, CommunityToolkit y fuentes tipográficas.
+        /// </summary>
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuy");
+            });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+        /// <summary>
+        /// Agrega logging de depuración en modo DEBUG.
+        /// </summary>
+        builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
-        }
-    }    
-
+        return builder.Build();
+    }
 }

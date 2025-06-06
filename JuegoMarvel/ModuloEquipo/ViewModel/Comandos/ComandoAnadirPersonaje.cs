@@ -1,63 +1,69 @@
-﻿using JuegoMarvelData.Models;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvelData.Models;
 using System;
 using System.Linq;
 
 namespace JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
 
+/// <summary>
+/// Comando para añadir un personaje seleccionado al equipo del usuario.
+/// </summary>
 public class ComandoAnadirPersonaje : BaseCommand
 {
     private readonly EquipoViewModel _vm;
 
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="ComandoAnadirPersonaje"/>.
+    /// </summary>
+    /// <param name="vm">ViewModel del equipo al que se añadirá el personaje.</param>
+    /// <exception cref="ArgumentNullException">Se lanza si el ViewModel es nulo.</exception>
     public ComandoAnadirPersonaje(EquipoViewModel vm)
     {
         _vm = vm ?? throw new ArgumentNullException(nameof(vm));
     }
 
+    /// <summary>
+    /// Ejecuta la lógica para añadir el personaje seleccionado al equipo.
+    /// <param name="parameter">Parámetro opcional (no utilizado).</param>
     public override void Execute(object? parameter)
     {
-        // 1) Validar que el usuario haya seleccionado un PersonajeUsuario
         if (_vm.PersonajeUsuarioSeleccionado == null)
             return;
 
-        // 2) Recuperar (o crear) la entidad Equipo desde el contexto
         var equipo = _vm.Context.Equipos
             .FirstOrDefault()
             ?? throw new Exception("No existe ningún Equipo en la base de datos.");
 
-        // 3) Verificar si ya se ha agregado ese PersonajeUsuario antes
-        //    (para que no se duplique en la ranura)
         var idSeleccionado = _vm.PersonajeUsuarioSeleccionado.IdPersonajeUsuario;
         if (equipo.IdPersonajeUsuario1 == idSeleccionado ||
             equipo.IdPersonajeUsuario2 == idSeleccionado ||
             equipo.IdPersonajeUsuario3 == idSeleccionado)
         {
-            // Ya está agregado, salimos
+            // El personaje que quieres agregar ya esta agredado
             return;
         }
 
-        // 4) Añadirlo en la primera ranura libre (1, luego 2, luego 3)
-        if (_vm.PersonajeUnoEquipo == string.Empty)
+        if (_vm.PersonajeUnoEquipo?.Length == 0)
         {
             _vm.PersonajeUnoEquipo = _vm.PersonajeUsuarioSeleccionado.ImgCuerpo;
             equipo.IdPersonajeUsuario1 = idSeleccionado;
         }
-        else if (_vm.PersonajeDosEquipo == string.Empty)
+        else if (_vm.PersonajeDosEquipo?.Length == 0)
         {
             _vm.PersonajeDosEquipo = _vm.PersonajeUsuarioSeleccionado.ImgCuerpo;
             equipo.IdPersonajeUsuario2 = idSeleccionado;
         }
-        else if (_vm.PersonajeTresEquipo == string.Empty)
+        else if (_vm.PersonajeTresEquipo?.Length == 0)
         {
             _vm.PersonajeTresEquipo = _vm.PersonajeUsuarioSeleccionado.ImgCuerpo;
             equipo.IdPersonajeUsuario3 = idSeleccionado;
         }
         else
         {
-            // Las tres ranuras están ocupadas; podrías mostrar un mensaje o simplemente salir
+            // Todas estan ocupadas
             return;
         }
 
-        // 5) Guardar inmediatamente los cambios en base de datos
         _vm.Context.SaveChanges();
     }
 }

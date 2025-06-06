@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.Services;
 
@@ -12,6 +13,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 /// </summary>
 public class CambiarContrasenaViewModel : BaseViewModel
 {
+    #region CamposViewModel
+
     /// <summary>
     /// Propiedad privada del nombre del Usuario
     /// </summary>
@@ -134,6 +137,9 @@ public class CambiarContrasenaViewModel : BaseViewModel
             OnPropertyChanged(nameof(ImgEstadoConfirmarContrasena));
         }
     }
+    #endregion
+
+    #region Comandos
 
     /// <summary>
     /// Comando para confirmar el cambio de contraseña.
@@ -144,6 +150,7 @@ public class CambiarContrasenaViewModel : BaseViewModel
     /// Comando para navegar hacia atrás en la navegación.
     /// </summary>
     public ComandoNavegarVolverAtras ComandoNavVolverAtras { get; set; }
+    #endregion
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="CambiarContrasenaViewModel"/>.

@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
 using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
@@ -7,9 +8,22 @@ using System.Collections.ObjectModel;
 
 namespace JuegoMarvel.ModuloEquipo.ViewModel;
 
+/// <summary>
+/// ViewModel para la gestión del equipo de personajes del usuario.
+/// Permite añadir, eliminar y seleccionar personajes, así como inicializar la información necesaria.
+/// </summary>
 public class EquipoViewModel : BaseViewModel
 {
+    #region Region CamposViewModel
+
+    /// <summary>
+    /// Propiedad privada de la imagen del primero personaje Equipo
+    /// </summary>
     private string? _personajeUnoEquipo;
+
+    /// <summary>
+    /// Imagen del primer personaje del equipo.
+    /// </summary>
     public string? PersonajeUnoEquipo
     {
         get => _personajeUnoEquipo;
@@ -21,7 +35,13 @@ public class EquipoViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada de la imagen del segundo personaje Equipo
+    /// </summary>
     private string? _personajeDosEquipo;
+    /// <summary>
+    /// Imagen del segundo personaje del equipo.
+    /// </summary>
     public string? PersonajeDosEquipo
     {
         get => _personajeDosEquipo;
@@ -33,7 +53,13 @@ public class EquipoViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada de la imagen del tercer personaje Equipo
+    /// </summary>
     private string? _personajeTresEquipo;
+    /// <summary>
+    /// Imagen del tercer personaje del equipo.
+    /// </summary>
     public string? PersonajeTresEquipo
     {
         get => _personajeTresEquipo;
@@ -44,15 +70,49 @@ public class EquipoViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+    #endregion
 
-    public ObservableCollection<PersonajeUsuarioViewModel> PersonajesUsuarios { get; set; }
+    #region Comandos
+
+    /// <summary>
+    /// Comando para añadir un personaje al equipo.
+    /// </summary>
     public ComandoAnadirPersonaje ComandoAnadirPersonaje { get; set; }
-    public ComandoEliminarPersonaje ComandoEliminarPersonaje { get; set; }
-    public ComandoNavegarVolverAtras NavAtras { get; set; }
-    public PersonajeUsuarioViewModel? PersonajeUsuarioSeleccionado{ get; set; }
 
+    /// <summary>
+    /// Comando para eliminar un personaje del equipo.
+    /// </summary>
+    public ComandoEliminarPersonaje ComandoEliminarPersonaje { get; set; }
+
+    /// <summary>
+    /// Comando para navegar hacia atrás.
+    /// </summary>
+    public ComandoNavegarVolverAtras NavAtras { get; set; }
+    #endregion
+
+    #region CamposAuxiliares
+
+    /// <summary>
+    /// Colección de personajes de usuario disponibles para el equipo.
+    /// </summary>
+    public ObservableCollection<PersonajeUsuarioViewModel> PersonajesUsuarios { get; set; }
+
+    /// <summary>
+    /// Personaje de usuario actualmente seleccionado.
+    /// </summary>
+    public PersonajeUsuarioViewModel? PersonajeUsuarioSeleccionado { get; set; }
+
+    /// <summary>
+    /// Contexto de la base de datos.
+    /// </summary>
     public readonly BbddjuegoMarvelContext Context;
-    public EquipoViewModel(BbddjuegoMarvelContext context )
+    #endregion
+
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="EquipoViewModel"/>.
+    /// </summary>
+    /// <param name="context">Contexto de la base de datos.</param>
+    public EquipoViewModel(BbddjuegoMarvelContext context)
     {
         Context = context;
         // Comandos
@@ -67,7 +127,12 @@ public class EquipoViewModel : BaseViewModel
         PersonajesUsuarios = [];
     }
 
-    private async Task<(Dictionary<int, string> nombres,List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(GestionPersonajes gestionPersonajes)
+    /// <summary>
+    /// Obtiene la información necesaria para inicializar los personajes del usuario.
+    /// </summary>
+    /// <param name="gestionPersonajes">Instancia de <see cref="GestionPersonajes"/> para obtener los datos.</param>
+    /// <returns>Tupla con nombres, lista de personajes de usuario y habilidades.</returns>
+    private static  async Task<(Dictionary<int, string> nombres, List<PersonajeUsuario> personajesUsuarios, List<Habilidade> habilidadesPerUsu)> ObtenerInformacionNecesaria(GestionPersonajes gestionPersonajes)
     {
         List<PersonajeUsuario> listPersonajeUsuarios = gestionPersonajes.ObtenerPersonajesUsuario();
         Dictionary<int, string> nombres = gestionPersonajes.ObtenerNombresPersonajesUsuario(listPersonajeUsuarios);
@@ -76,6 +141,11 @@ public class EquipoViewModel : BaseViewModel
         return (nombres, listPersonajeUsuarios, habilidadesPerUsu);
     }
 
+    /// <summary>
+    /// Carga las imágenes de los personajes que forman parte del equipo.
+    /// </summary>
+    /// <param name="gestionPersonajes">Instancia de <see cref="GestionPersonajes"/>.</param>
+    /// <param name="personajesImagenes">Diccionario de imágenes de personajes.</param>
     private async Task CargarImagenesPersonajesEquipo(GestionPersonajes gestionPersonajes, PersonajesImagenes personajesImagenes)
     {
         var listaNombresPersonajesUsuarioEquipo = await gestionPersonajes.CargarNombresEquipoPersonajesUsuario();
@@ -99,9 +169,14 @@ public class EquipoViewModel : BaseViewModel
         }
     }
 
-
-
-    private async Task CargarPersonajeUsuariosViewModel(List<PersonajeUsuario> personajesUsuarios,  Dictionary<int,string> nombres, PersonajesImagenes personajesImagenes, List<Habilidade> habilidadesPerUsu)
+    /// <summary>
+    /// Carga los ViewModels de los personajes de usuario y los añade a la colección.
+    /// </summary>
+    /// <param name="personajesUsuarios">Lista de personajes de usuario.</param>
+    /// <param name="nombres">Diccionario de nombres de personajes.</param>
+    /// <param name="personajesImagenes">Diccionario de imágenes de personajes.</param>
+    /// <param name="habilidadesPerUsu">Lista de habilidades de los personajes de usuario.</param>
+    private async Task CargarPersonajeUsuariosViewModel(List<PersonajeUsuario> personajesUsuarios, Dictionary<int, string> nombres, PersonajesImagenes personajesImagenes, List<Habilidade> habilidadesPerUsu)
     {
         foreach (var personajeUsuario in personajesUsuarios)
         {
@@ -132,8 +207,12 @@ public class EquipoViewModel : BaseViewModel
                 imgHTres
             ));
         }
-
     }
+
+    /// <summary>
+    /// Inicializa los ViewModels de los personajes de usuario y carga las imágenes del equipo.
+    /// </summary>
+    /// <param name="context">DbContext de la base de datos.</param>
     public async Task InicializarPersonajesUsuarioViewModelAync(BbddjuegoMarvelContext context)
     {
         GestionPersonajes gestionPersonajes = new(context);

@@ -1,29 +1,40 @@
-﻿using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloEquipo.ViewModel.Comandos;
 
 namespace JuegoMarvel.ModuloEquipo.ViewModel;
 
+/// <summary>
+/// ViewModel que representa un personaje de usuario en el equipo.
+/// Gestiona las propiedades visuales y de datos del personaje, así como el comando de selección.
+/// </summary>
 public class PersonajeUsuarioViewModel : BaseViewModel
 {
-    public readonly int IdPersonajeUsuario;
-
+    #region CamposViewModel
+    /// <summary>
+    /// Propiedad privada de la Imagen del Contenedor
+    /// </summary>
     private string _imgContenedor;
+    /// <summary>
+    /// Imagen de fondo del contenedor del personaje.
+    /// </summary>
     public string ImagenContenedor
     {
         get => _imgContenedor;
         set
         {
             if (value == _imgContenedor) return;
-            _imgContenedor= value;
+            _imgContenedor = value;
             OnPropertyChanged();
         }
     }
 
+    /// <summary>
+    /// Propiedad Privada del nombre
+    /// </summary>
     private string _nombre;
+    /// <summary>
+    /// Nombre del personaje.
+    /// </summary>
     public string Nombre
     {
         get => _nombre;
@@ -35,7 +46,13 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada del tipo de la habilidad
+    /// </summary>
     private string _tipoUno;
+    /// <summary>
+    /// Primer tipo de la habilidad del personaje.
+    /// </summary>
     public string TipoUno
     {
         get => _tipoUno;
@@ -47,8 +64,13 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         }
     }
 
-
+    /// <summary>
+    /// Propiedad privada del tipo de la habilidad
+    /// </summary>
     private string _tipoDos;
+    /// <summary>
+    /// Segundo tipo o habilidad del personaje.
+    /// </summary>
     public string TipoDos
     {
         get => _tipoDos;
@@ -60,8 +82,13 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         }
     }
 
-
+    /// <summary>
+    /// Propiedad privada del tipo de la habilidad
+    /// </summary>
     private string _tipoTres;
+    /// <summary>
+    /// Tercer tipo o habilidad del personaje.
+    /// </summary>
     public string TipoTres
     {
         get => _tipoTres;
@@ -72,8 +99,14 @@ public class PersonajeUsuarioViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-    
+
+    /// <summary>
+    /// Propiedad privada de la imagen del cuerpo del personaje
+    /// </summary>
     private string _imgCuerpo;
+    /// <summary>
+    /// Imagen principal del cuerpo del personaje.
+    /// </summary>
     public string ImgCuerpo
     {
         get => _imgCuerpo;
@@ -85,7 +118,13 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada de la imagen de la primera habilidad
+    /// </summary>
     private string _imgHabilidadUno;
+    /// <summary>
+    /// Imagen de la primera habilidad del personaje.
+    /// </summary>
     public string ImgHabilidadUno
     {
         get => _imgHabilidadUno;
@@ -96,7 +135,14 @@ public class PersonajeUsuarioViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+
+    /// <summary>
+    /// Propiedad privada de la imagen de la Segunda habilidad
+    /// </summary>
     private string _imgHabilidadDos;
+    /// <summary>
+    /// Imagen de la segunda habilidad del personaje.
+    /// </summary>
     public string ImgHabilidadDos
     {
         get => _imgHabilidadDos;
@@ -108,7 +154,13 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada de la imagen de la tercera habilidad
+    /// </summary>
     private string _imgHabilidadTres;
+    /// <summary>
+    /// Imagen de la tercera habilidad del personaje.
+    /// </summary>
     public string ImgHabilidadTres
     {
         get => _imgHabilidadTres;
@@ -119,10 +171,37 @@ public class PersonajeUsuarioViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+    #endregion
 
+    #region Auxiliares
+
+    /// <summary>
+    /// Identificador único del personaje de usuario.
+    /// </summary>
+    public readonly int IdPersonajeUsuario;
+
+    /// <summary>
+    /// Comando para seleccionar este personaje en la vista de equipo.
+    /// </summary>
     public ComandoSeleccionarPersonaje ComandoSeleccionarPersonaje { get; set; }
+    #endregion
+
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="PersonajeUsuarioViewModel"/> con los datos y comandos necesarios.
+    /// inicializa la imagen del contenedor con un valor por defecto, crea el comando e inicializa los demas campos.
+    /// </summary>
+    /// <param name="idPersonajeUsuario">Identificador del personaje de usuario.</param>
+    /// <param name="vm">ViewModel del equipo asociado.</param>
+    /// <param name="nombre">Nombre del personaje.</param>
+    /// <param name="tipoUno">Primer tipo o habilidad.</param>
+    /// <param name="tipoDos">Segundo tipo o habilidad.</param>
+    /// <param name="tipoTres">Tercer tipo o habilidad.</param>
+    /// <param name="imgCuerpo">Imagen principal del cuerpo.</param>
+    /// <param name="imgHabilidadUno">Imagen de la primera habilidad.</param>
+    /// <param name="imgHabilidadDos">Imagen de la segunda habilidad.</param>
+    /// <param name="imgHabilidadTres">Imagen de la tercera habilidad.</param>
     public PersonajeUsuarioViewModel(
-        int idPersonajeUsuario, 
+        int idPersonajeUsuario,
         EquipoViewModel vm,
         string nombre,
         string tipoUno,
@@ -136,10 +215,9 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         // info
         IdPersonajeUsuario = idPersonajeUsuario;
         // Comandos
-        ComandoSeleccionarPersonaje = new(vm,this);
+        ComandoSeleccionarPersonaje = new(vm, this);
 
         // Visual
-        
         _imgContenedor = "fondo_contenedor_equipo.png";
         _nombre = nombre;
         _tipoUno = tipoUno;
@@ -150,6 +228,4 @@ public class PersonajeUsuarioViewModel : BaseViewModel
         _imgHabilidadDos = imgHabilidadDos;
         _imgHabilidadTres = imgHabilidadTres;
     }
-
-
 }

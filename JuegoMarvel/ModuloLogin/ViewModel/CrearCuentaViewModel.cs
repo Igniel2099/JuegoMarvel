@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.Services;
 
@@ -10,6 +11,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 /// </summary>
 public class CrearCuentaViewModel : BaseViewModel
 {
+    #region CamposViewModel
+
     /// <summary>
     /// Propiedad privada del nombre de usuario.
     /// </summary>
@@ -213,6 +216,9 @@ public class CrearCuentaViewModel : BaseViewModel
             OnPropertyChanged(nameof(ImgEstadoConfirmarContrasena));
         }
     }
+    #endregion
+
+    #region Comandos
 
     /// <summary>
     /// Comando para confirmar la creación de la cuenta.
@@ -223,6 +229,7 @@ public class CrearCuentaViewModel : BaseViewModel
     /// Comando para navegar hacia atrás en la navegación.
     /// </summary>
     public ComandoNavegarVolverAtras ComandoNavVolverAtras { get; set; }
+    #endregion
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="CrearCuentaViewModel"/>.

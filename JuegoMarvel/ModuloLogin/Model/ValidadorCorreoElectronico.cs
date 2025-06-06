@@ -11,9 +11,24 @@ namespace JuegoMarvel.ModuloLogin.Model;
 /// </summary>
 public class ValidadorCorreoElectronico(EnumOrigen origen, AppSettings configuracion, ComprobadorDominio validadorDominio)
 {
+    /// <summary>
+    /// Propiedad privada que sirve para saber el Origen del mensaje.
+    /// </summary>
     private readonly EnumOrigen _origen = origen;
+
+    /// <summary>
+    /// propiedad privada de las configuraciones de la aplicacion
+    /// </summary>
     private readonly AppSettings _configuracion = configuracion;
+
+    /// <summary>
+    /// Propiedad privada de Comprobar de dominios
+    /// </summary>
     private readonly ComprobadorDominio _validadorDominio = validadorDominio;
+
+    /// <summary>
+    /// Patron que debe seguir un Mail para que pueda validarlo.
+    /// </summary>
     private const string PatronEmail = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
 
     /// <summary>
@@ -38,6 +53,11 @@ public class ValidadorCorreoElectronico(EnumOrigen origen, AppSettings configura
         return (true, null);
     }
 
+    /// <summary>
+    /// Comprueba si el correo existe en la base de datos remota, lo envia al servidor, recibe la respueta y la crea si esta no existe.
+    /// </summary>
+    /// <param name="correo">El correo electronico a comprobar</param>
+    /// <returns>Me devuelve un booleano de la comprobacion y un mensaje</returns>
     private async Task<(bool, string?)> ComprobarExistenciaAsync(string correo)
     {
         try

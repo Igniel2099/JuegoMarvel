@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ClasesBase;
 using JuegoMarvel.ModuloInicio.ViewModel;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
@@ -16,25 +17,53 @@ using System.Text;
 
 namespace JuegoMarvel.ModuloAuxiliares.ModuloCarga.ViewModels;
 
+/// <summary>
+/// ViewModel para la pantalla de carga de datos del usuario.
+/// Gestiona el proceso de recuperación de datos desde el servidor y el progreso de la carga.
+/// </summary>
 public class PantallaCargaViewModel : BaseViewModel
 {
+    /// <summary>
+    /// Propiedad privada que obtiene las configuraciones de la aplicación
+    /// </summary>
     private readonly AppSettings _configuracion;
+
+    /// <summary>
+    /// Propiedad privada DbContext para poder contectarse a la base de datos local
+    /// </summary>
     private readonly BbddjuegoMarvelContext _context;
+
+    /// <summary>
+    /// Propiedad privada Nombre del Usuario del que quiero cargar datos.
+    /// </summary>
     private readonly string _nombreUsuario;
 
+    /// <summary>
+    /// Propiedad privada que indica el progreso de la barra
+    /// </summary>
     private double _progreso;
 
+    /// <summary>
+    /// Progreso de la carga de datos, valor entre 0 y 1.
+    /// </summary>
     public double Progreso
     {
         get => _progreso;
         set
         {
-            if (_progreso == value) return;
+            if (_progreso.Equals(value)) return;
             _progreso = value;
             OnPropertyChanged();
         }
     }
 
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="PantallaCargaViewModel"/>.
+    /// Inicializa el progreso en 0 y las demas propiedades.
+    /// </summary>
+    /// <param name="configuracion">Configuración de la aplicación.</param>
+    /// <param name="context">Contexto de la base de datos.</param>
+    /// <param name="nombreUsuario">Nombre de usuario para recuperar los datos.</param>
     public PantallaCargaViewModel(AppSettings configuracion, BbddjuegoMarvelContext context, string nombreUsuario)
     {
         _progreso = 0.0;
@@ -43,6 +72,82 @@ public class PantallaCargaViewModel : BaseViewModel
         _configuracion = configuracion;
     }
 
+    private MensajesModuloLogin PrepararMensaje() => new(
+        EnumOrigen.RecuperarDatos,
+        EnumTipoRespuesta.Recuperar,
+        [new Propiedad(EnumTipoValor.NombreUsuario, _nombreUsuario.Trim())],
+        null
+    );
+
+    /// <summary>
+    /// Escibre el mensaje a mandar en formato json y lo envia a traves del stream.
+    /// </summary>
+    /// <param name="stream">Stream con el que puedo enviar mensajes al servidor</param>
+    /// <param name="mensaje">Mensaje que le quiero enviar al Servidor</param>
+    /// <param name="ajusteJson">Ajustes del Json para Serializar correctamente</param>
+    /// <returns>Me avisa de que el método ha terminado su proceso.</returns>
+    private static async Task EscribirMensaje(Stream stream, MensajesModuloLogin mensaje, JsonSerializerSettings ajusteJson)
+    {
+        string contenido = JsonConvert.SerializeObject(mensaje, Formatting.None, ajusteJson);
+        byte[] datosEnvio = Encoding.UTF8.GetBytes(contenido);
+        await stream.WriteAsync(datosEnvio);
+    }
+
+    /// <summary>
+    /// Procesa los datos del usuario mandados desde el servidor y los carga en la base de datos local
+    /// </summary>
+    /// <param name="mandarDatosUsuario">Objeto que contiene toda la información del usurio</param>
+    /// <returns>Me avisa de que el método ha terminado su proceso.</returns>
+    private async Task ProcesarDatosUsuario(MandarDatosUsuario mandarDatosUsuario)
+    {
+        Usuario usuario = ConversorDatosUsuario
+                .MapUsuario(mandarDatosUsuario);
+        await _context.AddAsync(usuario);
+
+        if (mandarDatosUsuario.Personajes.Count > 0)
+        {
+            foreach (var personajeDto in mandarDatosUsuario.Personajes)
+            {
+                Personaje personaje = ConversorDatosUsuario.MapPersonaje(personajeDto);
+                await _context.AddAsync(personaje);
+            }
+        }
+
+        if (mandarDatosUsuario.Habilidades.Count > 0)
+        {
+            foreach (var habilidadeDto in mandarDatosUsuario.Habilidades)
+            {
+                Habilidade habilidade = ConversorDatosUsuario.MapHabilidade(habilidadeDto);
+                await _context.AddAsync(habilidade);
+            }
+        }
+
+        if (mandarDatosUsuario.PersonajeUsuarios.Count > 0)
+        {
+            foreach (var personajeUsuarioDto in mandarDatosUsuario.PersonajeUsuarios)
+            {
+                PersonajeUsuario personajeUsuario = ConversorDatosUsuario.MapPersonajeUsuario(personajeUsuarioDto);
+                await _context.AddAsync(personajeUsuario);
+            }
+        }
+
+        if (mandarDatosUsuario.Equipo != null)
+        {
+            Equipo equipo = ConversorDatosUsuario.MapEquipo(mandarDatosUsuario.Equipo);
+            await _context.AddAsync(equipo);
+        }
+
+        foreach (var peleaDTO in mandarDatosUsuario.Peleas)
+        {
+            Pelea pelea = ConversorDatosUsuario.MapPelea(peleaDTO);
+            await _context.AddAsync(pelea);
+        }
+    }
+
+    /// <summary>
+    /// Realiza la carga de datos del usuario desde el servidor y los guarda en la base de datos local.
+    /// Actualiza el progreso durante el proceso.
+    /// </summary>
     public async Task CargarDatosAsync()
     {
         try
@@ -53,19 +158,10 @@ public class PantallaCargaViewModel : BaseViewModel
 
             using var stream = cliente.GetStream();
 
-            var mensaje = new MensajesModuloLogin(
-                EnumOrigen.RecuperarDatos,
-                EnumTipoRespuesta.Recuperar,
-                [new Propiedad(EnumTipoValor.NombreUsuario, _nombreUsuario.Trim())],
-                null
-            );
-
-            var ajustesJson = new JsonSerializerSettings();
+            JsonSerializerSettings ajustesJson = new ();
             ajustesJson.Converters.Add(new StringEnumConverter());
 
-            string contenido = JsonConvert.SerializeObject(mensaje, Formatting.Indented, ajustesJson);
-            byte[] datosEnvio = Encoding.UTF8.GetBytes(contenido);
-            await stream.WriteAsync(datosEnvio);
+            await EscribirMensaje(stream, PrepararMensaje(), ajustesJson);
 
             string respuestaJson = await RecibirRespuestaServidor(stream);
 
@@ -95,64 +191,26 @@ public class PantallaCargaViewModel : BaseViewModel
             if (respuestaServidor.Respuesta != EnumRespuesta.Recuperando)
                 throw new Exception("La respuesta del servidor no es la esperada.");
 
-            
             Progreso = 0.5; // Simula un progreso del 50% al recibir la respuesta inicial.
 
             string respuestaJsonDatosUSuario = await RecibirRespuestaServidor(stream);
             Debug.WriteLine($"Respuesta del servidor: {respuestaJsonDatosUSuario}");
-            MandarDatosUsuario? mandarDatosUsuario = 
-                    JsonConvert.DeserializeObject<MandarDatosUsuario?>(respuestaJsonDatosUSuario);
-            // Procesar los datos del usuario.
-            Usuario usuario = ConversorDatosUsuario
-                .MapUsuario(mandarDatosUsuario);
-            _context.Add(usuario); 
+            MandarDatosUsuario mandarDatosUsuario =
+                    JsonConvert.DeserializeObject<MandarDatosUsuario?>(respuestaJsonDatosUSuario) 
+                    ?? throw new Exception("Los datos del usuario mandados desde el servidor son nulos o se ha vuelto null al deserializar.");
 
-            if (mandarDatosUsuario.Personajes.Count > 0)
-            {
-                foreach (var personajeDto in mandarDatosUsuario.Personajes)
-                {
-                    Personaje personaje = ConversorDatosUsuario.MapPersonaje(personajeDto);
-                    _context.Add(personaje);
-                }
-            }
+            await ProcesarDatosUsuario(mandarDatosUsuario);
 
-            if (mandarDatosUsuario.Habilidades.Count > 0)
-            {
-                foreach (var habilidadeDto in mandarDatosUsuario.Habilidades)
-                 {
-                    Habilidade habilidade = ConversorDatosUsuario.MapHabilidade(habilidadeDto);
-                    _context.Add(habilidade);
-                }
-            }
-
-            if (mandarDatosUsuario.PersonajeUsuarios.Count > 0)
-            {
-                foreach (var personajeUsuarioDto in mandarDatosUsuario.PersonajeUsuarios)
-                {
-                    PersonajeUsuario personajeUsuario = ConversorDatosUsuario.MapPersonajeUsuario(personajeUsuarioDto);
-                    _context.Add(personajeUsuario);
-                }
-            }
-
-            if (mandarDatosUsuario.Equipo != null)
-            {
-                Equipo equipo = ConversorDatosUsuario.MapEquipo(mandarDatosUsuario.Equipo);
-                _context.Add(equipo);
-            }
-
-            foreach (var peleaDTO in mandarDatosUsuario.Peleas)
-            {
-                Pelea pelea = ConversorDatosUsuario.MapPelea(peleaDTO);
-                _context.Add(pelea);
-            }
-
-            _context.SaveChanges(); 
+            await _context.SaveChangesAsync();
 
             Progreso = 0.6;
+            Thread.Sleep(10);
             Progreso = 0.7;
+            Thread.Sleep(10);
             Progreso = 0.8;
             Thread.Sleep(1000);
             Progreso = 0.9;
+            Thread.Sleep(10);
             Progreso = 1;
 
             // Cambiar de pantalla a la pantalla de inicio.
@@ -165,8 +223,8 @@ public class PantallaCargaViewModel : BaseViewModel
         catch (SocketException ex)
         {
             Debug.WriteLine($"Error de conexión: {ex.Message}");
-        } 
-        catch(JsonException)
+        }
+        catch (JsonException)
         {
             await Application.Current.MainPage
                 .Navigation
@@ -174,6 +232,12 @@ public class PantallaCargaViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Recibe la respuesta del servidor a través del stream proporcionado.
+    /// </summary>
+    /// <param name="stream">Stream de red para leer la respuesta.</param>
+    /// <returns>Cadena JSON recibida del servidor.</returns>
+    /// <exception cref="Exception">Se lanza si no se recibe ningún mensaje del servidor.</exception>
     private async static Task<string> RecibirRespuestaServidor(Stream stream)
     {
         using MemoryStream lector = new();
@@ -181,20 +245,19 @@ public class PantallaCargaViewModel : BaseViewModel
 
         int bytesRead = 0;
         string? contenidoLeido = null;
-        while (true)
+        do
         {
             int leidos = await stream.ReadAsync(buffer);
 
-            lector.Write(buffer, 0, leidos);
+            await lector.WriteAsync(buffer);
             bytesRead += leidos;
 
             // Convertimos el contenido leído hasta ahora a string
             contenidoLeido = Encoding.UTF8.GetString(lector.ToArray());
-
-            if (contenidoLeido.Contains("\r\n")) break;
         }
+        while (!contenidoLeido.Contains("\r\n"));
 
-        if (contenidoLeido == null) 
+        if (contenidoLeido == null)
             throw new Exception("No he liedo nada del mensaje del servidor");
 
         return contenidoLeido;

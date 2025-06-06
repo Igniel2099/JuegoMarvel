@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace JuegoMarvel;
+namespace JuegoMarvel.ClasesBase;
 
 public class BaseViewModel : INotifyPropertyChanged
 {

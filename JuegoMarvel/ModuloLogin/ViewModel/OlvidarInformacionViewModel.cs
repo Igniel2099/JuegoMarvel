@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.Services;
 
@@ -10,6 +11,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 /// </summary>
 public class OlvidarInformacionViewModel : BaseViewModel
 {
+    #region camposViewModel
+
     /// <summary>
     /// Propiedad privada del correo electronico.
     /// </summary>
@@ -66,6 +69,9 @@ public class OlvidarInformacionViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+    #endregion
+
+    #region Comandos
 
     /// <summary>
     /// Comando para enviar el correo de recuperación.
@@ -81,6 +87,7 @@ public class OlvidarInformacionViewModel : BaseViewModel
     /// Comando para navegar hacia atrás en la navegación.
     /// </summary>
     public ComandoNavegarVolverAtras ComandoNavVolverAtras { get; set; }
+    #endregion
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="OlvidarInformacionViewModel"/>.

@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using System.Collections.ObjectModel;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
@@ -9,6 +10,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 /// </summary>
 public class PopupErroresViewModel : BaseViewModel
 {
+    #region CamposViewModel
+
     /// <summary>
     /// Propieda privada del titulo de la pantalla.
     /// </summary>
@@ -71,6 +74,7 @@ public class PopupErroresViewModel : BaseViewModel
             }
         }
     }
+    #endregion
 
     /// <summary>
     /// Colección de mensajes de error a mostrar en el popup.

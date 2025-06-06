@@ -1,13 +1,26 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvelData.Data;
 using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
 
+/// <summary>
+/// ViewModel principal para la pantalla de inicio.
+/// Gestiona los datos del usuario y los comandos de navegación.
+/// </summary>
 public class InicioViewModel : BaseViewModel
 {
+    #region CamposViewModel
+
+    /// <summary>
+    /// Propiedad privada del nombre de usuario
+    /// </summary>
     private string _nombreUsuario;
 
+    /// <summary>
+    /// Nombre del usuario actual.
+    /// </summary>
     public string NombreUsuario
     {
         get => _nombreUsuario;
@@ -19,7 +32,13 @@ public class InicioViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad Privada del Nivel.
+    /// </summary>
     private string _nivel;
+    /// <summary>
+    /// Nivel actual del usuario.
+    /// </summary>
     public string Nivel
     {
         get => _nivel;
@@ -31,7 +50,13 @@ public class InicioViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Propiedad privada de los puntos
+    /// </summary>
     private string _puntos;
+    /// <summary>
+    /// Puntos actuales del usuario.
+    /// </summary>
     public string Puntos
     {
         get => _puntos;
@@ -42,7 +67,14 @@ public class InicioViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+
+    /// <summary>
+    /// Propiedad privada de las monedas.
+    /// </summary>
     private string _monedas;
+    /// <summary>
+    /// Monedas actuales del usuario.
+    /// </summary>
     public string Monedas
     {
         get => _monedas;
@@ -53,16 +85,19 @@ public class InicioViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
+    #endregion
 
-
-    public ICommand ComandoNavAyuda { get; set; }
-    public ICommand ComandoNavConfiguracion { get; set; }
-
-    public ICommand ComandoNavEmpezar { get; set; }
-
+    /// <summary>
+    /// Comando principal de navegación.
+    /// </summary>
     public ComandoNavegar ComandoNav { get; set; }
 
-
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="InicioViewModel"/> con los datos del usuario y el contexto.
+    /// Inicializo el comando navegar, obtendo el usuario de la base de datos, he inicializo los campos.
+    /// </summary>
+    /// <param name="configuracion">Configuración de la aplicación.</param>
+    /// <param name="context">Contexto de la base de datos.</param>
     public InicioViewModel(AppSettings configuracion, BbddjuegoMarvelContext context)
     {
         ComandoNav = new ComandoNavegar(context);
@@ -76,8 +111,10 @@ public class InicioViewModel : BaseViewModel
         _monedas = primerUsuario.Monedas.ToString();
     }
 
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="InicioViewModel"/> sin datos.
+    /// </summary>
     public InicioViewModel()
     {
     }
 }
-

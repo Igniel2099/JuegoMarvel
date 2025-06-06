@@ -7,12 +7,24 @@ using JuegoMarvel.ModuloTienda.ViewModel;
 using JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel;
 using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
+using JuegoMarvel.ClasesBase;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
 
+/// <summary>
+/// Comando para gestionar la navegación entre las diferentes páginas principales de la aplicación.
+/// </summary>
 public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
 {
+    /// <summary>
+    /// Contexto de la base de datos utilizado para inicializar los ViewModels de las páginas.
+    /// </summary>
     private readonly BbddjuegoMarvelContext _context = context;
+
+    /// <summary>
+    /// Ejecuta la navegación a la página correspondiente según el nombre recibido como parámetro.
+    /// </summary>
+    /// <param name="parameter">Nombre de la página a la que se desea navegar.</param>
     public async override void Execute(object? parameter)
     {
         if (parameter is string pageName)
@@ -31,7 +43,6 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                     break;
 
                 case "Tienda":
-
                     TiendaViewModel tVm = new(_context);
                     await tVm.CargarDatosDelView();
                     await nav.PushModalAsync(new Tienda(tVm));

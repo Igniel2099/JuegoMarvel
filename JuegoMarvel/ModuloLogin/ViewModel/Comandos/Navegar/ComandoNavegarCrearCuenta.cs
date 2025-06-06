@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
@@ -9,7 +10,14 @@ namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
 /// </summary>
 public partial class ComandoNavegarCrearCuenta : BaseCommand
 {
+    /// <summary>
+    /// Propiedad Privada de la configuración de la app
+    /// </summary>
     private readonly AppSettings _settings;
+
+    /// <summary>
+    /// Propiedad privada del Comprobador de dominios
+    /// </summary>
     private readonly ComprobadorDominio _comprobador;
 
     /// <summary>

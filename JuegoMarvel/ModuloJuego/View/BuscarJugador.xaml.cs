@@ -1,10 +1,16 @@
 using JuegoMarvel.ModuloJuego.ViewModel;
-using Microsoft.Maui.Controls;
 
 namespace JuegoMarvel.ModuloJuego.View;
 
+/// <summary>
+/// Página para buscar un jugador y mostrar animaciones de espera.
+/// </summary>
 public partial class BuscarJugador : ContentPage
 {
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="BuscarJugador"/> con el ViewModel proporcionado.
+    /// </summary>
+    /// <param name="vm">Instancia de <see cref="BuscarJugadorViewModel"/> para el binding de la vista.</param>
     public BuscarJugador(BuscarJugadorViewModel vm)
     {
         InitializeComponent();
@@ -14,7 +20,7 @@ public partial class BuscarJugador : ContentPage
     }
 
     /// <summary>
-    /// Animacion Infinita de la animacion de los bordes
+    /// Inicia una animación infinita de los bordes, repitiendo la secuencia indefinidamente.
     /// </summary>
     private async void RepetirAnimacionBorder()
     {
@@ -26,10 +32,9 @@ public partial class BuscarJugador : ContentPage
     }
 
     /// <summary>
-    /// Anima los bordes subiendolos arriba y abajo de manera secuencial,
-    /// uno por uno
+    /// Anima los bordes subiéndolos arriba y abajo de manera secuencial, uno por uno.
     /// </summary>
-    /// <returns>Devuelve un aviso de que la animación ha terminado</returns>
+    /// <returns>Una tarea que representa la finalización de la animación secuencial.</returns>
     private async Task AnimarBordersSecuencialmente()
     {
         var borders = new[] { Border1, Border2, Border3 };

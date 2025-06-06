@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ClasesBase;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using MensajesServidor;
@@ -8,18 +9,43 @@ using System.Text;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 
+/// <summary>
+/// Comando para confirmar el cambio de contraseña de un usuario.
+/// Valida la nueva contraseña y, si es válida, la envía al servidor para su actualización.
+/// Muestra mensajes de éxito o error mediante popups y gestiona la navegación tras el proceso.
+/// </summary>
+/// <remarks>
+/// Este comando utiliza <see cref="CambiarContrasenaViewModel"/> para obtener los datos de la vista y <see cref="AppSettings"/>
+/// para la configuración de la conexión al servidor. Utiliza <see cref="ValidadorContrasena"/> para validar la política de contraseñas.
+/// </remarks>
 public class ComandoConfirmarCambiarContrasena(CambiarContrasenaViewModel vm, AppSettings settings) : BaseCommand
 {
+    /// <summary>
+    /// Propiedad privada del View Model
+    /// </summary>
     private readonly CambiarContrasenaViewModel _vm = vm;
+
+    /// <summary>
+    /// Propiedad Privada de la configuración de la app
+    /// </summary>
     private readonly AppSettings _settings = settings;
+
+    /// <summary>
+    /// Propiedad privada del Validador de constraseñas
+    /// </summary>
     private readonly ValidadorContrasena _validadorContrasena = new();
 
+    /// <summary>
+    /// Ejecuta la lógica de validación y actualización de la contraseña.
+    /// Si la contraseña es válida, la envía al servidor y muestra un popup de éxito; si no, muestra un popup de error.
+    /// </summary>
+    /// <param name="parameter">Debe ser una instancia de <see cref="CambiarContrasena"/> (la vista actual).</param>
     public override async void Execute(object? parameter)
     {
-        if ( parameter is CambiarContrasena cambiarContrasena)
+        if (parameter is CambiarContrasena cambiarContrasena)
         {
-            var (contrasenOk, mensajeContrasena) =  _validadorContrasena.Validar(_vm.Contrasena, _vm.ConfirmarContrasena);
-            
+            var (contrasenOk, mensajeContrasena) = _validadorContrasena.Validar(_vm.Contrasena, _vm.ConfirmarContrasena);
+
             _vm.EstadoImgContrasena = contrasenOk;
             _vm.EstadoImgConfirmarContrasena = contrasenOk;
             // Si es verdadero mandarle al servidor la contraseña para guardarlo.
@@ -76,19 +102,18 @@ public class ComandoConfirmarCambiarContrasena(CambiarContrasenaViewModel vm, Ap
                 }
                 catch (SocketException)
                 {
-                    var popup = new PopupErrores(new PopupErroresViewModel("Error al Cambiar Contraseña","Error al conectar con el Servidor"));
+                    var popup = new PopupErrores(new PopupErroresViewModel("Error al Cambiar Contraseña", "Error al conectar con el Servidor"));
 
                     await cambiarContrasena.ShowPopupAsync(popup);
                 }
             }
             else
             {
-                var popup = new PopupErrores(new PopupErroresViewModel("Error al Cambiar Contraseña",mensajeContrasena));
+                var popup = new PopupErrores(new PopupErroresViewModel("Error al Cambiar Contraseña", mensajeContrasena));
 
                 await cambiarContrasena.ShowPopupAsync(popup);
                 // Mostrar popup de error de validacion de contrasena
             }
         }
     }
-
 }

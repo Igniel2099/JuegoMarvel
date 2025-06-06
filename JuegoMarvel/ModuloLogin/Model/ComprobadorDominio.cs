@@ -1,19 +1,23 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Net;
 using DnsClient;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace JuegoMarvel.ModuloLogin.Model;
 
+/// <summary>
+/// Proporciona utilidades para comprobar si un dominio de correo electrónico puede recibir mensajes,
+/// consultando los registros DNS MX, A o AAAA y utilizando caché para mejorar el rendimiento.
+/// </summary>
 public class ComprobadorDominio
 {
     private readonly LookupClient _dnsClient;
     private readonly IMemoryCache _cache;
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(10);
 
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="ComprobadorDominio"/> con un sistema de caché.
+    /// </summary>
+    /// <param name="cache">Instancia de <see cref="IMemoryCache"/> para almacenar resultados de dominios consultados.</param>
     public ComprobadorDominio(IMemoryCache cache)
     {
         _cache = cache;
@@ -21,9 +25,9 @@ public class ComprobadorDominio
         // 1. Definimos los endpoints de los servidores DNS
         var dnsEndpoints = new[]
         {
-        new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53),   // Google DNS
-        new IPEndPoint(IPAddress.Parse("1.1.1.1"), 53)    // Cloudflare DNS
-    };
+            new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53),   // Google DNS
+            new IPEndPoint(IPAddress.Parse("1.1.1.1"), 53)    // Cloudflare DNS
+        };
 
         // 2. Creamos las opciones pasando los endpoints (auto-resolve queda en false)
         var options = new LookupClientOptions(dnsEndpoints)
@@ -36,6 +40,13 @@ public class ComprobadorDominio
         _dnsClient = new LookupClient(options);
     }
 
+    /// <summary>
+    /// Comprueba si el dominio de un correo electrónico puede recibir mensajes (tiene registros MX, A o AAAA).
+    /// Utiliza caché para evitar consultas repetidas.
+    /// </summary>
+    /// <param name="correoElectronico">Correo electrónico a comprobar.</param>
+    /// <param name="cancellationToken">Token de cancelación opcional.</param>
+    /// <returns>True si el dominio puede recibir correos, false en caso contrario o si el correo es inválido.</returns>
     public async Task<bool> ComprobarDominioCorreoElectronicoAsync(
         string correoElectronico,
         CancellationToken cancellationToken = default)
@@ -73,6 +84,7 @@ public class ComprobadorDominio
         }
         catch
         {
+            // Si ocurre un error de red o DNS, se asume que el dominio es válido para evitar falsos negativos.
             puedeRecibir = true;
         }
 

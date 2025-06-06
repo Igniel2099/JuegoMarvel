@@ -2,14 +2,24 @@ using JuegoMarvel.ModuloAuxiliares.ModuloCarga.ViewModels;
 
 namespace JuegoMarvel.ModuloAuxiliares.ModuloCarga;
 
+/// <summary>
+/// View de contenido que muestra la pantalla de carga y gestiona la animación y la carga de datos.
+/// </summary>
 public partial class PantallaDeCarga : ContentPage
 {
-	public PantallaDeCarga(PantallaCargaViewModel vm)
-	{
-		InitializeComponent();
-		BindingContext = vm;
+    /// <summary>
+    /// Inicializa una nueva instancia de <see cref="PantallaDeCarga"/> con el ViewModel proporcionado.
+    /// </summary>
+    /// <param name="vm">Instancia de <see cref="PantallaCargaViewModel"/> para el binding de la vista.</param>
+    public PantallaDeCarga(PantallaCargaViewModel vm)
+    {
+        InitializeComponent();
+        BindingContext = vm;
     }
 
+    /// <summary>
+    /// Inicia la animación de rotación de la imagen de carga de forma indefinida.
+    /// </summary>
     private async void StartRotation()
     {
         while (true)
@@ -19,6 +29,9 @@ public partial class PantallaDeCarga : ContentPage
         }
     }
 
+    /// <summary>
+    /// Se ejecuta cuando la página aparece en pantalla. Inicia la animación y la carga de datos en paralelo.
+    /// </summary>
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -33,4 +46,4 @@ public partial class PantallaDeCarga : ContentPage
             await Task.WhenAll(tareaRotacion, tareaCarga);
         }
     }
-} 
+}

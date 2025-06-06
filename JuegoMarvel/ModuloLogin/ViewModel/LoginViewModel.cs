@@ -1,4 +1,5 @@
-﻿using JuegoMarvel.ModuloLogin.Model;
+﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
 using JuegoMarvel.Services;
@@ -16,6 +17,8 @@ namespace JuegoMarvel.ModuloLogin.ViewModel;
 /// </summary>
 public class LoginViewModel : BaseViewModel
 {
+    #region CamposViewModel
+
     /// <summary>
     /// Propiedad privada del Nombre de usuario
     /// </summary>
@@ -55,7 +58,9 @@ public class LoginViewModel : BaseViewModel
             ComandoLogearse.Contrasena = value!;
         }
     }
+    #endregion
 
+    #region Comandos
 
     /// <summary>
     /// Comando para realizar el login.
@@ -73,6 +78,7 @@ public class LoginViewModel : BaseViewModel
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
 
     public RelayCommand ComandoBorraDatos { get; set; } // Borrar esto solo para debuggear
+    #endregion
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="LoginViewModel"/>.
@@ -92,7 +98,6 @@ public class LoginViewModel : BaseViewModel
         //Momentaneo 
         NombreUsuario = "Sentry";
         Contrasena = "Alexander1234567890_";
-        
         
         ComandoLogearse.Nombre = NombreUsuario!;
 

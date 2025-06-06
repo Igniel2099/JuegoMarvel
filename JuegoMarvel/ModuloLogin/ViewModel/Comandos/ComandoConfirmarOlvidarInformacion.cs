@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using JuegoMarvel.ClasesBase;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.View;
 using MensajesServidor;
@@ -9,13 +10,30 @@ using System.Text;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 
+/// <summary>
+/// Comando para confirmar el código de recuperación de cuenta introducido por el usuario.
+/// Valida el formato del código, consulta al servidor y gestiona la navegación y los mensajes de error o éxito.
+/// </summary>
+/// <remarks>
+/// Utiliza <see cref="OlvidarInformacionViewModel"/> para obtener los datos de la vista y <see cref="AppSettings"/>
+/// para la configuración de la conexión al servidor.
+/// </remarks>
 public class ComandoConfirmarOlvidarInformacion(
     OlvidarInformacionViewModel vm,
     AppSettings settings) : BaseCommand
 {
+    /// <summary>
+    /// Propiedad privada del View Model de Olvidar Informacion
+    /// </summary>
     private readonly OlvidarInformacionViewModel _vm = vm;
     private readonly AppSettings _settings = settings;
 
+    /// <summary>
+    /// Ejecuta la lógica de validación y comprobación del código de confirmación.
+    /// Si el código es válido y existe en el servidor, navega a la pantalla de cambio de contraseña.
+    /// Si no, muestra un popup de error.
+    /// </summary>
+    /// <param name="parameter">Debe ser una instancia de <see cref="OlvidarInformacion"/> (la vista actual).</param>
     public override async void Execute(object? parameter)
     {
         if (parameter is OlvidarInformacion olvidarInformacion)
@@ -53,7 +71,7 @@ public class ComandoConfirmarOlvidarInformacion(
                 var respuestaServidor = JsonConvert.DeserializeObject<MensajesModuloLogin?>(respuestaJson);
                 if (respuestaServidor?.Respuesta is not null)
                 {
-                    if(respuestaServidor.Respuesta == EnumRespuesta.Existente)
+                    if (respuestaServidor.Respuesta == EnumRespuesta.Existente)
                     {
                         var popup = new PopupErrores(new PopupErroresViewModel("Codigo de Confirmacion Correcto"));
                         await olvidarInformacion.ShowPopupAsync(popup);
@@ -90,10 +108,13 @@ public class ComandoConfirmarOlvidarInformacion(
         }
     }
 
+    /// <summary>
+    /// Valida el formato del código de confirmación.
+    /// </summary>
+    /// <param name="CodigoConfirmacion">Código de confirmación a validar.</param>
+    /// <returns>True si el código es nulo o vacío o no tiene longitud 6; false si tiene longitud 6 y no es nulo o vacío.</returns>
     public bool FormatoCodigoConfirmacion(string? CodigoConfirmacion)
     {
         return string.IsNullOrEmpty(CodigoConfirmacion) && CodigoConfirmacion!.Length == 6;
     }
-
 }
-  

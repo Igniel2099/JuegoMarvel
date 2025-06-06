@@ -7,15 +7,21 @@ using System.Text;
 namespace JuegoMarvel.ModuloLogin.Model;
 
 /// <summary>
-/// Valida la disponibilidad y formato del nombre de usuario en el servidor.
+/// Valida la disponibilidad y el formato del nombre de usuario consultando al servidor.
 /// </summary>
 public class ValidadorNombreUsuario(AppSettings configuracion)
 {
     private readonly AppSettings _configuracion = configuracion;
 
     /// <summary>
-    /// Verifica que el nombre de usuario no esté vacío y consulte al servidor.
+    /// Verifica que el nombre de usuario no esté vacío y consulta al servidor si está disponible.
     /// </summary>
+    /// <param name="nombreUsuario">Nombre de usuario a validar.</param>
+    /// <returns>
+    /// Una tupla (EsValido, Mensaje):
+    /// - EsValido: true si el nombre es válido y no existe en el servidor, false en caso contrario.
+    /// - Mensaje: mensaje de error o null si es válido.
+    /// </returns>
     public async Task<(bool EsValido, string? Mensaje)> ValidarAsync(string nombreUsuario)
     {
         if (string.IsNullOrWhiteSpace(nombreUsuario))
@@ -24,6 +30,15 @@ public class ValidadorNombreUsuario(AppSettings configuracion)
         return await ComprobarExistenciaAsync(nombreUsuario);
     }
 
+    /// <summary>
+    /// Consulta al servidor si el nombre de usuario ya existe.
+    /// </summary>
+    /// <param name="nombreUsuario">Nombre de usuario a comprobar.</param>
+    /// <returns>
+    /// Una tupla (bool, string?):
+    /// - bool: true si el nombre NO existe y es válido, false si ya existe o hay error.
+    /// - string?: mensaje de error si ya existe o si hay error, null si es válido.
+    /// </returns>
     private async Task<(bool, string?)> ComprobarExistenciaAsync(string nombreUsuario)
     {
         try

@@ -1,4 +1,4 @@
-﻿using JuegoMarvel.ModuloJuego.View;
+﻿using JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.View;
 using JuegoMarvel.Views;
 
 namespace JuegoMarvel
@@ -11,17 +11,22 @@ namespace JuegoMarvel
         /// <summary>
         /// Propiedad privada que almacena la instancia de la página de inicio (login) inyectada por el contenedor de dependencias.
         /// </summary>
-        private readonly Login _loginPage;
+        private readonly CargaInicial _cargaPage;
+
+        public IServiceProvider Services { get; }
 
         /// <summary>
         /// Constructor que recibe la página de inicio (login) como dependencia.
         /// </summary>
-        /// <param name="loginPage">Instancia de la página de login proporcionada por inyección de dependencias.</param>
-        public App(Login loginPage)
+        /// <param name="cargaPage">Instancia de la página de login proporcionada por inyección de dependencias.</param>
+        public App(IServiceProvider serviceProvider, CargaInicial cargaPage)
         {
             InitializeComponent();
-            _loginPage = loginPage;
+            _cargaPage = cargaPage;
+            Services = serviceProvider;
         }
+
+
 
         /// <summary>
         /// Crea e inicializa la ventana principal de la aplicación.
@@ -31,7 +36,7 @@ namespace JuegoMarvel
         /// <returns>Una instancia de <see cref="Window"/> con la página de inicio como contenido.</returns>
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var window = new Window(_loginPage)
+            var window = new Window(_cargaPage)
             {
                 Title = "Juego Marvel"
             };

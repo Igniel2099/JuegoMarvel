@@ -62,7 +62,9 @@
             <Grid ColumnDefinitions="auto,*,auto">
 
                 <HorizontalStackLayout Grid.Column="0">
-                    <CheckBox Color="Black" />
+                    <CheckBox
+                        IsChecked="{Binding MantenerSesion}"
+                        Color="Black" />
                     <Label
                         Style="{DynamicResource TextosGenerales}"
                         Text="Mantener Sesión"
@@ -140,7 +142,9 @@
             Aspect="AspectFill"
             Source="marvel.png" />
 
-        <HorizontalStackLayout Grid.Column="1" Spacing="60">
+        <HorizontalStackLayout
+            Grid.Column="1"
+            Spacing="60">
             <Button
                 BackgroundColor="Red"
                 Clicked="Button_Clicked"
@@ -148,12 +152,6 @@
                 Text="RecuperarBaseDatos"
                 TextColor="White"
                 WidthRequest="200" />
-            <Button
-                Command="{Binding ComandoBorraDatos}"
-                HeightRequest="50"
-                Text="BorrarDatos"
-                WidthRequest="130" />
-
         </HorizontalStackLayout>
 
     </Grid>

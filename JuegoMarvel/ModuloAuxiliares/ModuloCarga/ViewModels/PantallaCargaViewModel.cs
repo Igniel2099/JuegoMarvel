@@ -245,17 +245,18 @@ public class PantallaCargaViewModel : BaseViewModel
 
         int bytesRead = 0;
         string? contenidoLeido = null;
-        do
+        while (true)
         {
             int leidos = await stream.ReadAsync(buffer);
 
-            await lector.WriteAsync(buffer);
+            lector.Write(buffer, 0, leidos);
             bytesRead += leidos;
 
             // Convertimos el contenido leído hasta ahora a string
             contenidoLeido = Encoding.UTF8.GetString(lector.ToArray());
+
+            if (contenidoLeido.Contains("\r\n")) break;
         }
-        while (!contenidoLeido.Contains("\r\n"));
 
         if (contenidoLeido == null)
             throw new Exception("No he liedo nada del mensaje del servidor");

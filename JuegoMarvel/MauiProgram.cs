@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.View;
+using JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.ViewModel;
 using JuegoMarvel.ModuloInicio.ViewModel;
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel;
@@ -72,7 +74,11 @@ public static class MauiProgram
         /// Registra páginas y ViewModels que se inyectarán por dependencias.
         /// </summary>
         builder.Services
-            .AddTransient<LoginViewModel>();
+            .AddTransient<CargaInicialViewModel>();
+        builder.Services
+            .AddTransient<CargaInicial>();
+        builder.Services
+            .AddSingleton<LoginViewModel>();
         builder.Services
             .AddTransient<Login>();
         builder.Services

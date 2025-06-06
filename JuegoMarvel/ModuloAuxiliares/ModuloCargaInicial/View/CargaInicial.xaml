@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.View.CargaInicial"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.ViewModel"
+    Title="CargaInicial"
+    x:DataType="viewModel:CargaInicialViewModel"
+    Background="Black">
+
+    <Grid>
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            Spacing="10"
+            VerticalOptions="Center">
+            <Image
+                Source="splash_juego_img.png"
+                WidthRequest="100" />
+            <Image
+                x:Name="ImagenDeCarga"
+                Source="icono_circulo_carga.png"
+                WidthRequest="50" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

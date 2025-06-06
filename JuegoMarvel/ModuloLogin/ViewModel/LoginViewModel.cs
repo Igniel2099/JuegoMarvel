@@ -58,6 +58,20 @@ public class LoginViewModel : BaseViewModel
             ComandoLogearse.Contrasena = value!;
         }
     }
+
+    private bool _mantenerSesion;
+    public bool MantenerSesion
+    {
+        get => _mantenerSesion;
+        set
+        {
+            if (_mantenerSesion == value) return;
+            _mantenerSesion = value;
+            Preferences.Set("mantener_sesion", value);
+            OnPropertyChanged();
+        }
+    }
+
     #endregion
 
     #region Comandos
@@ -77,7 +91,6 @@ public class LoginViewModel : BaseViewModel
     /// </summary>
     public ComandoNavegarOlvidarInformacion ComandoNavOlvidarInformacion { get; set; }
 
-    public RelayCommand ComandoBorraDatos { get; set; } // Borrar esto solo para debuggear
     #endregion
 
     /// <summary>
@@ -88,32 +101,21 @@ public class LoginViewModel : BaseViewModel
     /// <param name="comprobador">Comprobador de dominio para validaciones.</param>
     public LoginViewModel(BbddjuegoMarvelContext context, AppSettings settings, ComprobadorDominio comprobador)
     {
-        ComandoLogearse = 
-            new ComandoLogearse(settings, context);
-        ComandoNavCrearCuenta = 
+        ComandoLogearse =
+            new ComandoLogearse(settings, context, this);
+        ComandoNavCrearCuenta =
             new ComandoNavegarCrearCuenta(settings, comprobador);
-        ComandoNavOlvidarInformacion = 
+        ComandoNavOlvidarInformacion =
             new ComandoNavegarOlvidarInformacion(settings, comprobador);
+
+        _mantenerSesion = false;
 
         //Momentaneo 
         NombreUsuario = "Sentry";
         Contrasena = "Alexander1234567890_";
-        
+
         ComandoLogearse.Nombre = NombreUsuario!;
 
         ComandoLogearse.Contrasena = Contrasena!;
-
-        ComandoBorraDatos = new RelayCommand(() =>
-            {
-                context.Database.ExecuteSqlRaw("DELETE FROM Usuario");
-                context.Database.ExecuteSqlRaw("DELETE FROM Habilidade");
-                context.Database.ExecuteSqlRaw("DELETE FROM Equipo");
-                context.Database.ExecuteSqlRaw("DELETE FROM PersonajeUsuario");
-                context.Database.ExecuteSqlRaw("DELETE FROM Personaje");
-                context.Database.ExecuteSqlRaw("DELETE FROM Pelea");
-                context.SaveChanges();
-                Debug.WriteLine("\n\n\nHecho Borrado datos de la Base de datos\n\n\n");
-            }
-        );
     }
 }

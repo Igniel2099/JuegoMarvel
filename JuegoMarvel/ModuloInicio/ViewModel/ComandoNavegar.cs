@@ -35,7 +35,7 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
             switch (pageName)
             {
                 case "Configuración":
-                    await nav.PushModalAsync(new ConfiguracionView(new ConfiguracionViewModel()));
+                    await nav.PushModalAsync(new ConfiguracionView(new ConfiguracionViewModel(_context)));
                     break;
 
                 case "Ayuda":

@@ -23,8 +23,10 @@ namespace JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 /// Utiliza <see cref="AppSettings"/> para la configuración de la conexión al servidor y <see cref="BbddjuegoMarvelContext"/>
 /// para el acceso a la base de datos local. Muestra popups de error o éxito y navega a la pantalla de carga si el login es correcto.
 /// </remarks>
-public class ComandoLogearse(AppSettings configuracion, BbddjuegoMarvelContext context) : BaseCommand
+public class ComandoLogearse(AppSettings configuracion, BbddjuegoMarvelContext context, LoginViewModel vm) : BaseCommand
 {
+    private readonly LoginViewModel _vm = vm;
+
     /// <summary>
     /// Propiedad privada del configurador de la aplicación
     /// </summary>
@@ -102,6 +104,7 @@ public class ComandoLogearse(AppSettings configuracion, BbddjuegoMarvelContext c
                     bool existe = respuestaServidor.Respuesta == EnumRespuesta.Existente;
                     if (existe)
                     {
+                        Preferences.Get("mantener_sesion", _vm.MantenerSesion);
                         var popup = new PopupErrores(
                             new PopupErroresViewModel(
                                 "HAS INICIADO SESION"

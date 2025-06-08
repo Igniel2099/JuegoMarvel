@@ -770,6 +770,7 @@
 
 	<ItemGroup>
 	  <Folder Include="ModuloAuxiliares\ModuloAyuda\" />
+	  <Folder Include="Resources\Images\Juego\" />
 	</ItemGroup>
 
 	<ItemGroup>

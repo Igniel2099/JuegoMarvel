@@ -54,6 +54,10 @@ public class HabilidadImg
     [JsonPropertyName("Distancia")]
     public string Distancia { get; set; }
 
+    [JsonPropertyName("Estamina")]
+
+    public int Estamina { get; set; }
+
     /// <summary>
     /// Información de las casillas asociadas a la habilidad (original, pulsada, deshabilitada).
     /// </summary>

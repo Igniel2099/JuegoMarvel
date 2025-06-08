@@ -16,9 +16,9 @@
 
     <Grid>
 
+        <Image Source="fondo_informacion.png" />
         <AbsoluteLayout>
             <!--  Imagen de fondo  -->
-            <Image Source="fondo_informacion.png" />
 
             <!--  Boton cerrar  -->
             <ImageButton

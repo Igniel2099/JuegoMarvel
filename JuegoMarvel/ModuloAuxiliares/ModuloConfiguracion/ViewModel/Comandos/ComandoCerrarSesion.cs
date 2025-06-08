@@ -4,7 +4,6 @@ using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
 using Microsoft.EntityFrameworkCore;
 using JuegoMarvel.ModuloLogin.ViewModel;
-using Android.Print;
 
 namespace JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel.Comandos;
 

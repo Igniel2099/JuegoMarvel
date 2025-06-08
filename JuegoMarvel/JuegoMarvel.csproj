@@ -110,6 +110,13 @@
 	  <None Remove="Resources\Images\Inicio\MenuLateralInicio\icono_usuario.png" />
 	  <None Remove="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
 	  <None Remove="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
+	  <None Remove="Resources\Images\Juego\boton_pegar.png" />
+	  <None Remove="Resources\Images\Juego\contenedor_estadisticas_personaje.png" />
+	  <None Remove="Resources\Images\Juego\contenedor_estadisticas_personaje_contrario.png" />
+	  <None Remove="Resources\Images\Juego\fondo_juego.png" />
+	  <None Remove="Resources\Images\Juego\personaje_seleccion.png" />
+	  <None Remove="Resources\Images\Juego\personjae_contrario_seleccionado.png" />
+	  <None Remove="Resources\Images\Juego\reloj_juego.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
 	  <None Remove="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
@@ -403,6 +410,13 @@
 	  <MauiImage Include="Resources\Images\Inicio\BarMenuTop\icono_usuario.png" />
 	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\fondo_inicio.png" />
 	  <MauiImage Include="Resources\Images\Inicio\PrincipalInicio\img_lateral.png" />
+	  <MauiImage Include="Resources\Images\Juego\boton_pegar.png" />
+	  <MauiImage Include="Resources\Images\Juego\contenedor_estadisticas_personaje.png" />
+	  <MauiImage Include="Resources\Images\Juego\contenedor_estadisticas_personaje_contrario.png" />
+	  <MauiImage Include="Resources\Images\Juego\fondo_juego.png" />
+	  <MauiImage Include="Resources\Images\Juego\personaje_seleccion.png" />
+	  <MauiImage Include="Resources\Images\Juego\personjae_contrario_seleccionado.png" />
+	  <MauiImage Include="Resources\Images\Juego\reloj_juego.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_informacion.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contenedor_titulo.png" />
 	  <MauiImage Include="Resources\Images\Login\CrearCuenta\contener_texto_crearcuenta.svg" />
@@ -716,6 +730,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloJuego\View\BuscarJugador.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ModuloJuego\View\Juego.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ModuloLogin\View\CambiarContrasena.xaml">

@@ -1,14 +1,12 @@
-﻿namespace JuegoMarvel.Services
+﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Controls.Shapes;
+
+namespace JuegoMarvel.Services
 {
-    /// <summary>
-    /// Barra de progreso personalizada que muestra el avance visualmente mediante un <see cref="BoxView"/>.
-    /// Se puede enlazar su propiedad <c>Progress</c> para actualizar dinámicamente el progreso mostrado.
-    /// </summary>
     public class ProgresssBarPersonalizada : ContentView
     {
-        /// <summary>
-        /// Propiedad enlazable (BindableProperty) que representa el valor del progreso (de 0.0 a 1.0).
-        /// </summary>
+        // 1) Progress (0.0 – 1.0)
         public static readonly BindableProperty ProgressProperty =
             BindableProperty.Create(
                 nameof(Progress),
@@ -17,65 +15,127 @@
                 0.0,
                 propertyChanged: OnProgressChanged);
 
-        /// <summary>
-        /// Se ejecuta cuando cambia la propiedad <see cref="Progress"/>.
-        /// Actualiza visualmente la barra de progreso.
-        /// </summary>
-        /// <param name="bindable">Instancia afectada.</param>
-        /// <param name="oldValue">Valor anterior.</param>
-        /// <param name="newValue">Nuevo valor asignado.</param>
-        private static void OnProgressChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((ProgresssBarPersonalizada)bindable).UpdateProgress();
-        }
-
-        /// <summary>
-        /// Propiedad pública que representa el progreso actual de la barra (entre 0.0 y 1.0).
-        /// Se puede enlazar desde XAML o código.
-        /// </summary>
         public double Progress
         {
             get => (double)GetValue(ProgressProperty);
             set => SetValue(ProgressProperty, value);
         }
 
-        /// <summary>
-        /// Propiedad privada que representa visualmente el progreso mediante un <see cref="BoxView"/>.
-        /// </summary>
-        private BoxView progressBar;
+        static void OnProgressChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((ProgresssBarPersonalizada)bindable).UpdateProgress();
 
-        /// <summary>
-        /// Constructor que inicializa la barra de progreso y su estilo visual.
-        /// </summary>
+        // 2) Color dinámico
+        public static readonly BindableProperty ProgressColorProperty =
+            BindableProperty.Create(
+                nameof(ProgressColor),
+                typeof(Color),
+                typeof(ProgresssBarPersonalizada),
+                Colors.DarkRed,
+                propertyChanged: OnProgressColorChanged);
+
+        public Color ProgressColor
+        {
+            get => (Color)GetValue(ProgressColorProperty);
+            set => SetValue(ProgressColorProperty, value);
+        }
+
+        static void OnProgressColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var ctrl = (ProgresssBarPersonalizada)bindable;
+            ctrl.progressBorder.Background = new SolidColorBrush((Color)newValue);
+        }
+
+        // 3) CornerRadius dinámico
+        public static readonly BindableProperty CornerRadiusProperty =
+            BindableProperty.Create(
+                nameof(CornerRadius),
+                typeof(float),
+                typeof(ProgresssBarPersonalizada),
+                0f,
+                propertyChanged: OnCornerRadiusChanged);
+
+        public float CornerRadius
+        {
+            get => (float)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
+        }
+
+        static void OnCornerRadiusChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var ctrl = (ProgresssBarPersonalizada)bindable;
+            ctrl.ApplyCornerRadius((float)newValue);
+        }
+
+        // 4) Dirección del progreso (izq->der o der->izq)
+        public static readonly BindableProperty IsReversedProperty =
+            BindableProperty.Create(
+                nameof(IsReversed),
+                typeof(bool),
+                typeof(ProgresssBarPersonalizada),
+                false,
+                propertyChanged: OnIsReversedChanged);
+
+        public bool IsReversed
+        {
+            get => (bool)GetValue(IsReversedProperty);
+            set => SetValue(IsReversedProperty, value);
+        }
+
+        static void OnIsReversedChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var ctrl = (ProgresssBarPersonalizada)bindable;
+            ctrl.UpdateProgress();
+        }
+
+        // Elementos visuales
+        readonly Border trackBorder;
+        readonly Border progressBorder;
+
         public ProgresssBarPersonalizada()
         {
-            progressBar = new BoxView
+            // Track de fondo
+            trackBorder = new Border
             {
-                Color = Colors.DarkRed,
-                HeightRequest = 50,
-                HorizontalOptions = LayoutOptions.Start
+                Background = new SolidColorBrush(Colors.DarkGray),
+                StrokeThickness = 0,
+                Padding = 0
             };
 
-            Content = new Grid
+            // Barra de progreso
+            progressBorder = new Border
             {
-                BackgroundColor = Colors.DarkGray,
-                Children = { progressBar }
+                Background = new SolidColorBrush(ProgressColor),
+                StrokeThickness = 0,
+                Padding = 0,
             };
 
-            // Evento para actualizar la barra si cambia el tamaño del componente
+            // Superponer en un Grid
+            var grid = new Grid();
+            grid.Children.Add(trackBorder);
+            grid.Children.Add(progressBorder);
+            Content = grid;
+
             SizeChanged += (s, e) => UpdateProgress();
-
-            // Inicializa la barra de progreso con el valor actual
+            ApplyCornerRadius(CornerRadius);
             UpdateProgress();
         }
 
-        /// <summary>
-        /// Método privado que actualiza el ancho del <see cref="BoxView"/> en función del valor de <see cref="Progress"/> y del ancho total.
-        /// </summary>
-        private void UpdateProgress()
+        void ApplyCornerRadius(float radius)
         {
-            progressBar.AnchorX = 0; // Alinea la barra al inicio
-            progressBar.WidthRequest = Width * Progress; // Ajusta el ancho según el progreso
+            trackBorder.StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(radius) };
+            progressBorder.StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(radius) };
+        }
+
+        void UpdateProgress()
+        {
+            // Calcula ancho de la barra
+            var width = Width * Progress;
+            progressBorder.WidthRequest = width;
+
+            // Ajusta alineación según la dirección
+            progressBorder.HorizontalOptions = IsReversed
+                ? LayoutOptions.End
+                : LayoutOptions.Start;
         }
     }
 }

@@ -6,6 +6,7 @@
       {
         "Nombre": "MMA con un Ojo",
         "Distancia": "Corta",
+        "Estamina": 8,
         "Casillas": {
           "Original": "cyc_hb_1.png",
           "Pulsada": "cyc_hb_1_pulsada.png",
@@ -15,33 +16,57 @@
           "Estatico": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov1_1.png" },
-              { "path": "cyc_mov1_2.png" }
+              {
+                "path": "cyc_mov1_1.png"
+              },
+              {
+                "path": "cyc_mov1_2.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov1_3.png" },
-              { "path": "cyc_mov1_3.png" }
+              {
+                "path": "cyc_mov1_3.png"
+              },
+              {
+                "path": "cyc_mov1_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "cyc_mov1_3.png" },
-              { "path": "cyc_mov1_3.png" },
-              { "path": "cyc_mov1_4.png" },
-              { "path": "cyc_mov1_5.png" },
-              { "path": "cyc_mov1_6.png" },
-              { "path": "cyc_mov1_7.png" }
+              {
+                "path": "cyc_mov1_3.png"
+              },
+              {
+                "path": "cyc_mov1_3.png"
+              },
+              {
+                "path": "cyc_mov1_4.png"
+              },
+              {
+                "path": "cyc_mov1_5.png"
+              },
+              {
+                "path": "cyc_mov1_6.png"
+              },
+              {
+                "path": "cyc_mov1_7.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov1_8.png" },
-              { "path": "cyc_mov1_8.png" }
+              {
+                "path": "cyc_mov1_8.png"
+              },
+              {
+                "path": "cyc_mov1_8.png"
+              }
             ]
           }
         }
@@ -49,6 +74,7 @@
       {
         "Nombre": "Rasho Lazer",
         "Distancia": "Media",
+        "Estamina": 11,
         "Casillas": {
           "Original": "cyc_hb_2.png",
           "Pulsada": "cyc_hb_2_pulsada.png",
@@ -58,30 +84,48 @@
           "Estatico": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov2_0.png" }
+              {
+                "path": "cyc_mov2_0.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov2_1.png" }
+              {
+                "path": "cyc_mov2_1.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "cyc_mov2_2.png" },
-              { "path": "cyc_mov2_2.png" },
-              { "path": "cyc_mov2_2.png" },
-              { "path": "cyc_mov2_2.png" },
-              { "path": "cyc_mov2_2.png" },
-              { "path": "cyc_mov2_2.png" }
+              {
+                "path": "cyc_mov2_2.png"
+              },
+              {
+                "path": "cyc_mov2_2.png"
+              },
+              {
+                "path": "cyc_mov2_2.png"
+              },
+              {
+                "path": "cyc_mov2_2.png"
+              },
+              {
+                "path": "cyc_mov2_2.png"
+              },
+              {
+                "path": "cyc_mov2_2.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov2_1.png" }
+              {
+                "path": "cyc_mov2_1.png"
+              }
             ]
           }
         }
@@ -89,6 +133,7 @@
       {
         "Nombre": "Rasho Masonico",
         "Distancia": "Larga",
+        "Estamina": 12,
         "Casillas": {
           "Original": "cyc_hb_3.png",
           "Pulsada": "cyc_hb_3_pulsada.png",
@@ -98,35 +143,63 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "cyc_mov3_0.png" },
-              { "path": "cyc_mov3_1.png" }
+              {
+                "path": "cyc_mov3_0.png"
+              },
+              {
+                "path": "cyc_mov3_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov3_1.png" }
+              {
+                "path": "cyc_mov3_1.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "1,0",
             "Frames": [
-              { "path": "cyc_mov3_2.png" },
-              { "path": "cyc_mov3_3.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_4.png" },
-              { "path": "cyc_mov3_3.png" },
-              { "path": "cyc_mov3_2.png" }
+              {
+                "path": "cyc_mov3_2.png"
+              },
+              {
+                "path": "cyc_mov3_3.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_4.png"
+              },
+              {
+                "path": "cyc_mov3_3.png"
+              },
+              {
+                "path": "cyc_mov3_2.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cyc_mov3_1.png" }
+              {
+                "path": "cyc_mov3_1.png"
+              }
             ]
           }
         }
@@ -140,6 +213,7 @@
       {
         "Nombre": "Oe pero colabora",
         "Distancia": "Corta",
+        "Estamina": 8,
         "Casillas": {
           "Original": "dep_hb_1.png",
           "Pulsada": "dep_hb_1_pulsada.png",
@@ -149,35 +223,63 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dep_mov1_0.png" },
-              { "path": "dep_mov1_1.png" }
+              {
+                "path": "dep_mov1_0.png"
+              },
+              {
+                "path": "dep_mov1_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dep_mov1_2.png" }
+              {
+                "path": "dep_mov1_2.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,9",
             "Frames": [
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_3.png" },
-              { "path": "dep_mov1_4.png" },
-              { "path": "dep_mov1_5.png" },
-              { "path": "dep_mov1_6.png" }
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_3.png"
+              },
+              {
+                "path": "dep_mov1_4.png"
+              },
+              {
+                "path": "dep_mov1_5.png"
+              },
+              {
+                "path": "dep_mov1_6.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dep_mov1_7.png" },
-              { "path": "dep_mov1_8.png" }
+              {
+                "path": "dep_mov1_7.png"
+              },
+              {
+                "path": "dep_mov1_8.png"
+              }
             ]
           }
         }
@@ -185,6 +287,7 @@
       {
         "Nombre": "Espadazos Locos",
         "Distancia": "Corta",
+        "Estamina": 9,
         "Casillas": {
           "Original": "dep_hb_2.png",
           "Pulsada": "dep_hb_2_pulsada.png",
@@ -194,32 +297,54 @@
           "Estatico": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "dep_mov2_0.png" },
-              { "path": "dep_mov2_1.png" },
-              { "path": "dep_mov2_2.png" }
+              {
+                "path": "dep_mov2_0.png"
+              },
+              {
+                "path": "dep_mov2_1.png"
+              },
+              {
+                "path": "dep_mov2_2.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dep_mov2_3.png" }
+              {
+                "path": "dep_mov2_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,5",
             "Frames": [
-              { "path": "dep_mov2_4.png" },
-              { "path": "dep_mov2_5.png" },
-              { "path": "dep_mov2_6.png" },
-              { "path": "dep_mov2_6.png" },
-              { "path": "dep_mov2_6.png" }
+              {
+                "path": "dep_mov2_4.png"
+              },
+              {
+                "path": "dep_mov2_5.png"
+              },
+              {
+                "path": "dep_mov2_6.png"
+              },
+              {
+                "path": "dep_mov2_6.png"
+              },
+              {
+                "path": "dep_mov2_6.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dep_mov2_7.png" },
-              { "path": "dep_mov2_8.png" }
+              {
+                "path": "dep_mov2_7.png"
+              },
+              {
+                "path": "dep_mov2_8.png"
+              }
             ]
           }
         }
@@ -227,6 +352,7 @@
       {
         "Nombre": "Romper 4 pared",
         "Distancia": "Corta",
+        "Estamina": 10,
         "Casillas": {
           "Original": "dep_hb_3.png",
           "Pulsada": "dep_hb_3_pulsada.png",
@@ -236,16 +362,36 @@
           "Estatico": {
             "Tiempo": "1,0",
             "Frames": [
-              { "path": "dep_mov3_0.png" },
-              { "path": "dep_mov3_1.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_2.png" },
-              { "path": "dep_mov3_1.png" }
+              {
+                "path": "dep_mov3_0.png"
+              },
+              {
+                "path": "dep_mov3_1.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_2.png"
+              },
+              {
+                "path": "dep_mov3_1.png"
+              }
             ]
           },
           "Adelante": {
@@ -271,6 +417,7 @@
       {
         "Nombre": "Patadon Bruce Lee",
         "Distancia": "Corta",
+        "Estamina": 11,
         "Casillas": {
           "Original": "iro_hb_1.png",
           "Pulsada": "iro_hb_1_pulsada.png",
@@ -280,34 +427,60 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "iro_mov1_0.png" },
-              { "path": "iro_mov1_1.png" }
+              {
+                "path": "iro_mov1_0.png"
+              },
+              {
+                "path": "iro_mov1_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "iro_mov1_2.png" },
-              { "path": "iro_mov1_3.png" },
-              { "path": "iro_mov1_4.png" }
+              {
+                "path": "iro_mov1_2.png"
+              },
+              {
+                "path": "iro_mov1_3.png"
+              },
+              {
+                "path": "iro_mov1_4.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "iro_mov1_5.png" },
-              { "path": "iro_mov1_6.png" },
-              { "path": "iro_mov1_7.png" },
-              { "path": "iro_mov1_8.png" },
-              { "path": "iro_mov1_9.png" },
-              { "path": "iro_mov1_10.png" }
+              {
+                "path": "iro_mov1_5.png"
+              },
+              {
+                "path": "iro_mov1_6.png"
+              },
+              {
+                "path": "iro_mov1_7.png"
+              },
+              {
+                "path": "iro_mov1_8.png"
+              },
+              {
+                "path": "iro_mov1_9.png"
+              },
+              {
+                "path": "iro_mov1_10.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "iro_mov1_11.png" },
-              { "path": "iro_mov1_11.png" }
+              {
+                "path": "iro_mov1_11.png"
+              },
+              {
+                "path": "iro_mov1_11.png"
+              }
             ]
           }
         }
@@ -315,6 +488,7 @@
       {
         "Nombre": "Puño fortuito",
         "Distancia": "Corta",
+        "Estamina": 12,
         "Casillas": {
           "Original": "iro_hb_2.png",
           "Pulsada": "iro_hb_2_pulsada.png",
@@ -324,36 +498,66 @@
           "Estatico": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "iro_mov2_0.png" }
+              {
+                "path": "iro_mov2_0.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,5",
             "Frames": [
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" }
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,8",
             "Frames": [
-              { "path": "iro_mov2_2.png" },
-              { "path": "iro_mov2_2.png" },
-              { "path": "iro_mov2_2.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_1.png" },
-              { "path": "iro_mov2_3.png" }
+              {
+                "path": "iro_mov2_2.png"
+              },
+              {
+                "path": "iro_mov2_2.png"
+              },
+              {
+                "path": "iro_mov2_2.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              },
+              {
+                "path": "iro_mov2_3.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "iro_mov2_3.png" },
-              { "path": "iro_mov2_1.png" }
+              {
+                "path": "iro_mov2_3.png"
+              },
+              {
+                "path": "iro_mov2_1.png"
+              }
             ]
           }
         }
@@ -361,6 +565,7 @@
       {
         "Nombre": "La de Buda?",
         "Distancia": "Ninguna",
+        "Estamina": 12,
         "Casillas": {
           "Original": "iro_hb_3.png",
           "Pulsada": "iro_hb_3_pulsada.png",
@@ -370,14 +575,30 @@
           "Estatico": {
             "Tiempo": "0,8",
             "Frames": [
-              { "path": "iro_mov3_0.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" },
-              { "path": "iro_mov3_1.png" }
+              {
+                "path": "iro_mov3_0.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              },
+              {
+                "path": "iro_mov3_1.png"
+              }
             ]
           },
           "Adelante": {
@@ -403,6 +624,7 @@
       {
         "Nombre": "Estampida America",
         "Distancia": "Corta",
+        "Estamina": 8,
         "Casillas": {
           "Original": "cap_hb_1.png",
           "Pulsada": "cap_hb_1_pulsada.png",
@@ -412,29 +634,45 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "cap_mov1_0.png" },
-              { "path": "cap_mov1_1.png" }
+              {
+                "path": "cap_mov1_0.png"
+              },
+              {
+                "path": "cap_mov1_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cap_mov1_2.png" }
+              {
+                "path": "cap_mov1_2.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "cap_mov1_2.png" },
-              { "path": "cap_mov1_3.png" },
-              { "path": "cap_mov1_4.png" }
+              {
+                "path": "cap_mov1_2.png"
+              },
+              {
+                "path": "cap_mov1_3.png"
+              },
+              {
+                "path": "cap_mov1_4.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "cap_mov1_5.png" },
-              { "path": "cap_mov1_5.png" }
+              {
+                "path": "cap_mov1_5.png"
+              },
+              {
+                "path": "cap_mov1_5.png"
+              }
             ]
           }
         }
@@ -442,6 +680,7 @@
       {
         "Nombre": "Puño de la Libertad",
         "Distancia": "Corta",
+        "Estamina": 11,
         "Casillas": {
           "Original": "cap_hb_2.png",
           "Pulsada": "cap_hb_2_pulsada.png",
@@ -451,29 +690,45 @@
           "Estatico": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "cap_mov2_0.png" },
-              { "path": "cap_mov2_1.png" },
-              { "path": "cap_mov2_3.png" }
+              {
+                "path": "cap_mov2_0.png"
+              },
+              {
+                "path": "cap_mov2_1.png"
+              },
+              {
+                "path": "cap_mov2_3.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cap_mov2_4.png" }
+              {
+                "path": "cap_mov2_4.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "cap_mov2_5.png" },
-              { "path": "cap_mov2_6.png" },
-              { "path": "cap_mov2_7.png" }
+              {
+                "path": "cap_mov2_5.png"
+              },
+              {
+                "path": "cap_mov2_6.png"
+              },
+              {
+                "path": "cap_mov2_7.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "cap_mov2_8.png" }
+              {
+                "path": "cap_mov2_8.png"
+              }
             ]
           }
         }
@@ -481,6 +736,7 @@
       {
         "Nombre": "Escudo Libertario",
         "Distancia": "Corta",
+        "Estamina": 12,
         "Casillas": {
           "Original": "cap_hb_3.png",
           "Pulsada": "cap_hb_3_pulsada.png",
@@ -490,12 +746,24 @@
           "Estatico": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "cap_mov3_0.png" },
-              { "path": "cap_mov3_1.png" },
-              { "path": "cap_mov3_2.png" },
-              { "path": "cap_mov3_3.png" },
-              { "path": "cap_mov3_4.png" },
-              { "path": "cap_mov3_5.png" }
+              {
+                "path": "cap_mov3_0.png"
+              },
+              {
+                "path": "cap_mov3_1.png"
+              },
+              {
+                "path": "cap_mov3_2.png"
+              },
+              {
+                "path": "cap_mov3_3.png"
+              },
+              {
+                "path": "cap_mov3_4.png"
+              },
+              {
+                "path": "cap_mov3_5.png"
+              }
             ]
           },
           "Adelante": {
@@ -521,6 +789,7 @@
       {
         "Nombre": "Baritas Locas",
         "Distancia": "Corta",
+        "Estamina": 11,
         "Casillas": {
           "Original": "dar_hb_1.png",
           "Pulsada": "dar_hb_1_pulsada.png",
@@ -530,34 +799,63 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dar_mov1_0.png" },
-              { "path": "dar_mov1_1.png" }
+              {
+                "path": "dar_mov1_0.png"
+              },
+              {
+                "path": "dar_mov1_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "dar_mov1_2.png" },
-              { "path": "dar_mov1_2.png" },
-              { "path": "dar_mov1_3.png" },
-              { "path": "dar_mov1_2.png" },
-              { "path": "dar_mov1_2.png" },
-              { "path": "dar_mov1_3.png" }
+              {
+                "path": "dar_mov1_2.png"
+              },
+              {
+                "path": "dar_mov1_2.png"
+              },
+              {
+                "path": "dar_mov1_3.png"
+              },
+              {
+                "path": "dar_mov1_2.png"
+              },
+              {
+                "path": "dar_mov1_2.png"
+              },
+              {
+                "path": "dar_mov1_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,4",
             "Frames": [
-              { "path": "dar_mov1_4.png" },
-              { "path": "dar_mov1_5.png" },
-              { "path": "dar_mov1_6.png" },
-              { "path": "dar_mov1_7.png" }
+              {
+                "path": "dar_mov1_4.png"
+              },
+              {
+                "path": "dar_mov1_5.png"
+              },
+              {
+                "path": "dar_mov1_6.png"
+              },
+              {
+                "path": "dar_mov1_7.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dar_mov1_8.png" }
+              {
+                "path": "dar_mov1_8.png"
+              },
+              {
+                "path": "dar_mov1_0.png"
+              }
             ]
           }
         }
@@ -565,6 +863,7 @@
       {
         "Nombre": "Patadon Historico",
         "Distancia": "Corta",
+        "Estamina": 12,
         "Casillas": {
           "Original": "dar_hb_2.png",
           "Pulsada": "dar_hb_2_pulsada.png",
@@ -574,29 +873,45 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dar_mov2_0.png" },
-              { "path": "dar_mov2_1.png" }
+              {
+                "path": "dar_mov2_0.png"
+              },
+              {
+                "path": "dar_mov2_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dar_mov2_2.png" }
+              {
+                "path": "dar_mov2_2.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,4",
             "Frames": [
-              { "path": "dar_mov2_3.png" },
-              { "path": "dar_mov2_4.png" },
-              { "path": "dar_mov2_5.png" },
-              { "path": "dar_mov2_6.png" }
+              {
+                "path": "dar_mov2_3.png"
+              },
+              {
+                "path": "dar_mov2_4.png"
+              },
+              {
+                "path": "dar_mov2_5.png"
+              },
+              {
+                "path": "dar_mov2_6.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dar_mov2_7.png" }
+              {
+                "path": "dar_mov2_7.png"
+              }
             ]
           }
         }
@@ -604,6 +919,7 @@
       {
         "Nombre": "MMA masivo",
         "Distancia": "Corta",
+        "Estamina": 7,
         "Casillas": {
           "Original": "dar_hb_3.png",
           "Pulsada": "dar_hb_3_pulsada.png",
@@ -613,33 +929,57 @@
           "Estatico": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "dar_mov3_0.png" },
-              { "path": "dar_mov3_1.png" }
+              {
+                "path": "dar_mov3_0.png"
+              },
+              {
+                "path": "dar_mov3_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dar_mov3_2.png" }
+              {
+                "path": "dar_mov3_2.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,8",
             "Frames": [
-              { "path": "dar_mov3_3.png" },
-              { "path": "dar_mov3_4.png" },
-              { "path": "dar_mov3_5.png" },
-              { "path": "dar_mov3_6.png" },
-              { "path": "dar_mov3_7.png" },
-              { "path": "dar_mov3_8.png" },
-              { "path": "dar_mov3_8.png" },
-              { "path": "dar_mov3_8.png" }
+              {
+                "path": "dar_mov3_3.png"
+              },
+              {
+                "path": "dar_mov3_4.png"
+              },
+              {
+                "path": "dar_mov3_5.png"
+              },
+              {
+                "path": "dar_mov3_6.png"
+              },
+              {
+                "path": "dar_mov3_7.png"
+              },
+              {
+                "path": "dar_mov3_8.png"
+              },
+              {
+                "path": "dar_mov3_8.png"
+              },
+              {
+                "path": "dar_mov3_8.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "dar_mov3_9.png" }
+              {
+                "path": "dar_mov3_9.png"
+              }
             ]
           }
         }
@@ -653,6 +993,7 @@
       {
         "Nombre": "Copia de Rafaelo",
         "Distancia": "Corta",
+        "Estamina": 7,
         "Casillas": {
           "Original": "elk_hb_1.png",
           "Pulsada": "elk_hb_1_pulsada.png",
@@ -662,33 +1003,57 @@
           "Estatico": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "elk_mov1_0.png" },
-              { "path": "elk_mov1_1.png" },
-              { "path": "elk_mov1_2.png" }
+              {
+                "path": "elk_mov1_0.png"
+              },
+              {
+                "path": "elk_mov1_1.png"
+              },
+              {
+                "path": "elk_mov1_2.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov1_3.png" }
+              {
+                "path": "elk_mov1_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,7",
             "Frames": [
-              { "path": "elk_mov1_4.png" },
-              { "path": "elk_mov1_4.png" },
-              { "path": "elk_mov1_4.png" },
-              { "path": "elk_mov1_5.png" },
-              { "path": "elk_mov1_5.png" },
-              { "path": "elk_mov1_6.png" },
-              { "path": "elk_mov1_6.png" }
+              {
+                "path": "elk_mov1_4.png"
+              },
+              {
+                "path": "elk_mov1_4.png"
+              },
+              {
+                "path": "elk_mov1_4.png"
+              },
+              {
+                "path": "elk_mov1_5.png"
+              },
+              {
+                "path": "elk_mov1_5.png"
+              },
+              {
+                "path": "elk_mov1_6.png"
+              },
+              {
+                "path": "elk_mov1_6.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov1_7.png" }
+              {
+                "path": "elk_mov1_7.png"
+              }
             ]
           }
         }
@@ -696,6 +1061,7 @@
       {
         "Nombre": "Damisela Kick",
         "Distancia": "Corta",
+        "Estamina": 9,
         "Casillas": {
           "Original": "elk_hb_2.png",
           "Pulsada": "elk_hb_2_pulsada.png",
@@ -705,37 +1071,69 @@
           "Estatico": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "elk_mov2_0.png" },
-              { "path": "elk_mov2_1.png" },
-              { "path": "elk_mov2_2.png" }
+              {
+                "path": "elk_mov2_0.png"
+              },
+              {
+                "path": "elk_mov2_1.png"
+              },
+              {
+                "path": "elk_mov2_2.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov2_3.png" }
+              {
+                "path": "elk_mov2_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "1,1",
             "Frames": [
-              { "path": "elk_mov2_4.png" },
-              { "path": "elk_mov2_4.png" },
-              { "path": "elk_mov2_4.png" },
-              { "path": "elk_mov2_5.png" },
-              { "path": "elk_mov2_5.png" },
-              { "path": "elk_mov2_6.png" },
-              { "path": "elk_mov2_6.png" },
-              { "path": "elk_mov2_7.png" },
-              { "path": "elk_mov2_8.png" },
-              { "path": "elk_mov2_9.png" },
-              { "path": "elk_mov2_9.png" }
+              {
+                "path": "elk_mov2_4.png"
+              },
+              {
+                "path": "elk_mov2_4.png"
+              },
+              {
+                "path": "elk_mov2_4.png"
+              },
+              {
+                "path": "elk_mov2_5.png"
+              },
+              {
+                "path": "elk_mov2_5.png"
+              },
+              {
+                "path": "elk_mov2_6.png"
+              },
+              {
+                "path": "elk_mov2_6.png"
+              },
+              {
+                "path": "elk_mov2_7.png"
+              },
+              {
+                "path": "elk_mov2_8.png"
+              },
+              {
+                "path": "elk_mov2_9.png"
+              },
+              {
+                "path": "elk_mov2_9.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov2_10.png" }
+              {
+                "path": "elk_mov2_10.png"
+              }
             ]
           }
         }
@@ -743,6 +1141,7 @@
       {
         "Nombre": "Estampida Femenina",
         "Distancia": "Corta",
+        "Estamina": 12,
         "Casillas": {
           "Original": "elk_hb_3.png",
           "Pulsada": "elk_hb_3_pulsada.png",
@@ -752,32 +1151,54 @@
           "Estatico": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "elk_mov3_0.png" },
-              { "path": "elk_mov3_1.png" },
-              { "path": "elk_mov3_2.png" }
+              {
+                "path": "elk_mov3_0.png"
+              },
+              {
+                "path": "elk_mov3_1.png"
+              },
+              {
+                "path": "elk_mov3_2.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov3_3.png" }
+              {
+                "path": "elk_mov3_3.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,6",
             "Frames": [
-              { "path": "elk_mov3_4.png" },
-              { "path": "elk_mov3_4.png" },
-              { "path": "elk_mov3_5.png" },
-              { "path": "elk_mov3_5.png" },
-              { "path": "elk_mov3_5.png" },
-              { "path": "elk_mov3_6.png" }
+              {
+                "path": "elk_mov3_4.png"
+              },
+              {
+                "path": "elk_mov3_4.png"
+              },
+              {
+                "path": "elk_mov3_5.png"
+              },
+              {
+                "path": "elk_mov3_5.png"
+              },
+              {
+                "path": "elk_mov3_5.png"
+              },
+              {
+                "path": "elk_mov3_6.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "elk_mov3_7.png" }
+              {
+                "path": "elk_mov3_7.png"
+              }
             ]
           }
         }
@@ -791,6 +1212,7 @@
       {
         "Nombre": "El Venudo loco",
         "Distancia": "Corta",
+        "Estamina": 9,
         "Casillas": {
           "Original": "ven_hb_1.png",
           "Pulsada": "ven_hb_1_pulsada.png",
@@ -800,14 +1222,30 @@
           "Estatico": {
             "Tiempo": "0,8",
             "Frames": [
-              { "path": "ven_mov1_0.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" },
-              { "path": "ven_mov1_1.png" }
+              {
+                "path": "ven_mov1_0.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              },
+              {
+                "path": "ven_mov1_1.png"
+              }
             ]
           },
           "Adelante": {
@@ -827,6 +1265,7 @@
       {
         "Nombre": "Garra de Negro",
         "Distancia": "Corta",
+        "Estamina": 7,
         "Casillas": {
           "Original": "ven_hb_2.png",
           "Pulsada": "ven_hb_2_pulsada.png",
@@ -836,40 +1275,78 @@
           "Estatico": {
             "Tiempo": "0,4",
             "Frames": [
-              { "path": "ven_mov2_0.png" },
-              { "path": "ven_mov2_1.png" },
-              { "path": "ven_mov2_1.png" },
-              { "path": "ven_mov2_1.png" }
+              {
+                "path": "ven_mov2_0.png"
+              },
+              {
+                "path": "ven_mov2_1.png"
+              },
+              {
+                "path": "ven_mov2_1.png"
+              },
+              {
+                "path": "ven_mov2_1.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "ven_mov2_2.png" },
-              { "path": "ven_mov2_2.png" }
+              {
+                "path": "ven_mov2_2.png"
+              },
+              {
+                "path": "ven_mov2_2.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "1,1",
             "Frames": [
-              { "path": "ven_mov2_3.png" },
-              { "path": "ven_mov2_3.png" },
-              { "path": "ven_mov2_4.png" },
-              { "path": "ven_mov2_4.png" },
-              { "path": "ven_mov2_5.png" },
-              { "path": "ven_mov2_5.png" },
-              { "path": "ven_mov2_6.png" },
-              { "path": "ven_mov2_6.png" },
-              { "path": "ven_mov2_7.png" },
-              { "path": "ven_mov2_7.png" },
-              { "path": "ven_mov2_7.png" }
+              {
+                "path": "ven_mov2_3.png"
+              },
+              {
+                "path": "ven_mov2_3.png"
+              },
+              {
+                "path": "ven_mov2_4.png"
+              },
+              {
+                "path": "ven_mov2_4.png"
+              },
+              {
+                "path": "ven_mov2_5.png"
+              },
+              {
+                "path": "ven_mov2_5.png"
+              },
+              {
+                "path": "ven_mov2_6.png"
+              },
+              {
+                "path": "ven_mov2_6.png"
+              },
+              {
+                "path": "ven_mov2_7.png"
+              },
+              {
+                "path": "ven_mov2_7.png"
+              },
+              {
+                "path": "ven_mov2_7.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,2",
             "Frames": [
-              { "path": "ven_mov2_1.png" },
-              { "path": "ven_mov2_1.png" }
+              {
+                "path": "ven_mov2_1.png"
+              },
+              {
+                "path": "ven_mov2_1.png"
+              }
             ]
           }
         }
@@ -877,6 +1354,7 @@
       {
         "Nombre": "A lo Venezolano",
         "Distancia": "Corta",
+        "Estamina": 8,
         "Casillas": {
           "Original": "ven_hb_3.png",
           "Pulsada": "ven_hb_3_pulsada.png",
@@ -886,34 +1364,60 @@
           "Estatico": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "ven_mov3_0.png" }
+              {
+                "path": "ven_mov3_0.png"
+              }
             ]
           },
           "Adelante": {
             "Tiempo": "0,3",
             "Frames": [
-              { "path": "ven_mov3_1.png" },
-              { "path": "ven_mov3_1.png" },
-              { "path": "ven_mov3_1.png" }
+              {
+                "path": "ven_mov3_1.png"
+              },
+              {
+                "path": "ven_mov3_1.png"
+              },
+              {
+                "path": "ven_mov3_1.png"
+              }
             ]
           },
           "Ataque": {
             "Tiempo": "0,8",
             "Frames": [
-              { "path": "ven_mov3_2.png" },
-              { "path": "ven_mov3_3.png" },
-              { "path": "ven_mov3_3.png" },
-              { "path": "ven_mov3_3.png" },
-              { "path": "ven_mov3_4.png" },
-              { "path": "ven_mov3_5.png" },
-              { "path": "ven_mov3_5.png" },
-              { "path": "ven_mov3_5.png" }
+              {
+                "path": "ven_mov3_2.png"
+              },
+              {
+                "path": "ven_mov3_3.png"
+              },
+              {
+                "path": "ven_mov3_3.png"
+              },
+              {
+                "path": "ven_mov3_3.png"
+              },
+              {
+                "path": "ven_mov3_4.png"
+              },
+              {
+                "path": "ven_mov3_5.png"
+              },
+              {
+                "path": "ven_mov3_5.png"
+              },
+              {
+                "path": "ven_mov3_5.png"
+              }
             ]
           },
           "Atras": {
             "Tiempo": "0,1",
             "Frames": [
-              { "path": "ven_mov3_6.png" }
+              {
+                "path": "ven_mov3_6.png"
+              }
             ]
           }
         }

@@ -1,4 +1,6 @@
 ﻿using JuegoMarvel.ModuloAuxiliares.ModuloCargaInicial.View;
+using JuegoMarvel.ModuloJuego.View;
+using JuegoMarvel.ModuloJuego.ViewModel;
 using JuegoMarvel.Views;
 
 namespace JuegoMarvel
@@ -36,7 +38,8 @@ namespace JuegoMarvel
         /// <returns>Una instancia de <see cref="Window"/> con la página de inicio como contenido.</returns>
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var window = new Window(_cargaPage)
+            //new JuegoViewModel(null, null)
+            var window = new Window(new Juego())
             {
                 Title = "Juego Marvel"
             };

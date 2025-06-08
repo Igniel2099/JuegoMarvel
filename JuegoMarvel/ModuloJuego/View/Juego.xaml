@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloJuego.View.Juego"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:svc="clr-namespace:JuegoMarvel.Services;assembly=JuegoMarvel"
+    xmlns:viewModel="clr-namespace:JuegoMarvel.ModuloJuego.ViewModel"
+    Title="Juego"
+    x:DataType="viewModel:JuegoViewModel">
+    <Grid RowDefinitions="3*,*">
+        <Grid RowDefinitions="*,4*">
+            <Image
+                Grid.RowSpan="2"
+                Aspect="AspectFill"
+                Source="fondo_juego.png" />
+            <Grid Grid.Row="0" ColumnDefinitions="6*,*,6*">
+                <svc:ProgresssBarPersonalizada
+                    Grid.Column="0"
+                    Margin="12"
+                    CornerRadius="25"
+                    Progress="{Binding EstaminaPropia}"
+                    ProgressColor="Black" />
+                <Image
+                    Grid.Column="1"
+                    Aspect="AspectFill"
+                    Source="reloj_juego.png" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="{Binding Reloj}"
+                    VerticalOptions="Center" />
+                <svc:ProgresssBarPersonalizada
+                    Grid.Column="2"
+                    Margin="12"
+                    CornerRadius="25"
+                    IsReversed="True"
+                    Progress="{Binding EstaminaContraria}"
+                    ProgressColor="Black" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid Margin="30,10" ColumnDefinitions="1.5*,*,1.5*">
+                    <Image
+                        Grid.Column="0"
+                        HorizontalOptions="Start"
+                        MaximumHeightRequest="100"
+                        Source="{Binding ImgPersonajePropio}"
+                        TranslationX="{Binding EjeXPersonajePropio}" />
+
+                    <Grid Grid.Column="1" RowDefinitions="2*,*">
+
+                        <Grid Grid.Row="0" />
+
+                        <Grid
+                            Grid.Row="1"
+                            ColumnDefinitions="3*,*"
+                            ColumnSpacing="5">
+                            <Border
+                                Grid.Column="0"
+                                Background="Gray"
+                                StrokeShape="RoundRectangle 10">
+                                <Grid
+                                    Padding="5"
+                                    ColumnDefinitions="*,*,*"
+                                    ColumnSpacing="5">
+
+                                    <Grid Grid.Column="0">
+
+                                        <ImageButton Command="{Binding ComandoHbUno}" Source="dar_hb_1.png" />
+                                        <Label
+                                            FontSize="25"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding GastarEstaminaHbUno}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+
+
+                                    <Grid Grid.Column="1">
+
+                                        <ImageButton Command="{Binding ComandoHbDos}" Source="dar_hb_2.png" />
+                                        <Label
+                                            FontSize="25"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding GastarEstaminaHbDos}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+
+
+                                    <Grid Grid.Column="2">
+
+                                        <ImageButton Command="{Binding ComandoHbTres}" Source="dar_hb_3.png" />
+                                        <Label
+                                            FontSize="25"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding GastarEstaminaHbTres}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{Binding ComandoPegar}"
+                                CommandParameter="{Binding HabilidadSeleccionada}"
+                                Source="boton_pegar.png" />
+                        </Grid>
+
+                    </Grid>
+
+
+                    <Image
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        MaximumHeightRequest="100"
+                        ScaleX="-1"
+                        Source="dep_cuerpo.png"
+                        TranslationX="{Binding EjeXPersonajeContrario}" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            BackgroundColor="Black"
+            ColumnDefinitions="*,*">
+
+            <Grid Grid.Column="0" RowDefinitions="*,*,*">
+
+                <Grid Grid.Row="0" ColumnDefinitions="*,0.6*,3*,*">
+                    <Image
+                        Grid.ColumnSpan="4"
+                        Aspect="Fill"
+                        Source="contenedor_estadisticas_personaje.png" />
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="LuckiestGuy"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        Text="{Binding NombrePersonajePropio}"
+                        VerticalOptions="Center" />
+                    <Grid Grid.Column="1" RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            FontFamily="LuckiestGuy"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="Vida"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            FontFamily="LuckiestGuy"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="Escudo"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Grid
+                        Grid.Column="2"
+                        Margin="3"
+                        RowDefinitions="*,*"
+                        RowSpacing="3">
+                        <svc:ProgresssBarPersonalizada
+                            Grid.Row="0"
+                            CornerRadius="10"
+                            Progress="{Binding VidaPropia}"
+                            ProgressColor="LimeGreen" />
+                        <svc:ProgresssBarPersonalizada
+                            Grid.Row="1"
+                            CornerRadius="10"
+                            Progress="{Binding EscudoPropio}"
+                            ProgressColor="Blue" />
+                    </Grid>
+
+                    <Grid Grid.Column="3" RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            Text="{Binding RelacionVidaYtotal}"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            Text="{Binding RelacionEscudoYtotal}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+                </Grid>
+                <Border Grid.Row="1" Background="DarkRed" />
+                <Border Grid.Row="2" Background="DarkRed" />
+            </Grid>
+            <Grid Grid.Column="1" RowDefinitions="*,*,*">
+                <Grid Grid.Row="0" ColumnDefinitions="*,0.6*,3*,*">
+                    <Image
+                        Grid.ColumnSpan="4"
+                        Aspect="Fill"
+                        Source="contenedor_estadisticas_personaje_contrario.png" />
+                    <Label
+                        Grid.Column="0"
+                        FontFamily="LuckiestGuy"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        Text="{Binding NombrePersonajeContrario}"
+                        VerticalOptions="Center" />
+                    <Grid Grid.Column="1" RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            FontFamily="LuckiestGuy"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="Vida"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            FontFamily="LuckiestGuy"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="Escudo"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Grid
+                        Grid.Column="2"
+                        Margin="3"
+                        RowDefinitions="*,*"
+                        RowSpacing="3">
+                        <svc:ProgresssBarPersonalizada
+                            Grid.Row="0"
+                            CornerRadius="10"
+                            IsReversed="True"
+                            Progress="{Binding VidaContraria}"
+                            ProgressColor="LimeGreen" />
+                        <svc:ProgresssBarPersonalizada
+                            Grid.Row="1"
+                            CornerRadius="10"
+                            IsReversed="True"
+                            Progress="{Binding EscudoContraria}"
+                            ProgressColor="Blue" />
+                    </Grid>
+
+                    <Grid Grid.Column="3" RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            Text="{Binding RelacionVidaYtotal}"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="10"
+                            HorizontalOptions="Center"
+                            Text="{Binding RelacionEscudoYtotal}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+                </Grid>
+                <Border Grid.Row="1" Background="DarkBlue" />
+                <Border Grid.Row="2" Background="DarkBlue" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

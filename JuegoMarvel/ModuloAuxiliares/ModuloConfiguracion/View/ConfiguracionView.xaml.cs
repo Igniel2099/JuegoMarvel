@@ -3,7 +3,7 @@ using JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel;
 namespace JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.View;
 
 /// <summary>
-/// Página de configuración de la aplicación.
+/// Pï¿½gina de configuraciï¿½n de la aplicaciï¿½n.
 /// </summary>
 public partial class ConfiguracionView : ContentPage
 {

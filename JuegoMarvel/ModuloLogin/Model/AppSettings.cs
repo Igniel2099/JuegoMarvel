@@ -14,4 +14,9 @@ public class AppSettings
     /// Puerto del servidor al que se conecta la aplicación.
     /// </summary>
     public int PuertoServidor { get; set; }
+
+    /// <summary>
+    /// Puerto del servidor al que se contecta la aplicación para jugar
+    /// </summary>
+    public int PuertoServidorJuego { get; set; }
 }

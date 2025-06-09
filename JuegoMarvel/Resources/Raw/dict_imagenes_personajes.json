@@ -927,7 +927,7 @@
         },
         "Sprites": {
           "Estatico": {
-            "Tiempo": "0,2",
+            "Tiempo": "0,6",
             "Frames": [
               {
                 "path": "dar_mov3_0.png"
@@ -938,7 +938,7 @@
             ]
           },
           "Adelante": {
-            "Tiempo": "0,1",
+            "Tiempo": "0,4",
             "Frames": [
               {
                 "path": "dar_mov3_2.png"
@@ -1001,7 +1001,7 @@
         },
         "Sprites": {
           "Estatico": {
-            "Tiempo": "0,3",
+            "Tiempo": "0,6",
             "Frames": [
               {
                 "path": "elk_mov1_0.png"
@@ -1015,7 +1015,7 @@
             ]
           },
           "Adelante": {
-            "Tiempo": "0,1",
+            "Tiempo": "0,4",
             "Frames": [
               {
                 "path": "elk_mov1_3.png"
@@ -1049,10 +1049,13 @@
             ]
           },
           "Atras": {
-            "Tiempo": "0,1",
+            "Tiempo": "0,3",
             "Frames": [
               {
                 "path": "elk_mov1_7.png"
+              },
+              {
+                "path": "elk_mov1_0.png"
               }
             ]
           }

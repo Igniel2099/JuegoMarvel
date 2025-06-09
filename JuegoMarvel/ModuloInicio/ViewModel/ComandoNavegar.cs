@@ -8,18 +8,21 @@ using JuegoMarvel.ModuloAuxiliares.ModuloConfiguracion.ViewModel;
 using JuegoMarvel.Views;
 using JuegoMarvelData.Data;
 using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloLogin.Model;
+using JuegoMarvel.ModuloJuego.Model;
 
 namespace JuegoMarvel.ModuloInicio.ViewModel;
 
 /// <summary>
 /// Comando para gestionar la navegación entre las diferentes páginas principales de la aplicación.
 /// </summary>
-public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
+public class ComandoNavegar(AppSettings configuracion, BbddjuegoMarvelContext context) : BaseCommand
 {
     /// <summary>
     /// Contexto de la base de datos utilizado para inicializar los ViewModels de las páginas.
     /// </summary>
     private readonly BbddjuegoMarvelContext _context = context;
+    private readonly AppSettings _configuracion = configuracion;
 
     /// <summary>
     /// Ejecuta la navegación a la página correspondiente según el nombre recibido como parámetro.
@@ -58,7 +61,7 @@ public class ComandoNavegar(BbddjuegoMarvelContext context) : BaseCommand
                 case "Empezar":
                     BuscarJugadorViewModel bjVm = new();
                     await bjVm.CargarDatos(_context);
-                    await nav.PushModalAsync(new BuscarJugador(bjVm));
+                    await nav.PushModalAsync(new BuscarJugador(bjVm, new ClienteJuego(_configuracion.IpServidor, _configuracion.PuertoServidorJuego)));
                     break;
             }
         }

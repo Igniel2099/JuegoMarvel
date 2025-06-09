@@ -1,49 +1,115 @@
+using JuegoMarvel.ModuloJuego.Model;
 using JuegoMarvel.ModuloJuego.ViewModel;
+using MensajesServidor;
 
 namespace JuegoMarvel.ModuloJuego.View;
 
 /// <summary>
-/// P醙ina para buscar un jugador y mostrar animaciones de espera.
+/// P谩gina para buscar un jugador y mostrar animaciones de espera.
 /// </summary>
 public partial class BuscarJugador : ContentPage
 {
-    /// <summary>
-    /// Inicializa una nueva instancia de <see cref="BuscarJugador"/> con el ViewModel proporcionado.
-    /// </summary>
-    /// <param name="vm">Instancia de <see cref="BuscarJugadorViewModel"/> para el binding de la vista.</param>
-    public BuscarJugador(BuscarJugadorViewModel vm)
+    private readonly ClienteJuego _cliente;
+    private readonly BuscarJugadorViewModel _vm;
+
+    // Para controlar la cancelaci贸n de la animaci贸n
+    private CancellationTokenSource _animCts;
+
+    public BuscarJugador(BuscarJugadorViewModel vm, ClienteJuego cliente)
     {
+        _cliente = cliente;
+        _vm = vm;
         InitializeComponent();
         BindingContext = vm;
-        // Inicia la animaci髇 correctamente en el hilo de la UI
-        RepetirAnimacionBorder();
     }
 
     /// <summary>
-    /// Inicia una animaci髇 infinita de los bordes, repitiendo la secuencia indefinidamente.
+    /// Inicia una animaci贸n infinita de los bordes, repitiendo la secuencia indefinidamente.
     /// </summary>
-    private async void RepetirAnimacionBorder()
+    private async Task RepetirAnimacionBorderAsync(CancellationToken ct)
     {
-        while (true)
+        while (!ct.IsCancellationRequested)
         {
-            await AnimarBordersSecuencialmente();
-            await Task.Delay(1000); // Delay entre repeticiones completas
+            await AnimarBordersSecuencialmente(ct);
+            // Delay entre repeticiones completas
+            await Task.Delay(1000, ct);
         }
     }
 
     /// <summary>
-    /// Anima los bordes subi閚dolos arriba y abajo de manera secuencial, uno por uno.
+    /// Anima los bordes subi茅ndolos arriba y abajo de manera secuencial, uno por uno.
     /// </summary>
-    /// <returns>Una tarea que representa la finalizaci髇 de la animaci髇 secuencial.</returns>
-    private async Task AnimarBordersSecuencialmente()
+    private async Task AnimarBordersSecuencialmente(CancellationToken ct)
     {
         var borders = new[] { Border1, Border2, Border3 };
 
         foreach (var border in borders)
         {
+            if (ct.IsCancellationRequested)
+                return;
+
             await border.TranslateTo(0, -10, 150, Easing.CubicOut);
             await border.TranslateTo(0, 0, 150, Easing.CubicIn);
-            await Task.Delay(200); // Retardo entre cada uno
+
+            // Retardo entre cada uno
+            await Task.Delay(200, ct);
+        }
+    }
+
+    private async Task<string> IniciarConexionJuegoAsync()
+    {
+        await Task.Run(() => _cliente.Conectar());
+
+        await _cliente.Enviar(new MensajesModuloJuego
+        {
+            TipoMensaje = EnumMensajeJuego.MandarPersonaje,
+            Valor = _vm.NombrePersonajeDos
+        });
+
+        var msgOponente = await _cliente.Recibir();
+        return msgOponente.Valor;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // 1) Creamos un nuevo CancellationTokenSource
+        _animCts?.Cancel();
+        _animCts = new CancellationTokenSource();
+
+        // 2) Arrancamos la animaci贸n en paralelo
+        _ = RepetirAnimacionBorderAsync(_animCts.Token);
+
+        // 3) Llamamos a conectar y navegar
+        _ = ConectarYNavegarAsync();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        // Cancelamos la animaci贸n al cambiar de p谩gina
+        _animCts?.Cancel();
+    }
+
+    private async Task ConectarYNavegarAsync()
+    {
+        try
+        {
+            string nombreOponente = await IniciarConexionJuegoAsync();
+
+            // Antes de reemplazar la MainPage, cancelamos la animaci贸n por si acaso
+            _animCts?.Cancel();
+
+            // Crea la nueva p谩gina de juego y la pone como ra铆z
+            var juegoPage = new Juego(_cliente, _vm.NombrePersonajeDos, nombreOponente);
+            NavigationPage.SetHasNavigationBar(juegoPage, false);
+            Application.Current.MainPage = new NavigationPage(juegoPage);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"No se pudo conectar: {ex.Message}", "OK");
         }
     }
 }

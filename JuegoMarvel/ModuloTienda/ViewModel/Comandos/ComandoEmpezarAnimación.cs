@@ -133,8 +133,8 @@ public class ComandoEmpezarAnimación : BaseCommand
         };
 
         // Filtrar solo aquellas categorías con al menos un frame
-        _categoriasAnimables = new List<CategoriaSprite>();
-        _intervalosPorFrame = new List<double>();
+        _categoriasAnimables = [];
+        _intervalosPorFrame = [];
         _desplazamientosPorFrame = [];
 
         foreach (var catSprite in todasCategorias)

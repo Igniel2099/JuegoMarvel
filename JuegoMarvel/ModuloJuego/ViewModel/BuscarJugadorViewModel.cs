@@ -1,6 +1,8 @@
 ﻿using JuegoMarvel.ClasesBase;
+using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
+using System.Windows.Input;
 
 namespace JuegoMarvel.ModuloJuego.ViewModel;
 
@@ -91,10 +93,17 @@ public class BuscarJugadorViewModel : BaseViewModel
     }
     #endregion
 
+    public string NombrePersonajeUno { get; set; }
+    public string NombrePersonajeDos { get; set; }
+    public string NombrePersonajeTres { get; set; }
+
+    public PersonajesImagenes PersonajesImgs { get; set; }
+
     /// <summary>
     /// Comando para navegar hacia atrás en la navegación.
     /// </summary>
     public ComandoNavegarVolverAtras NavAtras { get; set; }
+    public ICommand ComandoInicializarConexion { get; set; }
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="BuscarJugadorViewModel"/> con valores por defecto.
@@ -118,7 +127,7 @@ public class BuscarJugadorViewModel : BaseViewModel
 
         GestionPersonajes gestionPersonajes = new(context);
 
-        var personajesImagenes = await GestionPersonajes.CargarPersonajesJsonAsync();
+        PersonajesImgs = await GestionPersonajes.CargarPersonajesJsonAsync();
 
         var listaNombresPersonajesUsuarioEquipo = await gestionPersonajes.CargarNombresEquipoPersonajesUsuario();
         if (listaNombresPersonajesUsuarioEquipo != null)
@@ -128,13 +137,16 @@ public class BuscarJugadorViewModel : BaseViewModel
                 switch (i)
                 {
                     case 0:
-                        ImgCuerpoJugadorUno = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        NombrePersonajeUno = listaNombresPersonajesUsuarioEquipo[i];
+                        ImgCuerpoJugadorUno = PersonajesImgs[NombrePersonajeUno].ImgCuerpo;
                         continue;
                     case 1:
-                        ImgCuerpoJugadorDos = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        NombrePersonajeDos = listaNombresPersonajesUsuarioEquipo[i];
+                        ImgCuerpoJugadorDos = PersonajesImgs[NombrePersonajeDos].ImgCuerpo;
                         continue;
                     case 2:
-                        ImgCuerpoJugadorTres = personajesImagenes[listaNombresPersonajesUsuarioEquipo[i]].ImgCuerpo;
+                        NombrePersonajeTres = listaNombresPersonajesUsuarioEquipo[i];
+                        ImgCuerpoJugadorTres = PersonajesImgs[NombrePersonajeTres].ImgCuerpo;
                         break;
                 }
             }

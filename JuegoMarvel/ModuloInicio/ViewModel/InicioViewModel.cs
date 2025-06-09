@@ -100,7 +100,7 @@ public class InicioViewModel : BaseViewModel
     /// <param name="context">Contexto de la base de datos.</param>
     public InicioViewModel(AppSettings configuracion, BbddjuegoMarvelContext context)
     {
-        ComandoNav = new ComandoNavegar(context);
+        ComandoNav = new ComandoNavegar(configuracion, context);
 
         var primerUsuario = context.Usuarios.FirstOrDefault() ??
             throw new Exception("Tenemos un problema, no hay usuarios en la tabla"); // Solo hay uno o deberia

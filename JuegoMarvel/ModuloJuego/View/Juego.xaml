@@ -41,14 +41,28 @@
 
             <Grid Grid.Row="1">
                 <Grid Margin="30,10" ColumnDefinitions="1.5*,*,1.5*">
-                    <Image
-                        Grid.Column="0"
-                        HorizontalOptions="Start"
-                        MaximumHeightRequest="100"
-                        Source="{Binding ImgPersonajePropio}"
-                        TranslationX="{Binding EjeXPersonajePropio}" />
 
-                    <Grid Grid.Column="1" RowDefinitions="2*,*">
+                    <Grid Grid.Column="0" MaximumHeightRequest="120">
+                        <Image
+                            Margin="4,0,0,0"
+                            HorizontalOptions="Start"
+                            MaximumHeightRequest="100"
+                            Source="{Binding ImgPersonajePropio}"
+                            TranslationX="{Binding EjeXPersonajePropio}" />
+
+                        <Image
+                            HorizontalOptions="Start"
+                            MaximumHeightRequest="50"
+                            Source="{Binding ImgEstaSeleccionado}"
+                            VerticalOptions="End" />
+
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Column="1"
+                        IsVisible="{Binding MostrarGridAcciones}"
+                        RowDefinitions="2*,*">
 
                         <Grid Grid.Row="0" />
 
@@ -67,9 +81,9 @@
 
                                     <Grid Grid.Column="0">
 
-                                        <ImageButton Command="{Binding ComandoHbUno}" Source="dar_hb_1.png" />
+                                        <ImageButton Command="{Binding ComandoHbUno}" Source="{Binding ImgHbUno}" />
                                         <Label
-                                            FontSize="25"
+                                            FontSize="15"
                                             HorizontalOptions="Center"
                                             Text="{Binding GastarEstaminaHbUno}"
                                             VerticalOptions="Center" />
@@ -78,9 +92,9 @@
 
                                     <Grid Grid.Column="1">
 
-                                        <ImageButton Command="{Binding ComandoHbDos}" Source="dar_hb_2.png" />
+                                        <ImageButton Command="{Binding ComandoHbDos}" Source="{Binding ImgHbDos}" />
                                         <Label
-                                            FontSize="25"
+                                            FontSize="15"
                                             HorizontalOptions="Center"
                                             Text="{Binding GastarEstaminaHbDos}"
                                             VerticalOptions="Center" />
@@ -89,9 +103,9 @@
 
                                     <Grid Grid.Column="2">
 
-                                        <ImageButton Command="{Binding ComandoHbTres}" Source="dar_hb_3.png" />
+                                        <ImageButton Command="{Binding ComandoHbTres}" Source="{Binding ImgHbTres}" />
                                         <Label
-                                            FontSize="25"
+                                            FontSize="15"
                                             HorizontalOptions="Center"
                                             Text="{Binding GastarEstaminaHbTres}"
                                             VerticalOptions="Center" />
@@ -99,6 +113,7 @@
 
                                 </Grid>
                             </Border>
+
 
                             <ImageButton
                                 Grid.Column="1"
@@ -110,13 +125,22 @@
                     </Grid>
 
 
-                    <Image
-                        Grid.Column="2"
-                        HorizontalOptions="End"
-                        MaximumHeightRequest="100"
-                        ScaleX="-1"
-                        Source="dep_cuerpo.png"
-                        TranslationX="{Binding EjeXPersonajeContrario}" />
+                    <Grid Grid.Column="2" MaximumHeightRequest="100">
+                        <Image
+                            HorizontalOptions="End"
+                            ScaleX="-1"
+                            Source="{Binding ImagePersonajeContrario}"
+                            TranslationX="{Binding EjeXPersonajeContrario}" />
+
+                        <Image
+                            HorizontalOptions="End"
+                            MaximumHeightRequest="50"
+                            Source="{Binding ImgEstaSeleccionadoContrario}"
+                            VerticalOptions="End" />
+
+
+                    </Grid>
+
                 </Grid>
             </Grid>
         </Grid>

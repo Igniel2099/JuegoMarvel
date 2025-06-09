@@ -1,6 +1,8 @@
+using JuegoMarvel.ModuloJuego.Model;
 using JuegoMarvel.ModuloJuego.ViewModel;
 using JuegoMarvel.ModuloTienda.Model;
 using JuegoMarvel.Services;
+using JuegoMarvelData.Data;
 
 namespace JuegoMarvel.ModuloJuego.View;
 
@@ -8,22 +10,21 @@ public partial class Juego : ContentPage
 {
     private PersonajesImagenes _pi;
 
-    public Juego()
+    public Juego(ClienteJuego cliente, string nombrePersonaje, string nombrePersonajeContrario, BbddjuegoMarvelContext? context = null)
     {
         InitializeComponent();
-        CargarYBindear();
+        
+        CargarYBindear(cliente, nombrePersonaje, nombrePersonajeContrario);
     }
 
-    private async void CargarYBindear()
+    private async void CargarYBindear(ClienteJuego cliente, string nombrePersonaje, string nombrePersonajeContrario)
     {
-        // 1. Carga asíncrona de los datos
         _pi = await GestionPersonajes.CargarPersonajesJsonAsync();
 
-        // 2. Obtén los PersonajeImg que necesites
-        PersonajeImg personajePropio = _pi["DareDevil"];
-        PersonajeImg personajeContrario = _pi["Deadpool"];
+        PersonajeImg personajePropio = _pi[nombrePersonaje];
+        PersonajeImg personajeContrario = _pi[nombrePersonajeContrario];
 
-        // 3. Asigna el BindingContext una vez que ya están cargados
-        BindingContext = new JuegoViewModel(personajePropio, personajeContrario);
+        JuegoViewModel vm = new(cliente, nombrePersonaje, nombrePersonajeContrario, personajePropio, personajeContrario);
+        BindingContext = vm;
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="JuegoMarvel.ModuloJuego.View.ResultadoJugador"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:JuegoMarvel.ModuloJuego.ViewModel"
+    Title="ResultadoJugador"
+    x:DataType="viewModels:ResultadoJugadorViewModel">
+    <Grid>
+        <Image Aspect="AspectFill" Source="fondo_inicio.png" />
+        <HorizontalStackLayout
+            HorizontalOptions="Center"
+            MaximumHeightRequest="150"
+            VerticalOptions="Center">
+            <Image Source="{Binding ImgResultado}" />
+            <Label Text="{Binding Resultado}" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

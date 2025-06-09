@@ -39,7 +39,7 @@ namespace JuegoMarvel
         protected override Window CreateWindow(IActivationState? activationState)
         {
             //new JuegoViewModel(null, null)
-            var window = new Window(new Juego())
+            var window = new Window(_cargaPage)
             {
                 Title = "Juego Marvel"
             };

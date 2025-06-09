@@ -2,10 +2,7 @@
 using JuegoMarvel.ModuloLogin.Model;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos;
 using JuegoMarvel.ModuloLogin.ViewModel.Comandos.Navegar;
-using JuegoMarvel.Services;
 using JuegoMarvelData.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace JuegoMarvel.ModuloLogin.ViewModel;
 
@@ -111,8 +108,8 @@ public class LoginViewModel : BaseViewModel
         _mantenerSesion = false;
 
         //Momentaneo 
-        NombreUsuario = "Sentry";
-        Contrasena = "Alexander1234567890_";
+        NombreUsuario = "walther";
+        Contrasena = "Carbono143412_";
 
         ComandoLogearse.Nombre = NombreUsuario!;
 

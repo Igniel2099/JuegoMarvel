@@ -402,9 +402,9 @@ public class JuegoViewModel : BaseViewModel
         _escudoPropio = 1;
         _vidaContraria = 1;
         _escudoContraria = 1;
-        _gastarEstaminaHbUno = 10;
-        _gastarEstaminaHbDos = 20;
-        _gastarEstaminaHbTres = 30;
+        _gastarEstaminaHbUno = null;
+        _gastarEstaminaHbDos = null;
+        _gastarEstaminaHbTres = null;
         _relacionVidaYtotal = "100/100";
         _relacionEscudoYtotal = "50/50";
 

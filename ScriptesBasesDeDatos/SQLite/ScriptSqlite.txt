@@ -1,0 +1,67 @@
+
+PRAGMA foreign_keys = ON;
+
+
+CREATE TABLE Usuario (
+    IdUsuario            INTEGER PRIMARY KEY AUTOINCREMENT,
+    NombreUsuario        TEXT    NOT NULL,
+    Correo               TEXT    NOT NULL,
+    Experiencia          INTEGER DEFAULT 0,
+    Monedas              INTEGER DEFAULT 0,
+    SuperPuntos          INTEGER DEFAULT 0,
+    CodigoConfirmacion   INTEGER
+);
+
+CREATE TABLE Personaje (
+    IdPersonaje   INTEGER PRIMARY KEY AUTOINCREMENT,
+    NombreCompleto TEXT    NOT NULL,
+    Tipo           TEXT,
+    Grupo          TEXT,
+    Coste          INTEGER
+);
+
+
+CREATE TABLE PersonajeUsuario (
+    IdPersonajeUsuario INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdPersonaje        INTEGER NOT NULL,
+    Nivel              INTEGER DEFAULT 1,
+    ValorHabilidad1    INTEGER DEFAULT 0,
+    ValorHabilidad2    INTEGER DEFAULT 0,
+    ValorHabilidad3    INTEGER DEFAULT 0,
+    IdEquipo           INTEGER,
+    IdUsuario          INTEGER NOT NULL,
+    FOREIGN KEY (IdPersonaje) REFERENCES Personaje(IdPersonaje),
+    FOREIGN KEY (IdUsuario)     REFERENCES Usuario(IdUsuario)
+);
+
+
+CREATE TABLE Equipo (
+    IdEquipo             INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdPersonajeUsuario1  INTEGER,
+    IdPersonajeUsuario2  INTEGER,
+    IdPersonajeUsuario3  INTEGER,
+    FOREIGN KEY (IdPersonajeUsuario1) REFERENCES PersonajeUsuario(IdPersonajeUsuario),
+    FOREIGN KEY (IdPersonajeUsuario2) REFERENCES PersonajeUsuario(IdPersonajeUsuario),
+    FOREIGN KEY (IdPersonajeUsuario3) REFERENCES PersonajeUsuario(IdPersonajeUsuario)
+);
+
+
+CREATE TABLE Habilidad (
+    IdHabilidades INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdPersonaje   INTEGER NOT NULL,
+    Nombre        TEXT,
+    Valor         INTEGER,
+    Tipo          TEXT,
+    FOREIGN KEY (IdPersonaje) REFERENCES Personaje(IdPersonaje)
+);
+
+
+CREATE TABLE Pelea (
+    IdPeleas         INTEGER PRIMARY KEY AUTOINCREMENT,
+    ContrincanteUsuario INTEGER NOT NULL,
+    SoyGanador       INTEGER   -- 1 = sí, 0 = no (o NULL si no está decidido)
+);
+
+-- No hace falta crear esta base de datos ya que viene incorporada en el proyecto de 
+-- la aplicación principal y cuando empieza de 0 en un móvil borra toda la base de 
+-- datos pero bueno

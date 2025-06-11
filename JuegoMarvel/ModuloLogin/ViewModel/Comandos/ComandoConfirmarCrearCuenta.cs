@@ -82,14 +82,24 @@ public class ComandoConfirmarCrearCuenta : BaseCommand
 
         if (parameter is CrearCuenta crearCuenta)
         {
+            string mensaje = "ERROR AL CREAR CUENTA";
+            if (usuarioOk && correoOk && pwOk)
+            {
+                mensaje = "FELICIDADES!\nSE CREO LA CUENTA DE FORMA EXITOSA";
+            }
+            else
+            {
+
+            }
+            
             // Mostrar popup con mensajes: mensajeUsu, mensajeCorr, mensajePw
             var popup = new PopupErrores(new PopupErroresViewModel(
-                    usuarioOk && correoOk && pwOk ? "FELICIDADES!\nSE CREO LA CUENTA DE FORMA EXITOSA" : "ERROR AL CREAR CUENTA",
-                    usuarioOk ? null : mensajeUsu,
-                    correoOk ? null : mensajeCorr,
-                    pwOk ? null : mensajePw
-                )
-            );
+                        usuarioOk && correoOk && pwOk ? "FELICIDADES!\nSE CREO LA CUENTA DE FORMA EXITOSA" : "ERROR AL CREAR CUENTA",
+                        usuarioOk ? null : mensajeUsu,
+                        correoOk ? null : mensajeCorr,
+                        pwOk ? null : mensajePw
+                    )
+                );
 
             await crearCuenta.ShowPopupAsync(popup);
         }

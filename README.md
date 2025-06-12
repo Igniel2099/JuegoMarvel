@@ -18,7 +18,8 @@ Para que puedas utilizar este repositorio necesitas:
 Una vez tengas los repositorios clonados Necesitaras dos Scriptes de la base de datos para poder gestionarla:
 * Script Base de datos de MySQL:
 * Script Base de datos de SQLite(Opcional):
-La base de datos de SQLite no necesitas tocarla y ni hacer nada con el JuegoMar
+La base de datos de SQLite no necesitas tocarla y ni hacer nada con el JuegoMarvel
+
 Una vez iniciado esto tienes que cambiar la dirección IP y el puerto(si lo consideras necesario) de los servidores, los dos tiene que tener la misma dirección IP pero distintos Puertos, para que funcione.
 Tienes que poner en la aplicación en de JuegoMarvel en appsettings.json que esta en la raiz del proyecto, cambiar los valores del ip y los puertos por los que has puesto en los servidores, recuerda la clave PuertoServidor es el del Servidor Multicliente y la clave PuertoServidorJuego es el multijugador.
 Una vez configurado todo 
